@@ -9,6 +9,9 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet">
   <link rel="icon" type="image/png" href="favicon.ico">
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500;700&display=swap" rel="stylesheet">
+  <!-- Google Font -->
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500&display=swap" rel="stylesheet">
+<script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
   <style>
     /* তোমার আগের CSS পুরোটা অপরিবর্তিত রাখা হয়েছে */
     body {
@@ -295,6 +298,180 @@
         right: 15px;
       }
     }
+    /* Footer Core */
+.footer {
+  background: #0e0e0e;
+  color: #fff;
+  font-family: 'Orbitron', sans-serif;
+  padding: 10px;
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  z-index: 1000;
+  transition: max-height 0.3s ease;
+  overflow: hidden;
+}
+.footer-content {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  padding: 10px 0;
+  max-height: 400px;
+}
+.footer-section {
+  flex: 1 1 180px;
+  margin: 10px;
+}
+.footer-logo {
+  width: 200px;
+  margin-bottom: 10px;
+}
+.logo-wrapper {
+  display: inline-block;
+  padding: 5px;
+  border-radius: 12px;
+  background: linear-gradient(270deg, #ff0080, #7928ca, #2afadf, #00ffaa);
+  background-size: 600% 600%;
+  animation: rainbow-border 8s ease infinite;
+}
+@keyframes rainbow-border {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+.footer-section h4 {
+  margin-bottom: 8px;
+}
+.footer-section ul li {
+  list-style: none;
+  margin: 4px 0;
+}
+.footer-section a {
+  color: #0ff;
+  text-decoration: none;
+}
+.footer-section a:hover {
+  color: #fff;
+}
+.footer-social {
+  text-align: center;
+  margin-top: 10px;
+}
+.social {
+  margin: 0 5px;
+  color: #fff;
+  font-size: 20px;
+  transition: transform 0.3s, color 0.3s;
+}
+.fire:hover {
+  transform: scale(1.2) rotate(5deg);
+  color: #ff4500;
+  text-shadow: 0 0 15px #ff4500;
+}
+.footer-bottom {
+  text-align: center;
+  padding: 5px;
+  font-size: 12px;
+  background: #111;
+  border-top: 1px solid #333;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  justify-content: center;
+}
+.footer-bottom a {
+  color: #0ff;
+}
+#theme-toggle {
+  background: none;
+  border: none;
+  color: #0ff;
+  cursor: pointer;
+  font-size: 18px;
+}
+.footer-toggle {
+  background: #111;
+  color: #0ff;
+  text-align: center;
+  padding: 5px;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+/* Dark Mode / Light Mode */
+body.light-mode {
+  background: #f2f2f2;
+  color: #000;
+}
+body.light-mode .footer {
+  background: #fff;
+  color: #000;
+}
+body.light-mode .footer-bottom {
+  background: #eee;
+}
+body.light-mode .footer-section a {
+  color: #0077cc;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .footer-content {
+    flex-direction: column;
+    align-items: center;
+  }
+  .footer-bottom {
+    flex-direction: column;
+    gap: 5px;
+  }
+}
+/* Footer Core */
+.footer-social {
+  text-align: center;
+  margin-top: 10px;
+}
+
+.social {
+  margin: 0 8px;
+  color: #fff;
+  font-size: 20px;
+  transition: transform 0.3s, color 0.3s;
+}
+
+.fire:hover {
+  transform: scale(1.2) rotate(5deg);
+  color: #ff4500;
+  text-shadow: 0 0 15px #ff4500;
+}
+
+/* Individual Icon Colors */
+.text-blue {
+  color: #0077cc;
+}
+.text-sky {
+  color: #1DA1F2;
+}
+.text-pink {
+  color: #E4405F;
+}
+.text-red {
+  color: #FF0000;
+}
+.text-black {
+  color: #000;
+}
+.text-purple {
+  color: #6a4c9c;
+}
+.text-green {
+  color: #25D366;
+}
+.text-dark {
+  color: #333;
+}
+.text-yellow {
+  color: #FFFC00;
+}
   </style>
 </head>
 <body>
@@ -448,6 +625,73 @@
   chatMessage.addEventListener('input', updateChatLinks);
   chatImage.addEventListener('change', updateChatLinks);
 </script>
-  
+  <!-- 🌈 Enhanced Gaming Footer with Animated Rainbow Logo Background -->
+<footer id="gaming-footer" class="footer">
+  <div class="footer-toggle" onclick="toggleFooter()">
+    <span id="toggle-icon">▲</span> Footer
+  </div>
+
+  <div class="footer-content">
+    <!-- Logo & About -->
+    <div class="footer-section">
+      <div class="logo-wrapper">
+        <img src="custom-cap-bd-logo.png" alt="Logo" class="footer-logo">
+      </div>
+      <p>We provide premium gaming gear & accessories to boost your skills. Play harder, win bigger!</p>
+    </div>
+
+    <!-- Quick Links -->
+    <div class="footer-section">
+      <h4>Quick Links</h4>
+      <ul>
+        <li><a href="#return-policy">Return Policy</a></li>
+        <li><a href="#privacy-policy">Privacy Policy</a></li>
+        <li><a href="#terms">Terms & Conditions</a></li>
+      </ul>
+    </div>
+
+    <!-- Contact Info -->
+    <div class="footer-section">
+      <h4>Contact</h4>
+      <p>Email: <a href="mailto:support@example.com">support@example.com</a></p>
+      <p>Phone: <a href="tel:+8801723419695">+880 1723419695</a></p>
+      <p>WhatsApp: <a href="https://wa.me/+8801724674681">+880 1723419695</a></p>
+    </div>
+
+    <!-- Store Location -->
+    <div class="footer-section">
+      <h4>Store Location</h4>
+      <p>Level 5, Block D, Bashundhara City, Dhaka</p>
+      <iframe src="https://www.google.com/maps/embed?pb=!1m18..." width="100%" height="150" style="border:0; border-radius: 10px;" allowfullscreen="" loading="lazy"></iframe>
+    </div>
+
+    <!-- Social Icons -->
+<!-- Social Icons Section -->
+<div class="footer-section">
+  <h4><i class="fas fa-share-alt text-sky"></i> Connect With Us</h4>
+  <div class="footer-social">
+    <a href="#" class="social fire"><i class="fab fa-facebook-f text-blue"></i></a>
+    <a href="#" class="social fire"><i class="fab fa-twitter text-sky"></i></a>
+    <a href="#" class="social fire"><i class="fab fa-instagram text-pink"></i></a>
+    <a href="#" class="social fire"><i class="fab fa-youtube text-red"></i></a>
+    <a href="#" class="social fire"><i class="fab fa-linkedin-in text-blue"></i></a>
+    <a href="#" class="social fire"><i class="fab fa-pinterest-p text-red"></i></a>
+    <a href="#" class="social fire"><i class="fab fa-tiktok text-black"></i></a>
+    <a href="#" class="social fire"><i class="fab fa-discord text-purple"></i></a>
+    <a href="#" class="social fire"><i class="fab fa-whatsapp text-green"></i></a>
+    <a href="#" class="social fire"><i class="fab fa-github text-dark"></i></a>
+    <a href="#" class="social fire"><i class="fab fa-snapchat-ghost text-yellow"></i></a>
+    <a href="#" class="social fire"><i class="fab fa-telegram-plane text-blue"></i></a>
+  </div>
+</div>
+
+  </div>
+
+  <!-- Copyright -->
+  <div class="footer-bottom">
+    <p>&copy; 2025 Custom Cap BD. All Rights Reserved. Developed by <a href="https://headcarebd.com/Shahin">Sayful I. Shahin</a></p>
+    <button id="theme-toggle" onclick="toggleTheme()">🌙</button>
+  </div>
+</footer>
 </body>
 </html>
