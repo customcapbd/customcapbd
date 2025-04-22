@@ -241,6 +241,58 @@
 }
     #confirmation h2 { color: lightgreen; }
     #confirmation p { color: #ccc; }
+
+       /* Visible by default */
+    .scroll-btn {
+      position: fixed;
+      bottom: 20px;
+      background-color: #007bff;
+      border: none;
+      border-radius: 50%;
+      padding: 10px;
+      cursor: pointer;
+      transition: background-color 0.3s ease, opacity 0.5s ease, visibility 0.5s ease;
+      opacity: 1;
+      visibility: visible;
+      z-index: 1000;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    /* Initially hidden */
+    .scroll-btn.hide-btn {
+      opacity: 0;
+      visibility: hidden;
+    }
+
+    /* Positions */
+    #homeBtn { left: 20px; }
+    #topBtn  { right: 20px; }
+
+    /* Icon */
+    .scroll-btn svg {
+      width: 24px;
+      height: 24px;
+      fill: white;
+      margin: 0;
+    }
+
+    /* Hover */
+    .scroll-btn:hover {
+      background-color: #0056b3;
+    }
+
+    /* Mobile responsive */
+    @media (max-width: 600px) {
+      .scroll-btn {
+        padding: 8px;
+      }
+      .scroll-btn svg {
+        width: 20px;
+        height: 20px;
+      }
+    }
   </style>
 </head>
 <body>
@@ -391,5 +443,54 @@ function downloadInvoice() {
   win.print();
 }
 </script>
+ <!-- Home Button -->
+  <button id="homeBtn" class="scroll-btn hide-btn">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+      <path d="M12 3L2 12h3v7h6v-5h6v5h6v-7h3L12 3z"/>
+    </svg>
+  </button>
+
+  <!-- Top Button -->
+  <button id="topBtn" class="scroll-btn hide-btn">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+      <path d="M18 15l-6-6-6 6"/>
+    </svg>
+  </button>
+
+  <!-- Click Sound -->
+  <audio id="clickSound" src="https://www.fesliyanstudios.com/play-mp3/387" preload="auto"></audio>
+
+  <script>
+    const homeBtn = document.getElementById('homeBtn');
+    const topBtn = document.getElementById('topBtn');
+    const clickSound = document.getElementById('clickSound');
+    let scrollTimer;
+
+    function playClickSound() {
+      clickSound.currentTime = 0;
+      clickSound.play().catch(e=>console.warn(e));
+      if (navigator.vibrate) navigator.vibrate(30);
+    }
+
+    window.addEventListener('scroll', () => {
+      clearTimeout(scrollTimer);
+      homeBtn.classList.add('hide-btn');
+      topBtn.classList.add('hide-btn');
+      scrollTimer = setTimeout(() => {
+        homeBtn.classList.remove('hide-btn');
+        topBtn.classList.remove('hide-btn');
+      }, 300);
+    });
+
+    homeBtn.addEventListener('click', () => {
+      playClickSound();
+      window.location.href = '/';
+    });
+
+    topBtn.addEventListener('click', () => {
+      playClickSound();
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+  </script>
 </body>
 </html>
