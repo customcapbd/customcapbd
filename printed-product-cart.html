@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Product Details</title>
+  <style>
+    body {
+      font-family: 'Orbitron', sans-serif;
+      background: radial-gradient(ellipse at top, #0f2027, #203a43, #2c5364);
+      color: white;
+      padding: 40px 20px;
+      text-align: center;
+    }
+    .product-container {
+      max-width: 700px;
+      margin: auto;
+      border: 5px solid;
+      border-radius: 20px;
+      padding: 20px;
+      background-color: #000;
+      animation: rainbowBorder 5s linear infinite;
+    }
+    .product-container img {
+      width: 100%;
+      height: auto;
+      border-radius: 15px;
+      margin-bottom: 20px;
+      box-shadow: 0 0 20px rgba(255,255,255,0.2);
+    }
+    .product-name {
+      font-size: 2rem;
+      color: cyan;
+      margin-bottom: 10px;
+    }
+    .product-price {
+      font-size: 1.5rem;
+      color: yellow;
+      font-weight: bold;
+      margin-bottom: 20px;
+    }
+    .buttons {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 15px;
+    }
+    .btn {
+      background: black;
+      color: white;
+      padding: 12px 20px;
+      border-radius: 10px;
+      text-decoration: none;
+      font-weight: bold;
+      border: 2px solid white;
+      transition: 0.3s ease;
+      font-family: 'Orbitron', monospace;
+    }
+    .btn:hover {
+      background-color: white;
+      color: black;
+    }
+
+    .order-form {
+      max-width: 700px;
+      margin: auto;
+      border: 5px solid;
+      border-radius: 20px;
+      padding: 20px;
+      background-color: #000;
+    }
+    #orderForm {
+      max-width: 600px;
+      margin: auto;
+    }
+
+    .form-row {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+    .form-row input {
+      flex: 1;
+    }
+
+    .order-form input {
+      padding: 12px;
+      margin: 10px 0;
+      border-radius: 10px;
+      border: 2px solid #fff;
+      background-color: #333;
+      color: white;
+    }
+
+    .order-form button {
+      width: 100%;
+      padding: 15px;
+      background-color: cyan;
+      border: none;
+      font-size: 1.2rem;
+      border-radius: 10px;
+      cursor: pointer;
+    }
+    .order-form button:hover {
+      background-color: #fff;
+      color: black;
+    }
+
+    .summary {
+      background-color: #222;
+      padding: 20px;
+      margin-top: 20px;
+      border-radius: 10px;
+      text-align: left;
+    }
+    .summary div {
+      margin-bottom: 10px;
+    }
+
+    @keyframes rainbowBorder {
+      0% { border-color: red; }
+      16% { border-color: orange; }
+      32% { border-color: yellow; }
+      48% { border-color: green; }
+      64% { border-color: blue; }
+      80% { border-color: indigo; }
+      100% { border-color: violet; }
+    }
+
+    .delivery-options {
+      text-align: left;
+      margin-top: 20px;
+      max-width: 350px;
+      margin-inline: auto;
+    }
+
+    .delivery-options label {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 10px 15px;
+      margin-bottom: 10px;
+      border: 2px solid #fff;
+      border-radius: 10px;
+      transition: all 0.3s ease;
+      width: 100%;
+      min-width: 280px;
+      justify-content: start;
+    }
+
+    .delivery-options label:hover {
+      box-shadow: 0 0 10px cyan;
+    }
+
+    .delivery-options input[type="radio"] {
+      transform: scale(1.4);
+      cursor: pointer;
+      margin-right: 5px;
+    }
+
+    .delivery-options input[type="radio"]:checked + span {
+      background-color: rgba(0, 255, 255, 0.05);
+      border-left: 3px solid cyan;
+      color: cyan;
+    }
+
+    .delivery-options span {
+      flex-grow: 1;
+      display: inline-block;
+      padding: 5px 0;
+    }
+
+    @media (max-width: 600px) {
+      .form-row {
+        flex-direction: column;
+      }
+      .product-name { font-size: 1.5rem; }
+      .product-price { font-size: 1.2rem; }
+      .product-container {
+        padding: 15px;
+        border-width: 3px;
+      }
+      .order-form button {
+        font-size: 1rem;
+      }
+    }
+    #address {
+      width: 95%;
+    }
+  </style>
+</head>
+<body>
+  <div class="product-container" id="productCard"></div>
+
+  <div class="order-form">
+    <h3>Place Your Order</h3>
+    <form id="orderForm" onsubmit="submitOrder(event)">
+      <div class="form-row">
+        <input type="text" id="name" name="name" placeholder="Your Name" required />
+        <input type="tel" id="mobile" name="mobile" placeholder="Your Mobile" required />
+      </div>
+      <input type="text" id="address" name="address" placeholder="Your Full Address" required />
+
+      <section class="delivery-cost">
+        <div class="delivery-options">
+          <strong style="display: block; margin-bottom: 8px;">Delivery Cost:</strong>
+          <label>
+            <input type="radio" name="deliveryCost" value="70" required onchange="updateTotalPrice()" />
+            <span>Inside Dhaka: 80/- Tk</span>
+          </label>
+          <label>
+            <input type="radio" name="deliveryCost" value="120" required onchange="updateTotalPrice()" />
+            <span>Outside Dhaka: 120/- Tk</span>
+          </label>
+        </div>
+      </section>
+
+      <div class="summary">
+        <div><strong>Product Name:</strong> <span id="summaryProductName"></span></div>
+        <div><strong>Product Price:</strong> <span id="summaryProductPrice"></span></div>
+        <div><strong>Product Image:</strong> <span id="summaryProductImage"></span></div>
+      </div>
+
+      <button type="submit">Submit Order</button>
+    </form>
+  </div>
+
+  <script>
+  const product = JSON.parse(localStorage.getItem('selectedProduct'));
+  const container = document.getElementById('productCard');
+
+  if (product) {
+    container.innerHTML = `
+      <img src="${product.images[0]}" alt="${product.name}" />
+      <div class="product-name">${product.name}</div>
+      <div class="product-price">Price: ${product.price} Tk</div>
+      <div class="buttons">
+        <a href="index.html" class="btn">← Back to Home</a>
+        <a href="https://wa.me/8801XXXXXXXXX?text=Hi%2C%20I%20want%20to%20order%20${encodeURIComponent(product.name)}%20for%20${product.price}Tk" target="_blank" class="btn">📱 WhatsApp Order</a>
+        <button class="btn" onclick="downloadPDF()">⬇️ Download PDF</button>
+      </div>
+    `;
+    document.getElementById('summaryProductName').innerText = product.name;
+    document.getElementById('summaryProductPrice').innerText = product.price + ' Tk';
+    document.getElementById('summaryProductImage').innerText = product.images[0];
+  } else {
+    container.innerHTML = `<h2>No product data found.</h2><a href="index.html" class="btn">← Back to Home</a>`;
+  }
+
+  function updateTotalPrice() {
+    const basePrice = parseFloat(product.price);
+    const deliveryCost = document.querySelector('input[name="deliveryCost"]:checked');
+    if (deliveryCost) {
+      const total = basePrice + parseFloat(deliveryCost.value);
+      document.getElementById('summaryProductPrice').innerText = total + ' Tk (including delivery)';
+    }
+  }
+
+  function downloadPDF() {
+    const pdfWindow = window.open('', '_blank');
+    pdfWindow.document.write(`
+      <html><head><title>${product.name}</title></head><body style="font-family: sans-serif; text-align: center;">
+      <h1>${product.name}</h1>
+      <img src="${product.images[0]}" style="width: 300px; border-radius: 10px;" />
+      <p style="font-size: 18px;">Price: ${product.price} Tk</p>
+      <p>Thank you for choosing Custom Cap BD!</p>
+      </body></html>
+    `);
+    pdfWindow.document.close();
+    pdfWindow.print();
+  }
+
+function submitOrder(event) {
+  event.preventDefault();
+  const formData = new FormData(document.getElementById('orderForm'));
+  const deliveryOption = document.querySelector('input[name="deliveryCost"]:checked');
+  const deliveryCost = deliveryOption ? deliveryOption.value : 0;
+  const productBasePrice = parseFloat(product.price);
+  const finalPrice = productBasePrice + parseFloat(deliveryCost);
+
+  const orderData = {
+    name: formData.get('name'),
+    mobile: formData.get('mobile'),
+    address: formData.get('address'),
+    'Delivery Cost': deliveryCost,
+    'Product Name': product.name,
+    'Product Price': finalPrice + ' Tk',
+    'Product Image': product.images[0]
+  };
+
+  const formActionUrl = 'https://script.google.com/macros/s/AKfycbyyV7TSTTvc7UQ_LOVgA_ZXaxGQuGZe56fJd15hS7VaN2tOqlzE8MTliYW5bnMK_Igl/exec'; // এখানে আপনার Web App URL বসান
+
+  fetch(formActionUrl, {
+    method: 'POST',
+    body: JSON.stringify(orderData),
+    headers: {
+      'Content-Type': 'application/json'
+    }
+  })
+  .then(response => response.json())
+  .then(data => {
+    if (data.status === 'success') {
+      alert('✅ Your Order submitted successfully!');
+      document.getElementById('orderForm').reset();
+    } else {
+      alert('❌ Error: ' + data.message);
+    }
+  })
+  .catch(error => {
+    alert('❌ Error submitting order: ' + error);
+  });
+}
+
+</script>
+</body>
+</html>

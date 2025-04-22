@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Individual Product Gallery</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: 'Orbitron', sans-serif;
+      background: radial-gradient(ellipse at top, #0f2027, #203a43, #2c5364);
+      overflow-x: hidden;
+    }
+    .gallery-container {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 30px;
+      padding: 40px;
+    }
+    .image-card {
+      width: 400px;
+      border-radius: 15px;
+      overflow: hidden;
+      border: 5px solid;
+      background-color: #000;
+      animation: rainbowBorder 4s linear infinite;
+    }
+    .image-container {
+      position: relative;
+      width: 100%;
+      height: 300px;
+      overflow: hidden;
+    }
+    .image-container img.main-image {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      transition: opacity 0.3s;
+    }
+    .zoom-lens {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      top: 0;
+      left: 0;
+      background-repeat: no-repeat;
+      background-size: 400% 400%;
+      display: none;
+      cursor: zoom-in;
+    }
+    .heading {
+      position: absolute;
+      bottom: 50px;
+      left: 0;
+      width: 100%;
+      padding: 10px;
+      background: rgba(0, 0, 0, 0.5);
+      color: white;
+      font-weight: bold;
+      text-align: center;
+    }
+
+    @keyframes blink-bg {
+      0%, 100% { background-color: #fff000; }
+      50% { background-color: #ff5555; }
+    }
+
+    .price-tag {
+      float: left;
+      font-family: 'Impact', 'Arial Black', sans-serif;
+      font-size: 1.5rem;
+      color: white;
+      border: 2px solid yellow;
+      padding: 5px 10px;
+      border-radius: 5px;
+      animation: blink-bg 2s infinite;
+      box-shadow: 0 0 10px yellow;
+      text-shadow: 1px 1px 2px black;
+    }
+
+    .buy-now {
+      display: inline-block;
+      padding: 10px;
+      font-weight: bold;
+      font-size: 16px;
+      color: #fff;
+      text-decoration: none;
+      background: #111;
+      animation: rainbowBorder 4s infinite linear;
+      transition: background 0.3s, transform 0.3s;
+      text-shadow: 0 0 5px cyan, 0 0 10px magenta;
+      font-family: 'Orbitron', monospace;
+      margin: 5px;
+      border-radius: 10px;
+      float: right;
+    }
+    .buy-now:hover { background: #222; transform: scale(1.05); }
+    .thumbnails {
+      display: flex;
+      justify-content: center;
+      gap: 5px;
+      padding: 10px;
+    }
+    .thumbnails img {
+      width: 60px;
+      height: 60px;
+      object-fit: cover;
+      cursor: pointer;
+      border: 2px solid #fff;
+      border-radius: 5px;
+    }
+
+    @keyframes rainbowBorder {
+      0% { border-color: red; }
+      16% { border-color: orange; }
+      32% { border-color: yellow; }
+      48% { border-color: green; }
+      64% { border-color: blue; }
+      80% { border-color: indigo; }
+      100% { border-color: violet; }
+    }
+	
+    .scroll-btn {
+      position: fixed;
+      z-index: 9999;
+      padding: 12px 18px;
+      font-size: 16px;
+      font-weight: bold;
+      color: #fff;
+      background: linear-gradient(135deg, #00f0ff, #ff00f0);
+      border: none;
+      border-radius: 10px;
+      box-shadow: 0 0 12px #0ff, 0 0 24px #f0f;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      opacity: 1;
+      visibility: visible;
+    }
+
+    .scroll-btn:hover {
+      transform: scale(1.1);
+      box-shadow: 0 0 20px #0ff, 0 0 40px #f0f;
+    }
+
+    #backBtn {
+      bottom: 0px;
+      left: 20px;
+    }
+
+    #topBtn {
+      bottom: 0px;
+      right: 20px;
+    }
+
+    .hide-btn {
+      opacity: 0;
+      visibility: hidden;
+      transition: all 0.5s ease;
+    }
+
+    @media (max-width: 600px) {
+      .scroll-btn {
+        font-size: 14px;
+        padding: 10px 14px;
+      }
+    }
+
+    .scroll-btn svg {
+      width: 18px;
+      height: 18px;
+      fill: white;
+    }
+	
+  </style>
+</head>
+<body>
+<section style="padding: 20px;">
+  <div style="display: flex; flex-direction: column; align-items: center; text-align: center;">
+    <span style="font-size: clamp(2.5rem, 8vw, 4rem); line-height: 1;">🧢</span>
+    <h1 style="color: white; font-family: 'Orbitron', sans-serif; text-shadow: 0 0 10px cyan, 0 0 20px magenta; font-size: clamp(1.8rem, 5vw, 3rem); margin: 10px 0;">
+      Custom Cap BD
+    </h1>
+    <h2 style="color: white; font-family: 'Orbitron', sans-serif; font-size: clamp(1rem, 4vw, 2rem); margin: 5px 0 20px;">
+      Premium Quality Stylish Caps for You!
+    </h2>
+  </div>
+</section>
+
+<div class="gallery-container" id="gallery"></div>
+
+<script>
+  const products = [
+    {
+      name: "Classic Cap Red",
+      price: 550,
+      images: [
+        "https://cdn.mockupnest.com/wp-content/uploads/edd/2024/10/19-Free-Baseball-Cap-Mockup.jpg",
+        "https://mockups-design.com/wp-content/uploads/2021/08/Free_Baseball_Cap_Mockup_3.jpg",
+        "https://unblast.com/wp-content/uploads/2018/09/Cap-Mockup-3.jpg",
+        "https://www.free-mockup.com/wp-content/uploads/edd/2024/12/Baseball-Cap-Free-Mockup-02.jpg",
+        "https://goodmockups.com/wp-content/uploads/2024/10/Free-Baseball-Cap-Mockup-PSD.jpg"
+      ]
+    },
+	
+    {
+      name: "Sporty Cap Blue",
+      price: 480,
+      images: [
+        "https://mockups-design.com/wp-content/uploads/2021/08/Free_Baseball_Cap_Mockup_3.jpg",
+        "https://cdn.mockupnest.com/wp-content/uploads/edd/2024/10/19-Free-Baseball-Cap-Mockup.jpg",
+        "https://unblast.com/wp-content/uploads/2018/09/Cap-Mockup-3.jpg",
+        "https://www.free-mockup.com/wp-content/uploads/edd/2024/12/Baseball-Cap-Free-Mockup-02.jpg",
+        "https://goodmockups.com/wp-content/uploads/2024/10/Free-Baseball-Cap-Mockup-PSD.jpg"
+      ]
+    },
+	
+    {
+      name: "Sporty Cap Blue",
+      price: 480,
+      images: [
+        "https://goodmockups.com/wp-content/uploads/2024/10/Free-Baseball-Cap-Mockup-PSD.jpg",
+        "https://cdn.mockupnest.com/wp-content/uploads/edd/2024/10/19-Free-Baseball-Cap-Mockup.jpg",
+        "https://unblast.com/wp-content/uploads/2018/09/Cap-Mockup-3.jpg",
+        "https://www.free-mockup.com/wp-content/uploads/edd/2024/12/Baseball-Cap-Free-Mockup-02.jpg",
+        "https://goodmockups.com/wp-content/uploads/2024/10/Free-Baseball-Cap-Mockup-PSD.jpg"
+      ]
+    },
+	
+	    {
+      name: "Sporty Cap Blue",
+      price: 480,
+      images: [
+        "https://www.free-mockup.com/wp-content/uploads/edd/2024/12/Baseball-Cap-Free-Mockup-02.jpg",
+        "https://cdn.mockupnest.com/wp-content/uploads/edd/2024/10/19-Free-Baseball-Cap-Mockup.jpg",
+        "https://unblast.com/wp-content/uploads/2018/09/Cap-Mockup-3.jpg",
+        "https://www.free-mockup.com/wp-content/uploads/edd/2024/12/Baseball-Cap-Free-Mockup-02.jpg",
+        "https://goodmockups.com/wp-content/uploads/2024/10/Free-Baseball-Cap-Mockup-PSD.jpg"
+      ]
+    }
+  ];
+
+  function shuffle(array) {
+    for (let i = array.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [array[i], array[j]] = [array[j], array[i]];
+    }
+  }
+
+  shuffle(products);
+
+  const gallery = document.getElementById("gallery");
+
+  products.forEach(product => {
+    const card = document.createElement("div");
+    card.className = "image-card";
+    card.innerHTML = `
+      <div class="image-container">
+        <img class="main-image" src="${product.images[0]}" alt="${product.name}" />
+        <div class="heading">${product.name}</div>
+        <div class="zoom-lens"></div>
+      </div>
+      <div class="thumbnails">
+        ${product.images.map((thumb, idx) => `<img src="${thumb}" onclick="this.closest('.image-card').querySelector('.main-image').src='${thumb}'; this.closest('.image-card').querySelector('.zoom-lens').style.backgroundImage='url(${thumb})'">`).join('')}
+      </div>
+      <div style="overflow: hidden; padding: 10px;">
+        <span class="price-tag">Price: ${product.price}/-Tk</span>
+        <a href="printed-product-cart.html" class="buy-now" onclick='localStorage.setItem("selectedProduct", \`${JSON.stringify(product)}\`)'>BUY NOW</a>
+      </div>
+    `;
+    gallery.appendChild(card);
+  });
+
+  document.querySelectorAll('.image-container').forEach(container => {
+    const img = container.querySelector('.main-image');
+    const zoomLens = container.querySelector('.zoom-lens');
+
+    container.addEventListener('mouseenter', () => {
+      zoomLens.style.display = 'block';
+      zoomLens.style.backgroundImage = `url(${img.src})`;
+    });
+
+    container.addEventListener('mousemove', e => {
+      const rect = container.getBoundingClientRect();
+      const x = e.clientX - rect.left;
+      const y = e.clientY - rect.top;
+      const percentX = x / rect.width * 100;
+      const percentY = y / rect.height * 100;
+      zoomLens.style.backgroundPosition = `${percentX}% ${percentY}%`;
+    });
+
+    container.addEventListener('mouseleave', () => {
+      zoomLens.style.display = 'none';
+    });
+  });
+</script>
+
+<!-- Back Button -->
+  <button id="backBtn" class="scroll-btn">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M15 6l-6 6 6 6"/></svg>
+    Back
+  </button>
+
+  <!-- Top Button -->
+  <button id="topBtn" class="scroll-btn">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 15l-6-6-6 6"/></svg>
+    Top
+  </button>
+
+  <!-- Game-style click sound -->
+  <audio id="clickSound" src="https://www.fesliyanstudios.com/play-mp3/387" preload="auto"></audio>
+
+  <script>
+    const backBtn = document.getElementById("backBtn");
+    const topBtn = document.getElementById("topBtn");
+    const clickSound = document.getElementById("clickSound");
+
+    let scrollTimer;
+
+    function playClickSound() {
+      clickSound.currentTime = 0;
+      clickSound.play();
+      if (navigator.vibrate) navigator.vibrate(30);
+    }
+
+    window.addEventListener("scroll", () => {
+      clearTimeout(scrollTimer);
+
+      backBtn.classList.add("hide-btn");
+      topBtn.classList.add("hide-btn");
+
+      scrollTimer = setTimeout(() => {
+        backBtn.classList.remove("hide-btn");
+        topBtn.classList.remove("hide-btn");
+      }, 300);
+    });
+
+    backBtn.onclick = () => {
+      playClickSound();
+      window.history.back();
+    };
+
+    topBtn.onclick = () => {
+      playClickSound();
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    };
+  </script>
+
+</body>
+</html>
