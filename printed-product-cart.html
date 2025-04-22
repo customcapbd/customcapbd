@@ -187,6 +187,18 @@
     #address {
       width: 95%;
     }
+
+    #confirmation {
+      display: none;
+      max-width: 700px;
+      margin: 20px auto;
+      padding: 20px;
+      border: 3px solid cyan;
+      border-radius: 15px;
+      background-color: #111;
+    }
+    #confirmation h2 { color: lightgreen; }
+    #confirmation p { color: #ccc; }
   </style>
 </head>
 <body>
@@ -205,11 +217,11 @@
         <div class="delivery-options">
           <strong style="display: block; margin-bottom: 8px;">Delivery Cost:</strong>
           <label>
-            <input type="radio" name="deliveryCost" value="70" required onchange="updateTotalPrice()" />
+            <input type="radio" name="deliveryCost" value="Inside Dhaka" required onchange="updateTotalPrice()" />
             <span>Inside Dhaka: 80/- Tk</span>
           </label>
           <label>
-            <input type="radio" name="deliveryCost" value="120" required onchange="updateTotalPrice()" />
+            <input type="radio" name="deliveryCost" value="Outside Dhaka" required onchange="updateTotalPrice()" />
             <span>Outside Dhaka: 120/- Tk</span>
           </label>
         </div>
@@ -218,93 +230,111 @@
       <div class="summary">
         <div><strong>Product Name:</strong> <span id="summaryProductName"></span></div>
         <div><strong>Product Price:</strong> <span id="summaryProductPrice"></span></div>
-        <div><strong>Product Image:</strong> <span id="summaryProductImage"></span></div>
+        <div><strong>Delivery Charge:</strong> <span id="summaryDeliveryCharge"></span></div>
+        <div><strong>Total:</strong> <span id="summaryTotal"></span></div>
       </div>
+
+      <input type="hidden" name="productName" id="hiddenProductName">
+      <input type="hidden" name="productPrice" id="hiddenProductPrice">
+      <input type="hidden" name="productImage" id="hiddenProductImage">
+      <input type="hidden" name="totalPrice" id="hiddenTotalPrice">
 
       <button type="submit">Submit Order</button>
     </form>
   </div>
 
-  <script>
-  const product = JSON.parse(localStorage.getItem('selectedProduct'));
-  const container = document.getElementById('productCard');
+  <div id="confirmation">
+    <h2>✅ Order Confirmed!</h2>
+    <p>Thank you for your order. Please download your invoice below.</p>
+    <button class="btn" onclick="downloadInvoice()">⬇️ Download Invoice</button>
+    <a href="index.html" class="btn">🏠 Back to Home</a>
+  </div>
 
-  if (product) {
-    container.innerHTML = `
-      <img src="${product.images[0]}" alt="${product.name}" />
-      <div class="product-name">${product.name}</div>
-      <div class="product-price">Price: ${product.price} Tk</div>
-      <div class="buttons">
-        <a href="index.html" class="btn">← Back to Home</a>
-        <a href="https://wa.me/8801XXXXXXXXX?text=Hi%2C%20I%20want%20to%20order%20${encodeURIComponent(product.name)}%20for%20${product.price}Tk" target="_blank" class="btn">📱 WhatsApp Order</a>
-        <button class="btn" onclick="downloadPDF()">⬇️ Download PDF</button>
-      </div>
-    `;
-    document.getElementById('summaryProductName').innerText = product.name;
-    document.getElementById('summaryProductPrice').innerText = product.price + ' Tk';
-    document.getElementById('summaryProductImage').innerText = product.images[0];
-  } else {
-    container.innerHTML = `<h2>No product data found.</h2><a href="index.html" class="btn">← Back to Home</a>`;
-  }
+<script>
+const product = JSON.parse(localStorage.getItem('selectedProduct'));
+const container = document.getElementById('productCard');
 
-  function updateTotalPrice() {
-    const basePrice = parseFloat(product.price);
-    const deliveryCost = document.querySelector('input[name="deliveryCost"]:checked');
-    if (deliveryCost) {
-      const total = basePrice + parseFloat(deliveryCost.value);
-      document.getElementById('summaryProductPrice').innerText = total + ' Tk (including delivery)';
-    }
-  }
+if (product) {
+  container.innerHTML = `
+    <img src="${product.images[0]}" alt="${product.name}" />
+    <div class="product-name">${product.name}</div>
+    <div class="product-price">Price: ${product.price} Tk</div>
+    <div class="buttons">
+      <a href="index.html" class="btn">← Back to Home</a>
+      <a href="https://wa.me/8801XXXXXXXXX?text=Hi%2C%20I%20want%20to%20order%20${encodeURIComponent(product.name)}%20for%20${product.price}Tk" target="_blank" class="btn">📱 WhatsApp Order</a>
+    </div>
+  `;
+  document.getElementById('summaryProductName').innerText = product.name;
+  document.getElementById('summaryProductPrice').innerText = product.price + ' Tk';
+  document.getElementById('hiddenProductName').value = product.name;
+  document.getElementById('hiddenProductPrice').value = product.price;
+  document.getElementById('hiddenProductImage').value = product.images[0];
+}
 
-  function downloadPDF() {
-    const pdfWindow = window.open('', '_blank');
-    pdfWindow.document.write(`
-      <html><head><title>${product.name}</title></head><body style="font-family: sans-serif; text-align: center;">
-      <h1>${product.name}</h1>
-      <img src="${product.images[0]}" style="width: 300px; border-radius: 10px;" />
-      <p style="font-size: 18px;">Price: ${product.price} Tk</p>
-      <p>Thank you for choosing Custom Cap BD!</p>
-      </body></html>
-    `);
-    pdfWindow.document.close();
-    pdfWindow.print();
+function updateTotalPrice() {
+  const basePrice = parseFloat(product.price);
+  const delivery = document.querySelector('input[name="deliveryCost"]:checked');
+  if (delivery) {
+    let deliveryLabel = delivery.nextElementSibling.innerText;
+    let deliveryCost = deliveryLabel.includes('Outside') ? 120 : 80;
+    document.getElementById('summaryDeliveryCharge').innerText = deliveryCost + ' Tk';
+    let total = basePrice + deliveryCost;
+    document.getElementById('summaryTotal').innerText = total + ' Tk';
+    document.getElementById('hiddenTotalPrice').value = total;
   }
+}
 
 function submitOrder(event) {
   event.preventDefault();
   const form = document.getElementById('orderForm');
   const formData = new FormData(form);
 
-  const deliveryOption = document.querySelector('input[name="deliveryCost"]:checked');
-  const deliveryCost = deliveryOption ? deliveryOption.value : 0;
-  const productBasePrice = parseFloat(product.price);
-  const finalPrice = productBasePrice + parseFloat(deliveryCost);
-
-  formData.append('Product Name', product.name);
-  formData.append('Product Price', finalPrice + ' Tk');
-  formData.append('Product Image', product.images[0]);
-  formData.append('Delivery Cost', deliveryCost);
-
-  const formActionUrl = 'https://script.google.com/macros/s/AKfycbxQ1ct5QNjcYG3kVE-D6_PoXV_3LQ_UtGYpMX06dInKsVp-WAedAmMWggEIc7vO5ANR/exec';
-
-  fetch(formActionUrl, {
+  fetch('https://script.google.com/macros/s/AKfycbyhXY7N6BLJcmc2JJybKkIZitxSHbXZ3dGsYaubmrUauScKJoj74ICGmDYc8uLpi09D/exec', {
     method: 'POST',
-    body: formData
+    body: new URLSearchParams(formData)
   })
-  .then(response => response.json())
+  .then(res => res.json())
   .then(data => {
     if (data.result === 'success') {
-      alert('✅ Order submitted successfully!');
-      form.reset();
+      document.querySelector('.order-form').style.display = 'none';
+      document.getElementById('productCard').style.display = 'none';
+      document.getElementById('confirmation').style.display = 'block';
     } else {
       alert('❌ Submission failed: ' + data.error);
     }
   })
-  .catch(error => {
-    alert('❌ Error submitting order: ' + error.message);
-  });
+  .catch(err => alert('❌ Network error: ' + err));
 }
 
+function downloadInvoice() {
+  const name = document.getElementById('name').value;
+  const mobile = document.getElementById('mobile').value;
+  const address = document.getElementById('address').value;
+  const productName = product.name;
+  const productPrice = product.price;
+  const delivery = document.querySelector('input[name="deliveryCost"]:checked').nextElementSibling.innerText;
+  const deliveryCost = delivery.includes('Outside') ? 120 : 80;
+  const total = parseFloat(productPrice) + deliveryCost;
+  const image = product.images[0];
+
+  const win = window.open('', '_blank');
+  win.document.write(`
+    <html><head><title>Invoice</title></head><body style="font-family: sans-serif; text-align: center;">
+    <h2>Order Invoice</h2>
+    <p><strong>Name:</strong> ${name}</p>
+    <p><strong>Mobile:</strong> ${mobile}</p>
+    <p><strong>Address:</strong> ${address}</p>
+    <p><strong>Product:</strong> ${productName}</p>
+    <p><strong>Price:</strong> ${productPrice} Tk</p>
+    <p><strong>Delivery:</strong> ${delivery}</p>
+    <p><strong>Total:</strong> ${total} Tk</p>
+    <img src="${image}" style="width:300px; border-radius:10px; margin-top:20px;" />
+    <p>Thank you for shopping with us!</p>
+    </body></html>
+  `);
+  win.document.close();
+  win.print();
+}
 </script>
 </body>
 </html>
