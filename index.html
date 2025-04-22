@@ -209,7 +209,6 @@
       cursor: pointer;
       box-shadow: 0 4px 10px rgba(0,0,0,0.2);
       z-index: 9999; /* Always on top */
-      display: block !important;
       visibility: visible !important;
     }
 
@@ -388,6 +387,7 @@
   </script>
 
   
+
 <!-- Chat Button -->
 <div class="chat-button" id="chatToggle">
   💬
@@ -441,7 +441,7 @@
     const finalMessage = encodeURIComponent(`${message}${imageText}`);
 
     whatsappBtn.href = `https://wa.me/+8801723419695?text=${finalMessage}`;
-    messengerBtn.href = `https://m.me/yourpageusername?ref=${finalMessage}`;
+    messengerBtn.href = `https://m.me/CustomCapBD?ref=${finalMessage}`;
   }
 
   // Update link on message input or image change
