@@ -147,19 +147,33 @@
       margin-inline: auto;
     }
 
+.delivery-options label {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 10px 15px;
+    margin-bottom: 10px;
+    border: 2px solid #fff;
+    border-radius: 10px;
+    transition: all 0.3s ease; /* টাইপো ঠিক করা হয়েছে */
+    width: 82%;
+    min-width: 280px;
+    justify-content: start;
+    box-sizing: border-box;
+}
+
+/* মোবাইল ডিভাইসের জন্য রেসপনসিভ */
+@media (max-width: 480px) {
     .delivery-options label {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      padding: 10px 15px;
-      margin-bottom: 10px;
-      border: 2px solid #fff;
-      border-radius: 10px;
-      transition: all 0.3s ease;
-      width: 82%;
-      min-width: 280px;
-      justify-content: start;
+        width: 100%;
+        padding: 12px 10px;
+        font-size: 16px;
+        flex-wrap: wrap;
+        justify-content: center;
+        text-align: center;
     }
+}
+
 
     .delivery-options label:hover {
       box-shadow: 0 0 10px cyan;
