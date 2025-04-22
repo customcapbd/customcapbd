@@ -296,56 +296,6 @@
   });
 </script>
 
-  <!-- Back Button -->
-  <button id="backBtn" class="scroll-btn">
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M15 6l-6 6 6 6"/></svg>
-    Back
-  </button>
-
-  <!-- Top Button -->
-  <button id="topBtn" class="scroll-btn">
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 15l-6-6-6 6"/></svg>
-    Top
-  </button>
-
-  <!-- Game-style click sound -->
-  <audio id="clickSound" src="https://www.fesliyanstudios.com/play-mp3/387" preload="auto"></audio>
-
-  <script>
-    const backBtn = document.getElementById("backBtn");
-    const topBtn = document.getElementById("topBtn");
-    const clickSound = document.getElementById("clickSound");
-
-    let scrollTimer;
-
-    function playClickSound() {
-      clickSound.currentTime = 0;
-      clickSound.play();
-      if (navigator.vibrate) navigator.vibrate(30);
-    }
-
-    window.addEventListener("scroll", () => {
-      clearTimeout(scrollTimer);
-
-      backBtn.classList.add("hide-btn");
-      topBtn.classList.add("hide-btn");
-
-      scrollTimer = setTimeout(() => {
-        backBtn.classList.remove("hide-btn");
-        topBtn.classList.remove("hide-btn");
-      }, 300);
-    });
-
-    backBtn.onclick = () => {
-      playClickSound();
-      window.history.back();
-    };
-
-    topBtn.onclick = () => {
-      playClickSound();
-      window.scrollTo({ top: 0, behavior: 'smooth' });
-    };
-  </script>
  <!-- Home Button -->
   <button id="homeBtn" class="scroll-btn hide-btn">
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
