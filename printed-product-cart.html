@@ -188,15 +188,26 @@
       width: 92%;
     }
 
+#confirmation {
+    display: none;
+    max-width: 700px;
+    margin: 20px auto;
+    padding: 20px;
+    border: 3px solid cyan;
+    border-radius: 15px;
+    background-color: #111;
+    box-sizing: border-box;
+}
+
+/* মোবাইল স্ক্রিনের জন্য */
+@media (max-width: 768px) {
     #confirmation {
-      display: none;
-      max-width: 700px;
-      margin: 20px auto;
-      padding: 20px;
-      border: 3px solid cyan;
-      border-radius: 15px;
-      background-color: #111;
+        margin: 10px;
+        padding: 15px;
+        max-width: 100%;
+        font-size: 16px;
     }
+}
     #confirmation h2 { color: lightgreen; }
     #confirmation p { color: #ccc; }
   </style>
