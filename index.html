@@ -195,6 +195,103 @@
     .close:hover {
       color: #00ffc8;
     }
+
+    .chat-button {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      background: #25d366;
+      color: #fff;
+      font-size: 28px;
+      padding: 15px;
+      border-radius: 50%;
+      cursor: pointer;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+      z-index: 999;
+    }
+
+    .chat-box {
+      position: fixed;
+      bottom: 90px;
+      right: 20px;
+      width: 320px;
+      background: #fff;
+      border-radius: 15px;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.2);
+      display: none;
+      flex-direction: column;
+      z-index: 999;
+    }
+
+    .chat-header {
+      background: #111;
+      color: #fff;
+      padding: 10px 15px;
+      border-top-left-radius: 15px;
+      border-top-right-radius: 15px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .chat-body {
+      padding: 15px;
+    }
+
+    .chat-body textarea {
+      width: 100%;
+      height: 80px;
+      padding: 10px;
+      resize: none;
+      border: 1px solid #ccc;
+      border-radius: 10px;
+      margin-bottom: 10px;
+      font-size: 14px;
+      box-sizing: border-box;
+    }
+
+    .chat-body input[type="file"] {
+      margin-bottom: 10px;
+      width: 100%;
+    }
+
+    .chat-actions {
+      display: flex;
+      gap: 10px;
+      justify-content: space-between;
+    }
+
+    .chat-actions .btn {
+      flex: 1;
+      background: #007bff;
+      color: white;
+      text-align: center;
+      padding: 10px;
+      border-radius: 10px;
+      text-decoration: none;
+      font-weight: bold;
+      font-size: 14px;
+    }
+
+    .chat-actions .btn:nth-child(1) {
+      background: #25d366;
+    }
+
+    .chat-actions .btn:nth-child(2) {
+      background: #0084ff;
+    }
+
+    @media (max-width: 400px) {
+      .chat-box {
+        width: 95%;
+        right: 2.5%;
+      }
+
+      .chat-button {
+        bottom: 15px;
+        right: 15px;
+      }
+    }
   </style>
 </head>
 <body>
@@ -285,5 +382,61 @@
       box.addEventListener("click", playClickSound);
     });
   </script>
+  <!-- Chat Button -->
+<div class="chat-button" id="chatToggle">
+  💬
+</div>
+
+<!-- Chat Box -->
+<div class="chat-box" id="chatBox">
+  <div class="chat-header">
+    <span>Need Help? Chat with us</span>
+    <span id="chatClose" style="cursor:pointer;">✖️</span>
+  </div>
+  <div class="chat-body">
+    <textarea id="chatMessage" placeholder="Write your message..."></textarea>
+    <input type="file" id="chatImage" accept="image/*" />
+    <div class="chat-actions">
+      <a id="whatsappBtn" target="_blank" class="btn">📱 WhatsApp</a>
+      <a id="messengerBtn" target="_blank" class="btn">💬 Messenger</a>
+    </div>
+  </div>
+</div>
+
+<script>
+  const chatToggle = document.getElementById('chatToggle');
+  const chatBox = document.getElementById('chatBox');
+  const chatClose = document.getElementById('chatClose');
+  const whatsappBtn = document.getElementById('whatsappBtn');
+  const messengerBtn = document.getElementById('messengerBtn');
+  const chatMessage = document.getElementById('chatMessage');
+  const chatImage = document.getElementById('chatImage');
+
+  chatToggle.addEventListener('click', () => {
+    chatBox.style.display = 'flex';
+  });
+
+  chatClose.addEventListener('click', () => {
+    chatBox.style.display = 'none';
+  });
+
+  function updateChatLinks() {
+    const message = chatMessage.value.trim();
+    const image = chatImage.files[0];
+    let imageText = '';
+
+    if (image) {
+      imageText = `\n🖼️ Image: ${image.name}`;
+    }
+
+    const finalMessage = encodeURIComponent(`${message}${imageText}`);
+
+    whatsappBtn.href = `https://wa.me/+8801723419695?text=${finalMessage}`;
+    messengerBtn.href = `https://m.me/CustomCapBD?ref=${finalMessage}`;
+  }
+
+  chatMessage.addEventListener('input', updateChatLinks);
+  chatImage.addEventListener('change', updateChatLinks);
+</script>
 </body>
 </html>
