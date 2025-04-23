@@ -412,8 +412,7 @@ function submitOrder(event) {
     method: 'POST',
     body: new URLSearchParams(formData)
   })
-   // Set current date and time in Asia/Dhaka timezone
-    document.getElementById('orderTime').value = new Date().toLocaleString('en-GB', { timeZone: 'Asia/Dhaka' });
+   
   .then(res => res.json())
   .then(data => {
     if (data.result === 'success') {
