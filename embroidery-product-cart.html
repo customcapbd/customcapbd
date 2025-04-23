@@ -504,5 +504,41 @@ function downloadInvoice() {
     });
 
   </script>
+
+
+  <!-- তোমার অন্যান্য কনটেন্ট -->
+
+  <!-- অডিও ফাইল (display: none থাকে নিজে থেকেই) -->
+  <audio id="confirmationSound" src="success.mp3" preload="auto"></audio>
+
+  <!-- তোমার স্ক্রিপ্টগুলো -->
+  <script src="script.js">
+   function submitOrder(event) {
+  event.preventDefault();
+  const form = document.getElementById('orderForm');
+  const formData = new FormData(form);
+
+  fetch('https://script.google.com/macros/s/AKfycbyhXY7N6BLJcmc2JJybKkIZitxSHbXZ3dGsYaubmrUauScKJoj74ICGmDYc8uLpi09D/exec', {
+    method: 'POST',
+    body: new URLSearchParams(formData)
+  })
+  .then(res => res.json())
+  .then(data => {
+    if (data.result === 'success') {
+      document.querySelector('.order-form').style.display = 'none';
+      document.getElementById('productCard').style.display = 'none';
+      document.getElementById('confirmation').style.display = 'block';
+
+      // ✅ অডিও বাজানো
+      const sound = document.getElementById('confirmationSound');
+      if (sound) {
+        sound.play();
+      }
+    }
+  });
+}
+
+  </script>
+ 
 </body>
 </html>
