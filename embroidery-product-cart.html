@@ -482,7 +482,20 @@ function downloadInvoice() {
       clickSound.play().catch(e=>console.warn(e));
       if (navigator.vibrate) navigator.vibrate(30);
     }
-
+   //-----------------------------
+      // ✅ অডিও বাজানোর কোড
+      const audio = new Audio('order.mp3');
+      audio.play();
+    } else {
+      alert('❌ Something went wrong. Please try again!');
+    }
+  })
+  .catch(err => {
+    alert('❌ Error submitting order. Please check your connection.');
+    console.error(err);
+  });
+}
+//------------------------------
     window.addEventListener('scroll', () => {
       clearTimeout(scrollTimer);
       homeBtn.classList.add('hide-btn');
@@ -503,35 +516,6 @@ function downloadInvoice() {
       window.scrollTo({ top: 0, behavior: 'smooth' });
     });
 
-   //-----------------------------
-   function submitOrder(event) {
-  event.preventDefault();
-  const form = document.getElementById('orderForm');
-  const formData = new FormData(form);
-
-  fetch('https://script.google.com/macros/s/AKfycbyhXY7N6BLJcmc2JJybKkIZitxSHbXZ3dGsYaubmrUauScKJoj74ICGmDYc8uLpi09D/exec', {
-    method: 'POST',
-    body: new URLSearchParams(formData)
-  })
-  .then(res => res.json())
-  .then(data => {
-    if (data.result === 'success') {
-      document.getElementById('orderForm').style.display = 'none';
-      document.getElementById('confirmation').style.display = 'block';
-
-      // ✅ অডিও বাজানোর কোড
-      const audio = new Audio('order.mp3');
-      audio.play();
-    } else {
-      alert('❌ Something went wrong. Please try again!');
-    }
-  })
-  .catch(err => {
-    alert('❌ Error submitting order. Please check your connection.');
-    console.error(err);
-  });
-}
-//------------------------------
   </script>
 </body>
 </html>
