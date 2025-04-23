@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="title" content="HeadLookBD - Premium Cap and Hat Collection">
+  <meta name="keywords" content="Cap, Hat, Fashion, HeadLookBD, Sports Cap, Stylish Cap">
+  <meta name="description" content="Discover premium caps and hats at HeadLookBD. Trendy, stylish, and comfortable headwear for all seasons.">
+  <title>Product Data Create - Custom Cap BD</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600&display=swap');
+
+    body {
+      font-family: 'Orbitron', sans-serif;
+      background: radial-gradient(circle at top, #1f1c2c 0%, #232526 100%);
+      padding: 20px;
+      color: #f3f3f3;
+      margin: 0;
+      position: relative;
+    }
+    h1 {
+      text-align: center;
+      font-size: 36px;
+      color: #00ffc3;
+      text-shadow: 0 0 10px #00ffc3, 0 0 20px #00ffc3;
+    }
+    form {
+      max-width: 1100px;
+      margin: 0 auto;
+      background: rgba(0, 0, 0, 0.3);
+      padding: 30px;
+      border-radius: 15px;
+      box-shadow: 0 0 30px rgba(0, 255, 255, 0.4);
+      backdrop-filter: blur(10px);
+    }
+    .form-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 20px;
+    }
+    .form-group {
+      flex: 1;
+      min-width: 300px;
+      padding: 15px;
+      border-radius: 10px;
+      background: rgba(0,0,0,0.3);
+      box-shadow: 0 0 15px rgba(0, 255, 255, 0.3);
+    }
+    label {
+      display: block;
+      margin-top: 10px;
+      font-weight: bold;
+      color: #00ffc3;
+    }
+    input[type="text"], input[type="number"], input[type="file"] {
+      width: 100%;
+      padding: 10px;
+      margin-top: 5px;
+      border: none;
+      border-radius: 6px;
+      background: #f0f0f0;
+      color: #111;
+    }
+    button {
+      margin: 15px 10px 0 0;
+      padding: 12px 25px;
+      background: linear-gradient(to right, #00ffc3, #00c0a3);
+      color: #111;
+      font-weight: bold;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      box-shadow: 0 0 15px #00ffc3;
+    }
+    button:hover {
+      transform: scale(1.05);
+      box-shadow: 0 0 30px #00ffc3;
+    }
+    textarea {
+		height: 150px;
+		padding: 10px;
+		border-radius: 8px;
+		background: #1e1e2f;
+		color: #00ffc3;
+		font-family: monospace;
+		font-size: 14px;
+		justify-content: center;
+		margin: 1rem auto;
+		text-align: left;
+		display: flex;
+		max-width: 850px;
+		width: 1100px;
+    }
+	
+    .btn-group {
+      text-align: center;
+    }
+	
+    footer {
+      text-align: center;
+      margin-top: 40px;
+      font-size: 14px;
+      color: #aaa;
+      padding: 20px 10px;
+      border-top: 1px solid #333;
+    }
+    footer a {
+      color: #00ffc3;
+      text-decoration: none;
+    }
+    @media (max-width: 768px) {
+      .form-row {
+        flex-direction: column;
+      }
+    }
+  </style>
+</head>
+<body>
+  <h1>Product Data Create</h1>
+  <form id="productForm">
+    <label>Product Name *</label>
+    <input type="text" id="productName" required>
+
+    <label>Price *</label>
+    <input type="number" id="productPrice" required>
+
+    <div class="form-row">
+      <div class="form-group">
+        <label>Image Link 1</label>
+        <input type="text" id="imgLink1">
+        <label>Image Link 2</label>
+        <input type="text" id="imgLink2">
+        <label>Image Link 3</label>
+        <input type="text" id="imgLink3">
+        <label>Image Link 4</label>
+        <input type="text" id="imgLink4">
+        <label>Image Link 5</label>
+        <input type="text" id="imgLink5">
+      </div>
+
+      <div class="form-group">
+        <label>Upload Image 1</label>
+        <input type="file" id="upload1" accept="image/*">
+        <label>Upload Image 2</label>
+        <input type="file" id="upload2" accept="image/*">
+        <label>Upload Image 3</label>
+        <input type="file" id="upload3" accept="image/*">
+        <label>Upload Image 4</label>
+        <input type="file" id="upload4" accept="image/*">
+        <label>Upload Image 5</label>
+        <input type="file" id="upload5" accept="image/*">
+      </div>
+    </div>
+
+    <div class="btn-group">
+      <button type="button" onclick="generateJSON()">Submit</button>
+      <button type="button" onclick="clearFields()">Clear</button>
+      <button type="button" onclick="copyJSON()">Copy Code</button>
+    </div>
+  </form>
+
+  <textarea id="output" readonly></textarea>
+
+  <audio id="clickSound" src="https://assets.mixkit.co/sfx/preview/mixkit-interface-click-1126.mp3"></audio>
+
+  <footer>
+    &copy; 2025 Custom Cap BD. All rights reserved. Developed by <a href="https://headlookbd.com/shahin" target="_blank">Sayful I. Shahin</a>
+  </footer>
+
+  <script>
+    function generateJSON() {
+      const name = document.getElementById('productName').value.trim();
+      const price = parseFloat(document.getElementById('productPrice').value);
+      const links = [];
+
+      const imgLink1 = document.getElementById('imgLink1').value.trim();
+      const upload1 = document.getElementById('upload1');
+      const upload1Name = upload1.files.length > 0 ? upload1.files[0].name : "";
+
+      if (!imgLink1 && !upload1Name) {
+        alert("Either Image Link 1 or Upload Image 1 is required.");
+        return;
+      }
+
+      for (let i = 1; i <= 5; i++) {
+        const link = document.getElementById('imgLink' + i).value.trim();
+        if (link) links.push(link);
+      }
+
+      for (let i = 1; i <= 5; i++) {
+        const fileInput = document.getElementById('upload' + i);
+        if (fileInput.files.length > 0) {
+          links.push(fileInput.files[0].name);
+        }
+      }
+
+      const jsonOutput = `{
+  "name": "${name}",
+  "price": ${price},
+  "images": [
+    ${links.map(link => `"${link}"`).join(",\n    " )}
+  ]
+},`;
+
+      document.getElementById('output').value = jsonOutput;
+      document.getElementById('clickSound').play();
+    }
+
+    function clearFields() {
+      document.getElementById('productName').value = "";
+      document.getElementById('productPrice').value = "";
+
+      for (let i = 1; i <= 5; i++) {
+        document.getElementById('imgLink' + i).value = "";
+        document.getElementById('upload' + i).value = "";
+      }
+      document.getElementById('output').value = "";
+    }
+
+    function copyJSON() {
+      const output = document.getElementById('output');
+      navigator.clipboard.writeText(output.value);
+    }
+  </script>
+</body>
+</html>
