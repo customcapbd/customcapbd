@@ -482,20 +482,7 @@ function downloadInvoice() {
       clickSound.play().catch(e=>console.warn(e));
       if (navigator.vibrate) navigator.vibrate(30);
     }
-   //-----------------------------
-      // ✅ অডিও বাজানোর কোড
-      const audio = new Audio('order.mp3');
-      audio.play();
-    } else {
-      alert('❌ Something went wrong. Please try again!');
-    }
-  })
-  .catch(err => {
-    alert('❌ Error submitting order. Please check your connection.');
-    console.error(err);
-  });
-}
-//------------------------------
+
     window.addEventListener('scroll', () => {
       clearTimeout(scrollTimer);
       homeBtn.classList.add('hide-btn');
