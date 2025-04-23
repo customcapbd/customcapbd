@@ -49,17 +49,29 @@
       justify-content: center;
       gap: 15px;
     }
+.btn {
+    background: black;
+    color: white;
+    padding: 12px 20px;
+    border-radius: 10px;
+    text-decoration: none;
+    font-weight: bold;
+    border: 2px solid white;
+    transition: 0.3s ease;
+    font-family: 'Orbitron', monospace;
+    display: inline-block;
+    text-align: center;
+}
+
+/* Responsive styles for small screens */
+@media (max-width: 480px) {
     .btn {
-      background: black;
-      color: white;
-      padding: 12px 20px;
-      border-radius: 10px;
-      text-decoration: none;
-      font-weight: bold;
-      border: 2px solid white;
-      transition: 0.3s ease;
-      font-family: 'Orbitron', monospace;
+        padding: 10px 16px;
+        font-size: 14px;
+        width: 100%; /* Optional: make it full width on mobile */
+        box-sizing: border-box;
     }
+}
     .btn:hover {
       background-color: white;
       color: black;
