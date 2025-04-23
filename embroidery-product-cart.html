@@ -437,8 +437,9 @@ function downloadInvoice() {
 
   const win = window.open('', '_blank');
   win.document.write(`
-    <html><head><title>Invoice</title></head><body style="font-family: sans-serif; text-align: center;">
-    <h2>Order Invoice</h2>
+    <html><head><title>Invoice</title></head><body style="font-family: sans-serif; text-align: left;">
+    <h2>Your Order Invoice</h2>
+    <img src="custom-cap-bd-logo.png" style="width:200px; border-radius:10px; display:block; margin-left:0; margin-right:auto;" />
     <p><strong>Name:</strong> ${name}</p>
     <p><strong>Mobile:</strong> ${mobile}</p>
     <p><strong>Address:</strong> ${address}</p>
