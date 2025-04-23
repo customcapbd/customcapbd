@@ -365,8 +365,6 @@
     <h2>✅ Your order has been confirmed!</h2>
     <p>Thank you for your order. Please download your invoice below.</p>
     <button class="btn" onclick="downloadInvoice()">⬇️ Download Invoice</button>
-   <button class="btn" onclick="downloadInvoiceJPG()">Download JPG</button>
-
     <a href="https://headlookbd.com/" class="btn">🏠 Back to Home</a>
   </div>
 
@@ -614,21 +612,6 @@ win.document.write(
  <!-- html2canvas লাইব্রেরি -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
 
-<!-- JPG ডাউনলোড ফাংশন -->
-<script>
-  function downloadInvoiceJPG() {
-    const invoiceSection = document.body; // চাইলে এখানে শুধু `.invoice` বা নির্দিষ্ট অংশও দিতে পারো
-    html2canvas(invoiceSection, {
-      scale: 3,
-      backgroundColor: "#fff"
-    }).then(canvas => {
-      const link = document.createElement("a");
-      link.download = "invoice.jpg";
-      link.href = canvas.toDataURL("image/jpeg", 1.0);
-      link.click();
-    });
-  }
-</script>
 
 </body>
 </html>
