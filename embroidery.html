@@ -266,7 +266,12 @@
       </div>
       <div style="overflow: hidden; padding: 10px;">
         <span class="price-tag">Price: ${product.price}/-Tk</span>
-        <a href="https://headlookbd.com/embroidery-product-cart" class="buy-now" onclick='localStorage.setItem("selectedProduct", \`${JSON.stringify(product)}\`)'>BUY NOW</a>
+        <a href="#" class="buy-now" onclick='
+  localStorage.setItem("selectedProduct", JSON.stringify(product));
+  const slug = product.name.replace(/\s+/g, "-");
+  window.location.href = `https://headlookbd.com/embroidery-product-cart/${slug}`;
+'>BUY NOW</a>
+
       </div>
     `;
     gallery.appendChild(card);
