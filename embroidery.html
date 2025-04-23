@@ -345,5 +345,31 @@
       window.scrollTo({ top: 0, behavior: 'smooth' });
     });
   </script>
+
+<div class="product-container" id="product-container">
+    Loading product...
+  </div>
+
+  <script>
+    const product = JSON.parse(localStorage.getItem("selectedProduct"));
+
+    if (!product) {
+      document.getElementById("product-container").innerHTML = "<h2>Product Not Found</h2>";
+    } else {
+      document.getElementById("product-container").innerHTML = `
+        <h1>${product.name}</h1>
+        <img id="main-image" class="main-image" src="${product.images[0]}" />
+        <div class="product-images">
+          ${product.images.map((img) => `
+            <img src="${img}" onclick="document.getElementById('main-image').src='${img}'" />
+          `).join("")}
+        </div>
+        <div style="margin-top: 20px;">
+          <span class="price-tag">Price: ${product.price} Tk</span>
+        </div>
+      `;
+    }
+  </script>
+	
 </body>
 </html>
