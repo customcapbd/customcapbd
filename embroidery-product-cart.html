@@ -585,7 +585,9 @@ win.document.write(
   event.preventDefault();
   const form = document.getElementById('orderForm');
   const formData = new FormData(form);
-
+// ✅ এখানে বসাও timestamp যুক্ত করার লাইন
+  const now = new Date();
+  formData.append('timestamp', now.toLocaleString('en-BD', { timeZone: 'Asia/Dhaka' }));
   fetch('https://script.google.com/macros/s/AKfycbyhXY7N6BLJcmc2JJybKkIZitxSHbXZ3dGsYaubmrUauScKJoj74ICGmDYc8uLpi09D/exec', {
     method: 'POST',
     body: new URLSearchParams(formData)
