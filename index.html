@@ -1,19 +1,22 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+  <!-- Static Meta Tags -->
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Custom Cap BD – Premium Personalized Caps in Bangladesh</title>
   <meta name="description" content="Order custom caps online in Bangladesh with your logo, text, or design. Premium quality personalized caps with fast delivery and affordable prices.">
   <meta name="keywords" content="custom cap BD, personalized caps Bangladesh, custom printed cap, logo cap, embroidered cap, cap printing BD, order caps online, promotional caps BD">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  
+  <!-- Static CSS Links -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
   <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500&family=Poppins:wght@500;700&display=swap" rel="stylesheet">
   <link rel="icon" type="image/png" href="favicon.ico">
-  <!-- Google Font -->
-<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500&display=swap" rel="stylesheet">
-<script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500&display=swap" rel="stylesheet">
+  <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+  
   <style>
-    /* তোমার আগের CSS পুরোটা অপরিবর্তিত রাখা হয়েছে */
+    /* Static CSS - Unchanged from original */
     body {
       margin: 0;
       font-family: 'Poppins', sans-serif;
@@ -25,7 +28,7 @@
 
     .container {
       max-width: 900px;
-      margin: 50px auto;
+      margin: 0 auto;
       padding: 20px;
     }
 
@@ -199,23 +202,51 @@
       color: #00ffc8;
     }
 
-    /* Chat Button */
+    /* Updated Chat System CSS */
     .chat-button {
-    position: fixed;
-    bottom: 56px;
-    right: 0px;
-    background: #25d366;
-    color: #fff;
-    font-size: 28px;
-    padding: 15px;
-    border-radius: 50%;
-    cursor: pointer;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
-    z-index: 9999;
-    visibility: visible !important;
+      position: fixed;
+      bottom: 56px;
+      right: 20px;
+      background: #25d366;
+      color: #fff;
+      font-size: 28px;
+      padding: 15px;
+      border-radius: 50%;
+      cursor: pointer;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+      z-index: 9999;
+      width: 35px;
+      height: 35px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.3s ease;
     }
 
-    /* Chat Box */
+    .chat-button:hover {
+      transform: scale(1.1);
+    }
+
+    .chat-welcome {
+      position: absolute;
+      right: 70px;
+      background: white;
+      color: #25d366;
+      padding: 8px 15px;
+      border-radius: 20px;
+      font-size: 14px;
+      font-weight: bold;
+      white-space: nowrap;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.3s ease;
+    }
+
+    .chat-button:hover .chat-welcome {
+      opacity: 1;
+    }
+
     .chat-box {
       position: fixed;
       bottom: 90px;
@@ -223,16 +254,26 @@
       width: 320px;
       background: #fff;
       border-radius: 15px;
-      box-shadow: 0 4px 20px rgba(0,0,0,0.2);
+      box-shadow: 0 5px 25px rgba(0,0,0,0.2);
       display: none;
       flex-direction: column;
       z-index: 9998;
     }
 
+    .chat-box.active {
+      display: flex;
+      animation: fadeIn 0.3s ease;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
     .chat-header {
-      background: #111;
+      background: #075e54;
       color: #fff;
-      padding: 10px 15px;
+      padding: 12px 15px;
       border-top-left-radius: 15px;
       border-top-right-radius: 15px;
       display: flex;
@@ -246,291 +287,359 @@
 
     .chat-body textarea {
       width: 100%;
-      height: 80px;
-      padding: 10px;
+      height: 100px;
+      padding: 12px;
+      border: 1px solid #ddd;
+      border-radius: 8px;
       resize: none;
-      border: 1px solid #ccc;
-      border-radius: 10px;
+      font-family: 'Poppins', sans-serif;
       margin-bottom: 10px;
-      font-size: 14px;
-      box-sizing: border-box;
-    }
-
-    .chat-body input[type="file"] {
-      margin-bottom: 10px;
-      width: 100%;
     }
 
     .chat-actions {
       display: flex;
       gap: 10px;
-      justify-content: space-between;
     }
 
     .chat-actions .btn {
       flex: 1;
-      background: #007bff;
-      color: white;
-      text-align: center;
       padding: 10px;
-      border-radius: 10px;
+      border-radius: 8px;
+      text-align: center;
+      font-weight: 600;
       text-decoration: none;
-      font-weight: bold;
-      font-size: 14px;
+      transition: all 0.3s ease;
     }
 
-    .chat-actions .btn:nth-child(1) {
+    #whatsappBtn {
       background: #25d366;
+      color: white;
     }
 
-    .chat-actions .btn:nth-child(2) {
+    #messengerBtn {
       background: #0084ff;
+      color: white;
     }
 
-    @media (max-width: 400px) {
+    @media (max-width: 480px) {
       .chat-box {
-        width: 95%;
-        right: 2.5%;
-      }
-
-      .chat-button {
-        bottom: 15px;
-        right: 15px;
+        width: 90%;
+        right: 5%;
       }
     }
+
     /* Footer Core */
-.footer {
-  background: #0e0e0e;
-  color: #fff;
-  font-family: 'Orbitron', sans-serif;
-  padding: 10px;
-  bottom: 0;
-  width: 100%;
-  z-index: 1000;
-  transition: max-height 0.3s ease;
-}
-.footer-content {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-around;
-  padding: 10px 0;
-  max-height: 400px;
-}
-.footer-section {
-  flex: 1 1 180px;
-  margin: 10px;
-}
-.footer-logo {
-  width: 200px;
-  margin-bottom: 10px;
-}
-.logo-wrapper {
-  display: inline-block;
-  padding: 5px;
-  border-radius: 12px;
-  background: linear-gradient(270deg, #ff0080, #7928ca, #2afadf, #00ffaa);
-  background-size: 600% 600%;
-  animation: rainbow-border 8s ease infinite;
-}
-@keyframes rainbow-border {
-  0% { background-position: 0% 50%; }
-  50% { background-position: 100% 50%; }
-  100% { background-position: 0% 50%; }
-}
-.footer-section h4 {
-  margin-bottom: 8px;
-}
-.footer-section ul li {
-  list-style: none;
-  margin: 4px 0;
-}
-.footer-section a {
-  color: #0ff;
-  text-decoration: none;
-}
-.footer-section a:hover {
-  color: #fff;
-}
-.footer-social {
-  text-align: center;
-  margin-top: 10px;
-}
-.social {
-  margin: 0 5px;
-  color: #fff;
-  font-size: 20px;
-  transition: transform 0.3s, color 0.3s;
-}
-.fire:hover {
-  transform: scale(1.2) rotate(5deg);
-  color: #ff4500;
-  text-shadow: 0 0 15px #ff4500;
-}
-.footer-bottom {
-text-align: center;
-padding: 5px;
-font-size: 12px;
-background: #111;
-border-top: 1px solid #333;
-display: flex;
-align-items: center;
-justify-content: center;
-text-decoration: none;
-}
-.footer-bottom a {
-  color: #0ff;
-}
+    .footer {
+      background: #0e0e0e;
+      color: #fff;
+      font-family: 'Orbitron', sans-serif;
+      padding: 10px;
+      bottom: 0;
+      width: 100%;
+      z-index: 1000;
+      transition: max-height 0.3s ease;
+    }
+    .footer-content {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-around;
+      padding: 10px 0;
+      max-height: 400px;
+	  background: black;
+    }
+    .footer-section {
+      flex: 1 1 180px;
+      margin: 10px;
+    }
+    .footer-logo {
+      width: 200px;
+      margin-bottom: 10px;
+    }
+    .logo-wrapper {
+      display: inline-block;
+      padding: 5px;
+      border-radius: 12px;
+      background: linear-gradient(270deg, #ff0080, #7928ca, #2afadf, #00ffaa);
+      background-size: 600% 600%;
+      animation: rainbow-border 8s ease infinite;
+    }
+    @keyframes rainbow-border {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+    .footer-section h4 {
+      margin-bottom: 8px;
+    }
+    .footer-section ul li {
+      list-style: none;
+      margin: 4px 0;
+    }
+    .footer-section a {
+      color: #0ff;
+      text-decoration: none;
+    }
+    .footer-section a:hover {
+      color: #fff;
+    }
+    .footer-social {
+      text-align: center;
+      margin-top: 10px;
+    }
+    .social {
+      margin: 0 5px;
+      color: #fff;
+      font-size: 20px;
+      transition: transform 0.3s, color 0.3s;
+    }
+    .fire:hover {
+      transform: scale(1.2) rotate(5deg);
+      color: #ff4500;
+      text-shadow: 0 0 15px #ff4500;
+    }
+    .footer-bottom {
+      text-align: center;
+      padding: 5px;
+      font-size: 12px;
+      background: #111;
+      border-top: 1px solid #333;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-decoration: none;
+    }
+    .footer-bottom a {
+      color: #0ff;
+    }
 
-.footer-toggle {
-  background: #111;
-  color: #0ff;
-  text-align: center;
-  padding: 5px;
-  cursor: pointer;
-  font-size: 14px;
-}
+    /* Dark Mode / Light Mode */
+    body.light-mode {
+      background: #f2f2f2;
+      color: #000;
+    }
+    body.light-mode .footer {
+      background: #fff;
+      color: #000;
+    }
+    body.light-mode .footer-bottom {
+      background: #eee;
+    }
+    body.light-mode .footer-section a {
+      color: #0077cc;
+    }
 
-/* Dark Mode / Light Mode */
-body.light-mode {
-  background: #f2f2f2;
-  color: #000;
-}
-body.light-mode .footer {
-  background: #fff;
-  color: #000;
-}
-body.light-mode .footer-bottom {
-  background: #eee;
-}
-body.light-mode .footer-section a {
-  color: #0077cc;
-}
-
-/* Responsive */
-@media (max-width: 768px) {
-  .footer-content {
-    flex-direction: column;
-    align-items: center;
-  }
-  .footer-bottom {
-    flex-direction: column;
-    gap: 5px;
-  }
-}
-/* Footer Core */
-.footer-social {
-  text-align: center;
-  margin-top: 10px;
-}
-
-.social {
-  margin: 0 8px;
-  color: #fff;
-  font-size: 20px;
-  transition: transform 0.3s, color 0.3s;
-}
-
-.fire:hover {
-  transform: scale(1.2) rotate(5deg);
-  color: #ff4500;
-  text-shadow: 0 0 15px #ff4500;
-}
-
-/* Individual Icon Colors */
-.text-blue {
-  color: #0077cc;
-}
-.text-sky {
-  color: #1DA1F2;
-}
-.text-pink {
-  color: #E4405F;
-}
-.text-red {
-  color: #FF0000;
-}
-.text-black {
-  color: #000;
-}
-.text-purple {
-  color: #6a4c9c;
-}
-.text-green {
-  color: #25D366;
-}
-.text-dark {
-  color: #333;
-}
-.text-yellow {
-  color: #FFFC00;
-}
+    /* Responsive */
     @media (max-width: 768px) {
-  .footer {
-    padding: 20px 10px;
-    overflow: visible;
-  }
-  .footer-content {
-    flex-direction: column;
-    align-items: center;
-    max-height: none;
-  }
-  .footer-section {
-    text-align: center;
-    margin: 10px 0;
-  }
-}
+      .footer-content {
+        flex-direction: column;
+        align-items: center;
+      }
+      .footer-bottom {
+        flex-direction: column;
+        gap: 5px;
+      }
+    }
+    
+    /* Footer Core */
+    .footer-social {
+      text-align: left;
+      margin-top: 10px;
+    }
 
+    .social {
+      margin: 0 8px;
+      color: #fff;
+      font-size: 20px;
+      transition: transform 0.3s, color 0.3s;
+    }
+
+    .fire:hover {
+      transform: scale(1.2) rotate(5deg);
+      color: #ff4500;
+      text-shadow: 0 0 15px #ff4500;
+    }
+
+    /* Individual Icon Colors */
+    .text-blue {
+      color: #0077cc;
+    }
+    .text-sky {
+      color: #1DA1F2;
+    }
+    .text-pink {
+      color: #E4405F;
+    }
+    .text-red {
+      color: #FF0000;
+    }
+    .text-black {
+      color: #000;
+    }
+    .text-purple {
+      color: #6a4c9c;
+    }
+    .text-green {
+      color: #25D366;
+    }
+    .text-dark {
+      color: #333;
+    }
+    .text-yellow {
+      color: #FFFC00;
+    }
+    
+    @media (max-width: 768px) {
+      .footer {
+        padding: 20px 10px;
+        overflow: visible;
+      }
+      .footer-content {
+        flex-direction: column;
+        align-items: center;
+        max-height: none;
+      }
+      .footer-section {
+        text-align: center;
+        margin: 10px 0;
+      }
+    }
   </style>
 </head>
-<body>
-<section style="padding: 20px;" class="header">
-  <div style="display: flex; flex-direction: column; align-items: center; text-align: center;">
-    <span style="font-size: clamp(2.5rem, 8vw, 4rem); line-height: 1;">🧢</span>
-    <h1 style="color: white; font-family: 'Orbitron', sans-serif; text-shadow: 0 0 10px cyan, 0 0 20px magenta; font-size: clamp(1.8rem, 5vw, 3rem); margin: 10px 0;">
-      Custom Cap BD
-    </h1>
-    <h2 style="color: white; font-family: 'Orbitron', sans-serif; font-size: clamp(1rem, 4vw, 2rem); margin: 5px 0 20px;">
-      Premium Quality Stylish Caps for You!
-    </h2>
-  </div>
-</section>
-  <!-- ✅ কাজ করা সাউন্ড ফাইল -->
-  <audio id="clickSound" src="https://cdn.pixabay.com/audio/2023/03/30/audio_f4e2bf4f99.mp3" preload="auto"></audio>
-<a style="text-decoration: none;color: #00ffc8;" href="embroidery.html">
-  <div class="container">
-    <div class="cap-box bg-embroidery">
-      <div class="cap-text">
-        Buy Embroidery Cap?
-        <a class="buy-btn" href="embroidery.html">Click Here</a>
-      </div>
-      <img class="cap-image" src="https://printify.com/wp-content/uploads/2024/11/Custom-Embroidered-Hats-With-Printify.jpg" alt="Embroidery Cap">
-    </div>
-</a>
 
+<body>
+  <!-- Static Header Section -->
+  <section style="padding: 20px;" class="header">
+    <div style="display: flex; flex-direction: column; align-items: center; text-align: center;">
+      <span style="font-size: clamp(2.5rem, 8vw, 4rem); line-height: 1;">🧢</span>
+      <h1 style="color: white; font-family: 'Orbitron', sans-serif; text-shadow: 0 0 10px cyan, 0 0 20px magenta; font-size: clamp(1.8rem, 5vw, 3rem); margin: 10px 0;">
+        Custom Cap BD
+      </h1>
+      <h2 style="color: white; font-family: 'Orbitron', sans-serif; font-size: clamp(1rem, 4vw, 2rem); margin: 5px 0 20px;">
+        Premium Quality Stylish Caps for You!
+      </h2>
+    </div>
+  </section>
+
+  <!-- Dynamic Product Sections -->
+  <div class="container">
+    <!-- Embroidery Cap Section -->
+    <a href='/embroidery' style='text-decoration: none;color: #00ffc8;'>
+      <div class="cap-box bg-embroidery">
+        <div class="cap-text">
+          <a class='buy-btn' href='https://headlookbd.com/embroidery'>Buy Embroidery Cap? Click Here</a>
+        </div>
+        <img class="cap-image" src="https://printify.com/wp-content/uploads/2024/11/Custom-Embroidered-Hats-With-Printify.jpg" alt="Embroidery Cap">
+      </div>
+    </a>
+
+    <!-- Printed Cap Section -->
     <div class="cap-box bg-printed">
       <div class="cap-text">
-        Buy Printed Cap?
-        <a class="buy-btn" href="printed.html">Click Here</a>
+        <a class='buy-btn' href='https://headlookbd.com/printed'>Buy Printed Cap? Click Here</a>
       </div>
       <img class="cap-image" src="https://www.shutterstock.com/image-photo/cap-print-design-best-hd-600nw-2432365623.jpg" alt="Printed Cap">
     </div>
 
+    <!-- Custom Cap Section -->
     <div class="cap-box bg-custom">
       <div class="cap-text">
-        Buy Customized Cap?
-        <a class="buy-btn" href="custom.html">Click Here</a>
+        <a class="buy-btn" href="https://headlookbd.com/custom.html">Buy Customized Cap? Click Here</a>
       </div>
       <img class="cap-image" src="https://kiosk.com.bd/web/image/product.template/1174/image_1024?unique=1beddfd" alt="Custom Cap">
     </div>
   </div>
 
-  <!-- Modal for image zoom -->
+  <!-- Dynamic Modal for Image Zoom -->
   <div id="imgModal" class="modal">
     <span class="close">&times;</span>
     <img class="modal-content" id="modalImg">
   </div>
 
+  <!-- Static Audio Elements -->
+  <audio id="clickSound" src="https://cdn.pixabay.com/audio/2023/03/30/audio_f4e2bf4f99.mp3" preload="auto"></audio>
+  <audio id="myAudio" autoplay onended="stopAudio()">
+    <source src="welcome.mp3" type="audio/mp3">
+    Your browser does not support the audio element.
+  </audio>
+
+  <!-- Updated Chat Components -->
+  <div class="chat-button" id="chatToggle">
+    <div class="chat-welcome">কাস্টম ক্যাপ অর্ডার করতে চাইলে মেসেজ দিন</div>
+    💬
+  </div>
+
+  <div class="chat-box" id="chatBox">
+    <div class="chat-header">
+      <span>Need Help? Chat with us</span>
+      <span id="chatClose" style="cursor:pointer;">✖️</span>
+    </div>
+    <div class="chat-body">
+      <textarea id="chatMessage" placeholder="আপনার মেসেজ লিখুন..."></textarea>
+      <input type="file" id="chatImage" accept="image/*" />
+      <div class="chat-actions">
+        <a id="whatsappBtn" target="_blank" class="btn">📱 WhatsApp</a>
+        <a id="messengerBtn" target="_blank" class="btn">💬 Messenger</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Dynamic Footer Section -->
+
+    <div class="footer-content">
+      <!-- Logo & About -->
+      <div class="footer-section">
+        <div class="logo-wrapper">
+          <img src="custom-cap-bd-logo.png" alt="Logo" class="footer-logo">
+        </div>
+        <p>We provide premium gaming gear & accessories to boost your skills. Play harder, win bigger!</p>
+      </div>
+
+      <!-- Quick Links -->
+      <div class="footer-section">
+        <h4>Quick Links</h4>
+        <ul>
+          <li><a href="#return-policy">Return Policy</a></li>
+          <li><a href="#privacy-policy">Privacy Policy</a></li>
+          <li><a href="#terms">Terms & Conditions</a></li>
+        </ul>
+      </div>
+
+      <!-- Contact Info -->
+      <div class="footer-section">
+        <h4>Contact</h4>
+        <p>Email: <a href="mailto:theglowfashions@gmail.comm">theglowfashions@gmail.com</a></p>
+        <p>Phone: <a href="tel:+8801723419695">Call to Mobile</a></p>
+        <p>WhatsApp: <a href="https://wa.me/+8801724674681">Chat WhatsApp</a></p>
+      </div>
+
+      <!-- Store Location -->
+      <div class="footer-section">
+        <h4>Store Location</h4>
+        <p>Level 5, Block D, Bashundhara City, Dhaka</p>
+        <iframe src="https://www.google.com/maps/embed?pb=!1m18..." width="100%" height="150" style="border:0; border-radius: 10px;" allowfullscreen="" loading="lazy"></iframe>
+      </div>
+
+      <!-- Social Icons -->
+      <div class="footer-section">
+        <h4><i class="fas fa-share-alt text-sky"></i> Connect With Us</h4>
+        <div class="footer-social">
+          <a href="https://www.facebook.com/CustomCapBD/" class="social fire text-blue"><i class="fab fa-facebook-f"></i></a>
+          <a href="#" class="social fire text-sky"><i class="fab fa-twitter"></i></a>
+          <a href="#" class="social fire text-pink"><i class="fab fa-instagram"></i></a>
+          <a href="#" class="social fire text-red"><i class="fab fa-youtube"></i></a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Static Footer Bottom -->
+  <div class="footer-bottom">
+    <p>&copy; 2025 Custom Cap BD. All Rights Reserved. Developed by <a style="color:gray;" href="https://headlookbd.com/shahin" target="_blink">Sayful I. Shahin</a> &nbsp </p> <p><a href="https://headlookbd.com/product-upload" target="_blink">pUp</a></p>
+  </div>
+
+  <!-- Dynamic JavaScript -->
   <script>
+    // Image Modal Functionality
     const modal = document.getElementById("imgModal");
     const modalImg = document.getElementById("modalImg");
     const closeBtn = document.querySelector(".close");
@@ -569,139 +678,83 @@ body.light-mode .footer-section a {
     document.querySelectorAll(".cap-box").forEach(box => {
       box.addEventListener("click", playClickSound);
     });
-  </script>
 
-  
-
-<!-- Chat Button -->
-<div class="chat-button" id="chatToggle">
-  💬
-</div>
-
-<!-- Chat Box -->
-<div class="chat-box" id="chatBox">
-  <div class="chat-header">
-    <span>Need Help? Chat with us</span>
-    <span id="chatClose" style="cursor:pointer;">✖️</span>
-  </div>
-  <div class="chat-body">
-    <textarea id="chatMessage" placeholder="Write your message..."></textarea>
-    <input type="file" id="chatImage" accept="image/*" />
-    <div class="chat-actions">
-      <a id="whatsappBtn" target="_blank" class="btn">📱 WhatsApp</a>
-      <a id="messengerBtn" target="_blank" class="btn">💬 Messenger</a>
-    </div>
-  </div>
-</div>
-<!-- Start-Audio -->
-      <audio id="myAudio" autoplay onended="stopAudio()">
-        <source src="welcome.mp3" type="audio/mp3">
-        Your browser does not support the audio element.
-    </audio>
-
-    <script>
-        function stopAudio() {
-            var audio = document.getElementById('myAudio');
-            audio.pause(); // Stops the audio
-            audio.currentTime = 0; // Resets the audio to the beginning
-        }
-    </script>
-<!-- Start-Audio -->
-<script>
-  const chatToggle = document.getElementById('chatToggle');
-  const chatBox = document.getElementById('chatBox');
-  const chatClose = document.getElementById('chatClose');
-  const whatsappBtn = document.getElementById('whatsappBtn');
-  const messengerBtn = document.getElementById('messengerBtn');
-  const chatMessage = document.getElementById('chatMessage');
-  const chatImage = document.getElementById('chatImage');
-
-  // Open chat box
-  chatToggle.addEventListener('click', () => {
-    chatBox.style.display = 'flex';
-  });
-
-  // Close chat box
-  chatClose.addEventListener('click', () => {
-    chatBox.style.display = 'none';
-  });
-
-  // Update WhatsApp and Messenger links
-  function updateChatLinks() {
-    const message = chatMessage.value.trim();
-    const image = chatImage.files[0];
-    let imageText = '';
-
-    if (image) {
-      imageText = `\n🖼️ Image: ${image.name}`; // Just display image name
+    // Audio Control
+    function stopAudio() {
+      var audio = document.getElementById('myAudio');
+      audio.pause();
+      audio.currentTime = 0;
     }
 
-    const finalMessage = encodeURIComponent(`${message}${imageText}`);
+    // Updated Chat Functionality
+    const chatToggle = document.getElementById('chatToggle');
+    const chatBox = document.getElementById('chatBox');
+    const chatClose = document.getElementById('chatClose');
+    const whatsappBtn = document.getElementById('whatsappBtn');
+    const messengerBtn = document.getElementById('messengerBtn');
+    const chatMessage = document.getElementById('chatMessage');
+    const chatImage = document.getElementById('chatImage');
 
-    whatsappBtn.href = `https://wa.me/+8801723419695?text=${finalMessage}`;
-    messengerBtn.href = `https://m.me/CustomCapBD?ref=${finalMessage}`;
-  }
+    // Toggle chat box on button click
+    chatToggle.addEventListener('click', (e) => {
+      e.stopPropagation();
+      chatBox.classList.toggle('active');
+    });
 
-  // Update link on message input or image change
-  chatMessage.addEventListener('input', updateChatLinks);
-  chatImage.addEventListener('change', updateChatLinks);
-</script>
-  <!-- 🌈 Enhanced Gaming Footer with Animated Rainbow Logo Background -->
-<footer id="gaming-footer" class="footer">
-  <div class="footer-toggle" onclick="toggleFooter()">
-    <span id="toggle-icon">▲</span> Footer
-  </div>
+    // Close chat box when clicking close button
+    chatClose.addEventListener('click', () => {
+      chatBox.classList.remove('active');
+    });
 
-  <div class="footer-content">
-    <!-- Logo & About -->
-    <div class="footer-section">
-      <div class="logo-wrapper">
-        <img src="custom-cap-bd-logo.png" alt="Logo" class="footer-logo">
-      </div>
-      <p>We provide premium gaming gear & accessories to boost your skills. Play harder, win bigger!</p>
-    </div>
+    // Close chat box when clicking outside
+    document.addEventListener('click', (e) => {
+      if (!chatBox.contains(e.target) && e.target !== chatToggle) {
+        chatBox.classList.remove('active');
+      }
+    });
 
-    <!-- Quick Links -->
-    <div class="footer-section">
-      <h4>Quick Links</h4>
-      <ul>
-        <li><a href="#return-policy">Return Policy</a></li>
-        <li><a href="#privacy-policy">Privacy Policy</a></li>
-        <li><a href="#terms">Terms & Conditions</a></li>
-      </ul>
-    </div>
+    // Update WhatsApp and Messenger links
+    function updateChatLinks() {
+      const message = chatMessage.value.trim();
+      const image = chatImage.files[0];
+      let imageText = '';
 
-    <!-- Contact Info -->
-    <div class="footer-section">
-      <h4>Contact</h4>
-      <p>Email: <a href="mailto:theglowfashions@gmail.comm">theglowfashions@gmail.com</a></p>
-      <p>Phone: <a href="tel:+8801723419695">Call to Mobile</a></p>
-      <p>WhatsApp: <a href="https://wa.me/+8801724674681">Chat WhatsApp</a></p>
-    </div>
+      if (image) {
+        imageText = `\n🖼️ Image: ${image.name}`;
+      }
 
-    <!-- Store Location -->
-    <div class="footer-section">
-      <h4>Store Location</h4>
-      <p>Level 5, Block D, Bashundhara City, Dhaka</p>
-      <iframe src="https://www.google.com/maps/embed?pb=!1m18..." width="100%" height="150" style="border:0; border-radius: 10px;" allowfullscreen="" loading="lazy"></iframe>
-    </div>
+      const finalMessage = encodeURIComponent(`${message}${imageText}`);
+      
+      whatsappBtn.href = `https://wa.me/+8801723419695?text=${finalMessage}`;
+      messengerBtn.href = `https://m.me/CustomCapBD?ref=${finalMessage}`;
+    }
 
-    <!-- Social Icons -->
-<!-- Social Icons Section -->
-<div class="footer-section">
-  <h4><i class="fas fa-share-alt text-sky"></i> Connect With Us</h4>
-  <div class="footer-social">
-  <a href="https://www.facebook.com/CustomCapBD/" class="social fire text-blue"><i class="fab fa-facebook-f"></i></a>
-  <a href="#" class="social fire text-sky"><i class="fab fa-twitter"></i></a>
-  <a href="#" class="social fire text-pink"><i class="fab fa-instagram"></i></a>
-  <a href="#" class="social fire text-red"><i class="fab fa-youtube"></i></a>
-</div>
+    // Update links when message or image changes
+    chatMessage.addEventListener('input', updateChatLinks);
+    chatImage.addEventListener('change', updateChatLinks);
 
-  </div>
-</footer>
-    <!-- Copyright -->
-  <div class="footer-bottom">
-    <p>&copy; 2025 Custom Cap BD. All Rights Reserved. Developed by <a style="color:gray;" href="https://headlookbd.com/shahin" target="_blink">Sayful I. Shahin</a> &nbsp </p> <p><a href="https://headlookbd.com/product-upload" target="_blink">pUp</a></p>
-  </div>
+    // Footer Toggle Functionality
+    function toggleFooter() {
+      const footer = document.querySelector('.footer-content');
+      const toggleIcon = document.getElementById('toggle-icon');
+      
+      if (footer.style.maxHeight === '0px' || !footer.style.maxHeight) {
+        footer.style.maxHeight = '400px';
+        toggleIcon.textContent = '▲';
+      } else {
+        footer.style.maxHeight = '0px';
+        toggleIcon.textContent = '▼';
+      }
+    }
+
+    // Initialize footer as collapsed on mobile
+    window.addEventListener('DOMContentLoaded', () => {
+      if (window.innerWidth <= 768) {
+        const footer = document.querySelector('.footer-content');
+        footer.style.maxHeight = '0px';
+        document.getElementById('toggle-icon').textContent = '▼';
+      }
+    });
+  </script>
 </body>
 </html>
