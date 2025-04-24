@@ -1,694 +1,1281 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <!-- Static Meta Tags -->
+  <!-- Meta Tags -->
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Custom Cap BD – Premium Personalized Caps in Bangladesh</title>
   <meta name="description" content="Order custom caps online in Bangladesh with your logo, text, or design. Premium quality personalized caps with fast delivery and affordable prices.">
   <meta name="keywords" content="custom cap BD, personalized caps Bangladesh, custom printed cap, logo cap, embroidered cap, cap printing BD, order caps online, promotional caps BD">
   
-  <!-- Static CSS Links -->
+  <!-- CSS Links -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500&family=Poppins:wght@500;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
   <link rel="icon" type="image/png" href="favicon.ico">
-  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500&display=swap" rel="stylesheet">
-  <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
   
   <style>
-    /* Static CSS - Unchanged from original */
-    body {
+    /* Base Styles */
+    :root {
+      --primary-color: #00ffc8;
+      --secondary-color: #ff0066;
+      --dark-color: #0e0e0e;
+      --light-color: #ffffff;
+      --gray-color: #f5f5f5;
+      --text-dark: #333;
+      --text-light: #777;
+    }
+    
+    * {
       margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    
+    body {
       font-family: 'Poppins', sans-serif;
-      background: url('https://www.zoofashions.com/cdn/shop/articles/Blog-Caps-Banner-1.jpg') no-repeat center center fixed;
-      background-size: cover;
-      backdrop-filter: blur(3px);
-      color: #ffffff;
+      background-color: var(--gray-color);
+      color: var(--text-dark);
+      line-height: 1.6;
     }
-
-    .container {
-      max-width: 900px;
-      margin: 0 auto;
-      padding: 20px;
-    }
-
-    .cap-box {
-      position: relative;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      background: rgba(0, 0, 0, 0.75);
-      border-radius: 20px;
-      margin-bottom: 40px;
-      box-shadow: 0 10px 30px rgba(0, 255, 200, 0.1);
-      overflow: hidden;
-      transition: all 0.5s ease;
+    
+    a {
       text-decoration: none;
       color: inherit;
-      border: 3px solid transparent;
-      background-clip: padding-box;
-      animation: fadeInUp 1s ease forwards;
-      opacity: 0;
     }
-
-    .cap-box::before {
-      content: '';
-      position: absolute;
-      top: -3px; left: -3px; right: -3px; bottom: -3px;
-      z-index: -1;
-      background: linear-gradient(45deg, #ff0066, #00ffc8, #6600ff, #ffcc00);
-      background-size: 400% 400%;
-      border-radius: 24px;
-      animation: rainbow 8s linear infinite;
+    
+    img {
+      max-width: 100%;
+      height: auto;
     }
-
-    .cap-box:hover {
-      transform: scale(1.02);
-      box-shadow: 0 14px 40px rgba(0, 255, 200, 0.3);
+    
+    .container {
+      width: 100%;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 15px;
     }
-
-    .cap-text {
-      flex: 1;
-      padding: 0px;
-      font-size: 3rem;
-      font-weight: 700;
-      color: #00ffc8;
-      text-align: center;
-      text-shadow: 1px 1px 3px rgba(0,0,0,0.4);
-      z-index: 1;
-    }
-
-    .buy-btn {
+    
+    .btn {
       display: inline-block;
       padding: 12px 24px;
-      background: #00ffc8;
+      background: var(--primary-color);
       color: #000;
       font-weight: 600;
       border-radius: 30px;
-      text-decoration: none;
-      transition: 0.3s;
-      margin-top: 10px;
-    }
-
-    .buy-btn:hover {
-      background: #00ddb0;
-    }
-
-    .cap-image {
-      width: 280px;
-      height: 280px;
-      object-fit: cover;
-      border-left: 4px solid #00ffc8;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      font-size: 14px;
+      transition: all 0.3s ease;
+      border: none;
       cursor: pointer;
-      transition: transform 0.4s ease, box-shadow 0.4s ease;
-      z-index: 1;
     }
-
-    .cap-box:hover .cap-image {
-      transform: scale(1.05);
-      box-shadow: 0 0 20px rgba(0,255,200,0.3);
+    
+    .btn:hover {
+      background: #00ddb0;
+      transform: translateY(-2px);
+      box-shadow: 0 5px 15px rgba(0, 255, 200, 0.3);
     }
-
-    @media (max-width: 768px) {
-      .cap-box {
-        flex-direction: column-reverse;
-        text-align: center;
-      }
-      .cap-text {
-        font-size: 3rem;
-        padding: 0px;
-      }
-      .cap-image {
-        width: 100%;
-        height: auto;
-        border-left: none;
-        border-top: 4px solid #00ffc8;
-      }
+    
+    .btn-outline {
+      background: transparent;
+      border: 2px solid var(--primary-color);
+      color: var(--primary-color);
     }
-
-    @keyframes rainbow {
-      0% { background-position: 0% 50%; }
-      50% { background-position: 100% 50%; }
-      100% { background-position: 0% 50%; }
+    
+    .btn-outline:hover {
+      background: var(--primary-color);
+      color: #000;
     }
-
-    @keyframes fadeInUp {
-      from {
-        transform: translateY(50px);
-        opacity: 0;
-      }
-      to {
-        transform: translateY(0);
-        opacity: 1;
-      }
+    
+    .section-title {
+      font-family: 'Orbitron', sans-serif;
+      font-size: 2.5rem;
+      text-align: center;
+      margin-bottom: 2rem;
+      color: var(--dark-color);
+      position: relative;
     }
-
-    .cap-box.bg-embroidery::after,
-    .cap-box.bg-printed::after,
-    .cap-box.bg-custom::after {
+    
+    .section-title:after {
+      content: '';
+      display: block;
+      width: 80px;
+      height: 4px;
+      background: var(--primary-color);
+      margin: 15px auto;
+    }
+    
+    /* Header Styles */
+    .header {
+      background: linear-gradient(135deg, #0e0e0e, #2a2a2a);
+      color: var(--light-color);
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .header::before {
       content: '';
       position: absolute;
-      top: 0; left: 0; right: 0; bottom: 0;
-      background-size: cover;
-      background-repeat: no-repeat;
-      background-position: center;
-      filter: blur(2px) brightness(0.5);
-      z-index: 0;
-    }
-
-    .bg-embroidery::after {
-      background-image: url('https://coldesi.com/wp-content/uploads/2024/04/Cap_Embroidery_banner.webp');
-    }
-
-    .bg-printed::after {
-      background-image: url('https://printingshark.com/wp-content/uploads/2020/11/hat-printing-ottawa.jpg');
-    }
-
-    .bg-custom::after {
-      background-image: url('https://3.imimg.com/data3/EA/AF/MY-15261190/wp-content-uploads-2014-12-banner-4-960x400_c-500x500.jpg');
-    }
-
-    .modal {
-      display: none;
-      position: fixed;
-      z-index: 1000;
-      left: 0;
       top: 0;
+      left: 0;
       width: 100%;
       height: 100%;
-      overflow: auto;
-      background-color: rgba(0,0,0,0.9);
+      background: url('https://images.unsplash.com/photo-1521369909029-1af5c38dd110?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80') no-repeat center center/cover;
+      opacity: 0.3;
+      z-index: 0;
     }
-
-    .modal-content {
-      margin: 10% auto;
-      display: block;
-      width: 90%;
-      max-width: 600px;
-      border-radius: 10px;
+    
+    .header-content {
+      position: relative;
+      z-index: 1;
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 0 20px;
     }
+    
+.logo-emoji {
+  font-size: 7rem;
+  margin-bottom: 0rem;
+  display: inline-block;
+  animation: bounce 2s infinite;
+}
 
-    .close {
-      position: absolute;
-      top: 20px;
-      right: 35px;
-      color: #fff;
-      font-size: 40px;
-      font-weight: bold;
-      cursor: pointer;
+/* মোবাইল রেসপনসিভ */
+@media (max-width: 600px) {
+  .logo-emoji {
+    font-size: 2rem;
+  }
+}
+    
+    @keyframes bounce {
+      0%, 20%, 50%, 80%, 100% {transform: translateY(0);}
+      40% {transform: translateY(-20px);}
+      60% {transform: translateY(-10px);}
     }
-
-    .close:hover {
-      color: #00ffc8;
+    
+    .header h1 {
+      font-family: 'Orbitron', sans-serif;
+    font-size: clamp(1.8rem, 5vw, 3rem);
+    color: var(--primary-color);
+    text-shadow: 0 0 10px rgba(0, 255, 200, 0.5);
     }
-
-    /* Updated Chat System CSS */
-    .chat-button {
-      position: fixed;
-      bottom: 56px;
-      right: 20px;
-      background: #25d366;
-      color: #fff;
-      font-size: 28px;
-      padding: 15px;
-      border-radius: 50%;
-      cursor: pointer;
-      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
-      z-index: 9999;
-      width: 35px;
-      height: 35px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      transition: all 0.3s ease;
+    
+    .header h2 {
+      font-family: 'Orbitron', sans-serif;
+      font-size: clamp(1rem, 4vw, 1.5rem);
+      margin-bottom: 1.5rem;
+      font-weight: 400;
     }
-
-    .chat-button:hover {
-      transform: scale(1.1);
-    }
-
-    .chat-welcome {
-      position: absolute;
-      right: 70px;
-      background: white;
-      color: #25d366;
-      padding: 8px 15px;
-      border-radius: 20px;
-      font-size: 14px;
-      font-weight: bold;
-      white-space: nowrap;
+    
+    /* Navigation */
+    .navbar {
+      background: var(--dark-color);
+      padding: 1rem 0;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
       box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-      opacity: 0;
-      pointer-events: none;
-      transition: opacity 0.3s ease;
     }
-
-    .chat-button:hover .chat-welcome {
-      opacity: 1;
-    }
-
-    .chat-box {
-      position: fixed;
-      bottom: 90px;
-      right: 20px;
-      width: 320px;
-      background: #fff;
-      border-radius: 15px;
-      box-shadow: 0 5px 25px rgba(0,0,0,0.2);
-      display: none;
-      flex-direction: column;
-      z-index: 9998;
-    }
-
-    .chat-box.active {
-      display: flex;
-      animation: fadeIn 0.3s ease;
-    }
-
-    @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(10px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
-
-    .chat-header {
-      background: #075e54;
-      color: #fff;
-      padding: 12px 15px;
-      border-top-left-radius: 15px;
-      border-top-right-radius: 15px;
+    
+    .nav-container {
       display: flex;
       justify-content: space-between;
       align-items: center;
     }
-
-    .chat-body {
-      padding: 15px;
+    
+    .logo {
+      font-family: 'Orbitron', sans-serif;
+      font-size: 1.5rem;
+      color: var(--primary-color);
+      font-weight: 700;
     }
-
-    .chat-body textarea {
+    
+    .nav-links {
+      display: flex;
+      list-style: none;
+    }
+    
+    .nav-links li {
+      margin-left: 2rem;
+    }
+    
+    .nav-links a {
+      color: var(--light-color);
+      font-weight: 500;
+      transition: color 0.3s;
+      position: relative;
+    }
+    
+    .nav-links a:hover {
+      color: var(--primary-color);
+    }
+    
+    .nav-links a:after {
+      content: '';
+      position: absolute;
+      width: 0;
+      height: 2px;
+      background: var(--primary-color);
+      bottom: -5px;
+      left: 0;
+      transition: width 0.3s;
+    }
+    
+    .nav-links a:hover:after {
       width: 100%;
-      height: 100px;
-      padding: 12px;
+    }
+    
+    .cart-icon {
+      position: relative;
+      margin-left: 2rem;
+      color: var(--light-color);
+      font-size: 1.2rem;
+    }
+    
+    .cart-count {
+      position: absolute;
+      top: -10px;
+      right: -10px;
+      background: var(--secondary-color);
+      color: white;
+      border-radius: 50%;
+      width: 20px;
+      height: 20px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 12px;
+    }
+    
+    .hamburger {
+      display: none;
+      cursor: pointer;
+      font-size: 1.5rem;
+      color: var(--light-color);
+    }
+    
+    /* Hero Section */
+    .hero {
+      background: url('https://images.unsplash.com/photo-1521369909029-1af5c38dd110?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80') no-repeat center center/cover;
+      height: 500px;
+      display: flex;
+      align-items: center;
+      position: relative;
+      color: var(--light-color);
+    }
+    
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0,0,0,0.6);
+    }
+    
+    .hero-content {
+      position: relative;
+      z-index: 1;
+      max-width: 600px;
+      padding: 0 20px;
+    }
+    
+    .hero h1 {
+      font-size: 3rem;
+      margin-bottom: 1rem;
+      font-family: 'Orbitron', sans-serif;
+    }
+    
+    .hero p {
+      font-size: 1.2rem;
+      margin-bottom: 2rem;
+    }
+    
+    .product-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 2rem;
+    }
+    
+    .product-card {
+      background: var(--light-color);
+      border-radius: 10px;
+      overflow: hidden;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+      transition: transform 0.3s, box-shadow 0.3s;
+      position: relative;
+    }
+    
+    .product-card:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 15px 30px rgba(0,0,0,0.2);
+    }
+    
+    .product-badge {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      background: var(--secondary-color);
+      color: white;
+      padding: 5px 10px;
+      border-radius: 5px;
+      font-size: 12px;
+      font-weight: 600;
+      z-index: 1;
+    }
+    
+    .product-image {
+      height: 250px;
+      overflow: hidden;
+      position: relative;
+    }
+    
+    .product-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.5s;
+    }
+    
+    .product-card:hover .product-image img {
+      transform: scale(1.1);
+    }
+    
+    .product-info {
+      padding: 1.5rem;
+    }
+    
+    .product-title {
+      font-size: 1.2rem;
+      margin-bottom: 0.5rem;
+      font-weight: 600;
+    }
+    
+    .product-price {
+      display: flex;
+      align-items: center;
+      margin-bottom: 1rem;
+    }
+    
+    .current-price {
+      font-size: 1.3rem;
+      font-weight: 700;
+      color: var(--primary-color);
+    }
+    
+    .original-price {
+      font-size: 1rem;
+      text-decoration: line-through;
+      color: var(--text-light);
+      margin-left: 10px;
+    }
+    
+    .product-rating {
+      color: #FFD700;
+      margin-bottom: 1rem;
+    }
+    
+    .product-actions {
+      display: flex;
+      justify-content: space-between;
+    }
+    
+    .add-to-cart {
+      flex: 1;
+      margin-right: 10px;
+    }
+    
+    .wishlist {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      background: #f5f5f5;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: all 0.3s;
+    }
+    
+    .wishlist:hover {
+      background: #ffebee;
+      color: #f44336;
+    }
+    
+    /* Categories Section */
+    .categories {
+      padding: 1rem 0;
+      background: var(--light-color);
+    }
+    
+    .category-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+      gap: 2rem;
+    }
+    
+    .category-card {
+      position: relative;
+      height: 320px;
+      border-radius: 10px;
+      overflow: hidden;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+      transition: all 0.3s;
+    }
+    
+    .category-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+    }
+    
+    .category-image {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+    
+    .category-overlay {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0,0,0,0.4);
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      color: white;
+      text-align: center;
+      padding: 20px;
+    }
+    
+    .category-title {
+      font-size: 2.3rem;
+      font-weight: 600;
+      margin-bottom: 10px;
+      text-shadow: 0 2px 5px rgba(0,0,0,0.5);
+    }
+    
+    .category-btn {
+      background: var(--primary-color);
+      color: #000;
+      padding: 8px 20px;
+      border-radius: 30px;
+      font-weight: 600;
+      font-size: 25px;
+      transition: all 0.3s;
+    }
+    
+    .category-btn:hover {
+      background: #00ddb0;
+    }
+    
+    /* Features Section */
+    .features {
+      padding: 5rem 0;
+      background: var(--gray-color);
+    }
+    
+    .feature-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 2rem;
+    }
+    
+    .feature-card {
+      background: var(--light-color);
+      padding: 2rem;
+      border-radius: 10px;
+      text-align: center;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+      transition: transform 0.3s;
+    }
+    
+    .feature-card:hover {
+      transform: translateY(-10px);
+    }
+    
+    .feature-icon {
+      font-size: 3rem;
+      color: var(--primary-color);
+      margin-bottom: 1.5rem;
+    }
+    
+    .feature-title {
+      font-size: 1.3rem;
+      margin-bottom: 1rem;
+      font-weight: 600;
+    }
+    
+    /* Testimonials Section */
+    .testimonials {
+      padding: 5rem 0;
+      background: var(--light-color);
+    }
+    
+    .testimonial-slider {
+      max-width: 800px;
+      margin: 0 auto;
+      position: relative;
+    }
+    
+    .testimonial {
+      background: var(--gray-color);
+      padding: 2rem;
+      border-radius: 10px;
+      margin: 0 15px;
+      text-align: center;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+    }
+    
+    .testimonial-text {
+      font-style: italic;
+      margin-bottom: 1.5rem;
+      position: relative;
+    }
+    
+    .testimonial-text:before,
+    .testimonial-text:after {
+      content: '"';
+      font-size: 3rem;
+      color: var(--primary-color);
+      opacity: 0.3;
+      position: absolute;
+    }
+    
+    .testimonial-text:before {
+      top: -20px;
+      left: -10px;
+    }
+    
+    .testimonial-text:after {
+      bottom: -40px;
+      right: -10px;
+    }
+    
+    .testimonial-author {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    
+    .author-image {
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
+      overflow: hidden;
+      margin-right: 15px;
+    }
+    
+    .author-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+    
+    .author-info h4 {
+      font-weight: 600;
+      margin-bottom: 5px;
+    }
+    
+    .author-info p {
+      color: var(--text-light);
+      font-size: 14px;
+    }
+    
+    /* Footer */
+    .footer {
+      background: var(--dark-color);
+      color: var(--light-color);
+      padding-top: 4rem;
+    }
+    
+    .footer-content {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 2rem;
+      padding-bottom: 3rem;
+    }
+    
+    .footer-logo {
+      font-family: 'Orbitron', sans-serif;
+      font-size: 1.5rem;
+      color: var(--primary-color);
+      margin-bottom: 1rem;
+      display: inline-block;
+    }
+    
+    .footer-about p {
+      margin-bottom: 1.5rem;
+    }
+    
+    .social-links {
+      display: flex;
+      gap: 15px;
+    }
+    
+    .social-link {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      background: #2a2a2a;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.3s;
+    }
+    
+    .social-link:hover {
+      background: var(--primary-color);
+      color: #000;
+      transform: translateY(-5px);
+    }
+    
+    .footer-links h3 {
+      font-size: 1.2rem;
+      margin-bottom: 1.5rem;
+      position: relative;
+      padding-bottom: 10px;
+    }
+    
+    .footer-links h3:after {
+      content: '';
+      position: absolute;
+      left: 0;
+      bottom: 0;
+      width: 40px;
+      height: 2px;
+      background: var(--primary-color);
+    }
+    
+    .footer-links ul {
+      list-style: none;
+    }
+    
+    .footer-links li {
+      margin-bottom: 10px;
+    }
+    
+    .footer-links a {
+      color: #ccc;
+      transition: color 0.3s;
+    }
+    
+    .footer-links a:hover {
+      color: var(--primary-color);
+      padding-left: 5px;
+    }
+    
+    .footer-contact p {
+      display: flex;
+      align-items: center;
+      margin-bottom: 15px;
+    }
+    
+    .footer-contact i {
+      margin-right: 10px;
+      color: var(--primary-color);
+    }
+    
+    .footer-bottom {
+      background: #1a1a1a;
+      padding: 20px 0;
+      text-align: center;
+    }
+    
+    .footer-bottom p {
+      margin: 0;
+      font-size: 14px;
+      color: #ccc;
+    }
+    
+    /* Chat System */
+    .chat-button {
+      position: fixed;
+      bottom: 30px;
+      right: 30px;
+      width: 60px;
+      height: 60px;
+      background: #25d366;
+      color: white;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 24px;
+      cursor: pointer;
+      box-shadow: 0 5px 20px rgba(0,0,0,0.2);
+      z-index: 999;
+      transition: all 0.3s;
+    }
+    
+    .chat-button:hover {
+      transform: scale(1.1);
+    }
+    
+    .chat-box {
+      position: fixed;
+      bottom: 100px;
+      right: 30px;
+      width: 350px;
+      background: white;
+      border-radius: 15px;
+      box-shadow: 0 5px 30px rgba(0,0,0,0.2);
+      overflow: hidden;
+      z-index: 998;
+      transform: translateY(20px);
+      opacity: 0;
+      visibility: hidden;
+      transition: all 0.3s;
+    }
+    
+    .chat-box.active {
+      transform: translateY(0);
+      opacity: 1;
+      visibility: visible;
+    }
+    
+    .chat-header {
+      background: #075e54;
+      color: white;
+      padding: 15px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    
+    .chat-close {
+      cursor: pointer;
+      font-size: 20px;
+    }
+    
+    .chat-body {
+      padding: 20px;
+    }
+    
+    .chat-message {
+      width: 100%;
+      height: 120px;
+      padding: 15px;
       border: 1px solid #ddd;
       border-radius: 8px;
       resize: none;
+      margin-bottom: 15px;
       font-family: 'Poppins', sans-serif;
-      margin-bottom: 10px;
     }
-
+    
     .chat-actions {
       display: flex;
       gap: 10px;
     }
-
-    .chat-actions .btn {
+    
+    .chat-btn {
       flex: 1;
-      padding: 10px;
+      padding: 12px;
       border-radius: 8px;
-      text-align: center;
+      border: none;
+      color: white;
       font-weight: 600;
-      text-decoration: none;
-      transition: all 0.3s ease;
-    }
-
-    #whatsappBtn {
-      background: #25d366;
-      color: white;
-    }
-
-    #messengerBtn {
-      background: #0084ff;
-      color: white;
-    }
-
-    @media (max-width: 480px) {
-      .chat-box {
-        width: 90%;
-        right: 5%;
-      }
-    }
-
-    /* Footer Core */
-    .footer {
-      background: #0e0e0e;
-      color: #fff;
-      font-family: 'Orbitron', sans-serif;
-      padding: 10px;
-      bottom: 0;
-      width: 100%;
-      z-index: 1000;
-      transition: max-height 0.3s ease;
-    }
-    .footer-content {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: space-around;
-      padding: 10px 0;
-      max-height: 400px;
-	  background: black;
-    }
-    .footer-section {
-      flex: 1 1 180px;
-      margin: 10px;
-    }
-    .footer-logo {
-      width: 200px;
-      margin-bottom: 10px;
-    }
-    .logo-wrapper {
-      display: inline-block;
-      padding: 5px;
-      border-radius: 12px;
-      background: linear-gradient(270deg, #ff0080, #7928ca, #2afadf, #00ffaa);
-      background-size: 600% 600%;
-      animation: rainbow-border 8s ease infinite;
-    }
-    @keyframes rainbow-border {
-      0% { background-position: 0% 50%; }
-      50% { background-position: 100% 50%; }
-      100% { background-position: 0% 50%; }
-    }
-    .footer-section h4 {
-      margin-bottom: 8px;
-    }
-    .footer-section ul li {
-      list-style: none;
-      margin: 4px 0;
-    }
-    .footer-section a {
-      color: #0ff;
-      text-decoration: none;
-    }
-    .footer-section a:hover {
-      color: #fff;
-    }
-    .footer-social {
-      text-align: center;
-      margin-top: 10px;
-    }
-    .social {
-      margin: 0 5px;
-      color: #fff;
-      font-size: 20px;
-      transition: transform 0.3s, color 0.3s;
-    }
-    .fire:hover {
-      transform: scale(1.2) rotate(5deg);
-      color: #ff4500;
-      text-shadow: 0 0 15px #ff4500;
-    }
-    .footer-bottom {
-      text-align: center;
-      padding: 5px;
-      font-size: 12px;
-      background: #111;
-      border-top: 1px solid #333;
+      cursor: pointer;
+      transition: all 0.3s;
       display: flex;
       align-items: center;
       justify-content: center;
-      text-decoration: none;
+      gap: 8px;
     }
-    .footer-bottom a {
-      color: #0ff;
+    
+    .chat-btn.whatsapp {
+      background: #25d366;
     }
-
-    /* Dark Mode / Light Mode */
-    body.light-mode {
-      background: #f2f2f2;
-      color: #000;
+    
+    .chat-btn.messenger {
+      background: #0084ff;
     }
-    body.light-mode .footer {
-      background: #fff;
-      color: #000;
+    
+    .chat-btn:hover {
+      opacity: 0.9;
+      transform: translateY(-2px);
     }
-    body.light-mode .footer-bottom {
-      background: #eee;
-    }
-    body.light-mode .footer-section a {
-      color: #0077cc;
-    }
-
-    /* Responsive */
-    @media (max-width: 768px) {
-      .footer-content {
-        flex-direction: column;
-        align-items: center;
+    
+    /* Responsive Styles */
+    @media (max-width: 992px) {
+      .hero h1 {
+        font-size: 2.5rem;
       }
-      .footer-bottom {
-        flex-direction: column;
-        gap: 5px;
+      
+      .section-title {
+        font-size: 2rem;
       }
     }
     
-    /* Footer Core */
-    .footer-social {
-      text-align: left;
-      margin-top: 10px;
-    }
-
-    .social {
-      margin: 0 8px;
-      color: #fff;
-      font-size: 20px;
-      transition: transform 0.3s, color 0.3s;
-    }
-
-    .fire:hover {
-      transform: scale(1.2) rotate(5deg);
-      color: #ff4500;
-      text-shadow: 0 0 15px #ff4500;
-    }
-
-    /* Individual Icon Colors */
-    .text-blue {
-      color: #0077cc;
-    }
-    .text-sky {
-      color: #1DA1F2;
-    }
-    .text-pink {
-      color: #E4405F;
-    }
-    .text-red {
-      color: #FF0000;
-    }
-    .text-black {
-      color: #000;
-    }
-    .text-purple {
-      color: #6a4c9c;
-    }
-    .text-green {
-      color: #25D366;
-    }
-    .text-dark {
-      color: #333;
-    }
-    .text-yellow {
-      color: #FFFC00;
-    }
-    
     @media (max-width: 768px) {
-      .footer {
-        padding: 20px 10px;
-        overflow: visible;
-      }
-      .footer-content {
+      .nav-links {
+        position: fixed;
+        top: 70px;
+        left: -100%;
+        width: 100%;
+        height: calc(100vh - 70px);
+        background: var(--dark-color);
         flex-direction: column;
         align-items: center;
-        max-height: none;
+        justify-content: flex-start;
+        padding-top: 30px;
+        transition: all 0.5s;
       }
-      .footer-section {
-        text-align: center;
-        margin: 10px 0;
+      
+      .nav-links.active {
+        left: 0;
+      }
+      
+      .nav-links li {
+        margin: 15px 0;
+      }
+      
+      .hamburger {
+        display: block;
+      }
+      
+      .hero {
+        height: 400px;
+      }
+      
+      .hero h1 {
+        font-size: 2rem;
+      }
+      
+      .chat-box {
+        width: 300px;
       }
     }
-	  <!-- Mobile Freindly -->
-	  @media (max-width: 480px) {
-  .container {
-    padding: 10px;
-  }
-
-  .cap-text {
-    font-size: 2.2rem;
-  }
-
-  .buy-btn {
-    width: 100%;
-    font-size: 1rem;
-  }
-
-  .modal-content {
-    width: 95%;
-    margin-top: 30%;
-  }
-
-  .chat-header,
-  .chat-body,
-  .chat-actions {
-    padding: 10px;
-  }
-
-  .chat-body textarea {
-    height: 80px;
-  }
-
-  .footer-section {
-    margin: 5px 0;
-  }
-
-  .footer-section h4 {
-    font-size: 1rem;
-  }
-
-  .footer-section ul li {
-    font-size: 0.9rem;
-  }
-
-  .footer-logo {
-    width: 150px;
-  }
-
-  .social {
-    font-size: 18px;
-  }
-}
+    
+    @media (max-width: 576px) {
+      .hero {
+        height: 350px;
+      }
+      
+      .hero h1 {
+        font-size: 1.8rem;
+      }
+      
+      .section-title {
+        font-size: 1.8rem;
+      }
+      
+      .product-grid {
+        grid-template-columns: 1fr;
+      }
+      
+      .category-grid {
+        grid-template-columns: 1fr;
+      }
+      
+      .chat-box {
+        width: 280px;
+        right: 20px;
+      }
+      
+      .chat-button {
+        bottom: 20px;
+        right: 20px;
+        width: 50px;
+        height: 50px;
+        font-size: 20px;
+      }
+    }
   </style>
 </head>
 
 <body>
-  
-  <section style="padding: 20px;" class="header">
-    <div style="display: flex; flex-direction: column; align-items: center; text-align: center;">
-      <span style="font-size: clamp(2.5rem, 8vw, 4rem); line-height: 1;">🧢</span>
-      <h1 style="color: white; font-family: 'Orbitron', sans-serif; text-shadow: 0 0 10px cyan, 0 0 20px magenta; font-size: clamp(1.8rem, 5vw, 3rem); margin: 10px 0;">
-        Custom Cap BD
-      </h1>
-      <h2 style="color: white; font-family: 'Orbitron', sans-serif; font-size: clamp(1rem, 4vw, 2rem); margin: 5px 0 20px;">
-        Premium Quality Stylish Caps for You!
-      </h2>
+  <!-- Navigation -->
+  <nav class="navbar">
+    <div class="container nav-container">
+      <a href="#" class="logo">Custom Cap BD</a>
+      <ul class="nav-links">
+        <li><a href="https://headlookbd.com/">Home</a></li>
+        <li><a href="#categories">Categories</a></li>
+        <li><a href="#about">About</a></li>
+        <li><a href="#contact">Contact</a></li>
+		<li><a href="https://headlookbd.com/product-upload">Upload</a></li>
+      </ul>
+      
+      <div class="hamburger">
+        <i class="fas fa-bars"></i>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Header -->
+  <header class="header">
+    <div class="header-content">
+      <div class="logo-emoji">🧢</div>
+      <h1>Custom Cap BD</h1>
+      <h2>Premium Quality Stylish Caps for You!</h2>
+    </div>
+  </header>
+
+
+
+  <!-- Categories Section -->
+  <section id="categories" class="categories">
+    <div class="container">
+		<h2 class="section-title">Our Featured Caps</h2>
+      
+      <div class="category-grid">
+        <!-- Category 1 -->
+        <div class="category-card">
+          <img src="https://img.joomcdn.net/4d3f6dc22f3ad41ece2528d0ae579ac1c3e52f5a_original.jpeg" alt="Embroidery Caps" class="category-image">
+          <div class="category-overlay">
+            <h3 class="category-title">Embroidered Caps</h3>
+            <a href="https://headlookbd.com/embroidery" class="category-btn">Shop Now</a>
+          </div>
+        </div>
+        
+        <!-- Category 2 -->
+        <div class="category-card">
+          <img src="https://merch.impressprint.com.au/wp-content/uploads/2023/05/113031-0.jpg" alt="Printed Caps" class="category-image">
+          <div class="category-overlay">
+            <h3 class="category-title">Printed Caps</h3>
+            <a href="https://headlookbd.com/printed" class="category-btn">Shop Now</a>
+          </div>
+        </div>
+        
+        <!-- Category 3 -->
+        <div class="category-card">
+          <img src="https://thehatpros.com/cdn/shop/files/josh-cap-banner-mobile.jpg?v=1738041265&width=3840.webp" alt="Custom Caps" class="category-image">
+          <div class="category-overlay">
+            <h3 class="category-title">Custom Caps</h3>
+            <a href="https://headlookbd.com/custom" class="category-btn">Shop Now</a>
+          </div>
+        </div>
+        
+        <!-- Category 4 -->
+        <div class="category-card">
+          <img src="https://down-ph.img.susercontent.com/file/cn-11134207-7qukw-lg4vji17wft4af.webp" alt="Sports Caps" class="category-image">
+          <div class="category-overlay">
+            <h3 class="category-title">Sports Caps</h3>
+            <a href="#" class="category-btn">Shop Now</a>
+          </div>
+        </div>
+      </div>
     </div>
   </section>
 
-  <!-- Dynamic Product Sections -->
-  <div class="container">
-    <!-- Embroidery Cap Section -->
-    <a href='/embroidery' style='text-decoration: none;color: #00ffc8;'>
-      <div class="cap-box bg-embroidery">
-        <div class="cap-text">
-          <a class='buy-btn' href='https://headlookbd.com/embroidery'>Buy Embroidery Cap? Click Here</a>
+  <!-- Features Section -->
+  <section class="features">
+    <div class="container">
+      <h2 class="section-title">Why Choose Us</h2>
+      
+      <div class="feature-grid">
+        <!-- Feature 1 -->
+        <div class="feature-card">
+          <div class="feature-icon">
+            <i class="fas fa-medal"></i>
+          </div>
+          <h3 class="feature-title">Premium Quality</h3>
+          <p>We use only the highest quality materials to ensure your caps last long and look great.</p>
         </div>
-        <img class="cap-image" src="https://printify.com/wp-content/uploads/2024/11/Custom-Embroidered-Hats-With-Printify.jpg" alt="Embroidery Cap">
-      </div>
-    </a>
-
-    <!-- Printed Cap Section -->
-    <div class="cap-box bg-printed">
-      <div class="cap-text">
-        <a class='buy-btn' href='https://headlookbd.com/printed'>Buy Printed Cap? Click Here</a>
-      </div>
-      <img class="cap-image" src="https://www.shutterstock.com/image-photo/cap-print-design-best-hd-600nw-2432365623.jpg" alt="Printed Cap">
-    </div>
-
-    <!-- Custom Cap Section -->
-    <div class="cap-box bg-custom">
-      <div class="cap-text">
-        <a class="buy-btn" href="https://headlookbd.com/custom.html">Buy Customized Cap? Click Here</a>
-      </div>
-      <img class="cap-image" src="https://kiosk.com.bd/web/image/product.template/1174/image_1024?unique=1beddfd" alt="Custom Cap">
-    </div>
-  </div>
-
-  <!-- Dynamic Modal for Image Zoom -->
-  <div id="imgModal" class="modal">
-    <span class="close">&times;</span>
-    <img class="modal-content" id="modalImg">
-  </div>
-
-  <!-- Static Audio Elements -->
-  <audio id="clickSound" src="https://cdn.pixabay.com/audio/2023/03/30/audio_f4e2bf4f99.mp3" preload="auto"></audio>
-  <audio id="myAudio" autoplay onended="stopAudio()">
-    <source src="welcome.mp3" type="audio/mp3">
-    Your browser does not support the audio element.
-  </audio>
-
-  <!-- Updated Chat Components -->
-  <div class="chat-button" id="chatToggle">
-    <div class="chat-welcome">কাস্টম ক্যাপ অর্ডার করতে চাইলে মেসেজ দিন</div>
-    💬
-  </div>
-
-  <div class="chat-box" id="chatBox">
-    <div class="chat-header">
-      <span>Need Help? Chat with us</span>
-      <span id="chatClose" style="cursor:pointer;">✖️</span>
-    </div>
-    <div class="chat-body">
-      <textarea id="chatMessage" placeholder="আপনার মেসেজ লিখুন..."></textarea>
-      <input type="file" id="chatImage" accept="image/*" />
-      <div class="chat-actions">
-        <a id="whatsappBtn" target="_blank" class="btn">📱 WhatsApp</a>
-        <a id="messengerBtn" target="_blank" class="btn">💬 Messenger</a>
-      </div>
-    </div>
-  </div>
-
-  <!-- Dynamic Footer Section -->
-
-    <div class="footer-content">
-      <!-- Logo & About -->
-      <div class="footer-section">
-        <div class="logo-wrapper">
-          <img src="custom-cap-bd-logo.png" alt="Logo" class="footer-logo">
+        
+        <!-- Feature 2 -->
+        <div class="feature-card">
+          <div class="feature-icon">
+            <i class="fas fa-truck"></i>
+          </div>
+          <h3 class="feature-title">Fast Delivery</h3>
+          <p>Get your custom caps delivered quickly anywhere in Bangladesh within 3-5 business days.</p>
         </div>
-        <p>We provide premium gaming gear & accessories to boost your skills. Play harder, win bigger!</p>
-      </div>
-
-      <!-- Quick Links -->
-      <div class="footer-section">
-        <h4>Quick Links</h4>
-        <ul>
-          <li><a href="#return-policy">Return Policy</a></li>
-          <li><a href="#privacy-policy">Privacy Policy</a></li>
-          <li><a href="#terms">Terms & Conditions</a></li>
-        </ul>
-      </div>
-
-      <!-- Contact Info -->
-      <div class="footer-section">
-        <h4>Contact</h4>
-        <p>Email: <a href="mailto:theglowfashions@gmail.comm">theglowfashions@gmail.com</a></p>
-        <p>Phone: <a href="tel:+8801723419695">Call to Mobile</a></p>
-        <p>WhatsApp: <a href="https://wa.me/+8801724674681">Chat WhatsApp</a></p>
-      </div>
-
-      <!-- Store Location -->
-      <div class="footer-section">
-        <h4>Store Location</h4>
-        <p>Level 5, Block D, Bashundhara City, Dhaka</p>
-        <iframe src="https://www.google.com/maps/embed?pb=!1m18..." width="100%" height="150" style="border:0; border-radius: 10px;" allowfullscreen="" loading="lazy"></iframe>
-      </div>
-
-      <!-- Social Icons -->
-      <div class="footer-section">
-        <h4><i class="fas fa-share-alt text-sky"></i> Connect With Us</h4>
-        <div class="footer-social">
-          <a href="https://www.facebook.com/CustomCapBD/" class="social fire text-blue"><i class="fab fa-facebook-f"></i></a>
-          <a href="#" class="social fire text-sky"><i class="fab fa-twitter"></i></a>
-          <a href="#" class="social fire text-pink"><i class="fab fa-instagram"></i></a>
-          <a href="#" class="social fire text-red"><i class="fab fa-youtube"></i></a>
+        
+        <!-- Feature 3 -->
+        <div class="feature-card">
+          <div class="feature-icon">
+            <i class="fas fa-palette"></i>
+          </div>
+          <h3 class="feature-title">Custom Designs</h3>
+          <p>Create your own unique cap design with our easy-to-use customization tools.</p>
         </div>
+        
+        <!-- Feature 4 -->
+        <div class="feature-card">
+          <div class="feature-icon">
+            <i class="fas fa-headset"></i>
+          </div>
+          <h3 class="feature-title">24/7 Support</h3>
+          <p>Our customer service team is always ready to assist you with any questions.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Testimonials Section -->
+  <section class="testimonials">
+    <div class="container">
+      <h2 class="section-title">What Our Customers Say</h2>
+      
+      <div class="testimonial-slider">
+        <!-- Testimonial 1 -->
+        <div class="testimonial">
+          <p class="testimonial-text">The quality of the embroidery on my custom cap exceeded my expectations. It looks even better in person than on the website!</p>
+          <div class="testimonial-author">
+            <div class="author-image">
+              <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="Customer">
+            </div>
+            <div class="author-info">
+              <h4>Rahim Khan</h4>
+              <p>Dhaka</p>
+            </div>
+          </div>
+        </div>
+        
+        <!-- Testimonial 2 -->
+        <div class="testimonial">
+          <p class="testimonial-text">I ordered caps for my cricket team and they arrived right on time. The printing quality is excellent and the colors are vibrant.</p>
+          <div class="testimonial-author">
+            <div class="author-image">
+              <img src="https://randomuser.me/api/portraits/men/45.jpg" alt="Customer">
+            </div>
+            <div class="author-info">
+              <h4>Shakib Ahmed</h4>
+              <p>Chittagong</p>
+            </div>
+          </div>
+        </div>
+        
+        <!-- Testimonial 3 -->
+        <div class="testimonial">
+          <p class="testimonial-text">Great customer service! They helped me design the perfect cap for my business promotion. Will definitely order again.</p>
+          <div class="testimonial-author">
+            <div class="author-image">
+              <img src="https://randomuser.me/api/portraits/women/65.jpg" alt="Customer">
+            </div>
+            <div class="author-info">
+              <h4>Nusrat Jahan</h4>
+              <p>Sylhet</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer" id="contact">
+    <div class="container">
+      <div class="footer-content">
+        <!-- About Column -->
+        <div class="footer-about footer-links">
+          <a href="#" class="footer-logo">Custom Cap BD</a>
+          <p>We provide premium quality custom caps with your designs, logos, and text. Perfect for personal use, sports teams, and business promotions.</p>
+          <div class="social-links">
+            <a href="#" class="social-link"><i class="fab fa-facebook-f"></i></a>
+            <a href="#" class="social-link"><i class="fab fa-instagram"></i></a>
+            <a href="#" class="social-link"><i class="fab fa-youtube"></i></a>
+            <a href="#" class="social-link"><i class="fab fa-whatsapp"></i></a>
+          </div>
+        </div>
+        
+        <!-- Quick Links Column -->
+        <div class="footer-links">
+          <h3>Quick Links</h3>
+          <ul>
+            <li><a href="#">Home</a></li>
+            <li><a href="#products">Products</a></li>
+            <li><a href="#categories">Categories</a></li>
+            <li><a href="#about">About Us</a></li>
+            <li><a href="#contact">Contact</a></li>
+          </ul>
+        </div>
+        
+        <!-- Customer Service Column -->
+        <div class="footer-links">
+          <h3>Customer Service</h3>
+          <ul>
+            <li><a href="#">FAQ</a></li>
+            <li><a href="#">Shipping Policy</a></li>
+            <li><a href="#">Return Policy</a></li>
+            <li><a href="#">Privacy Policy</a></li>
+            <li><a href="#">Terms & Conditions</a></li>
+          </ul>
+        </div>
+        
+        <!-- Contact Column -->
+        <div class="footer-contact footer-links">
+          <h3>Contact Us</h3>
+          <p><i class="fas fa-map-marker-alt"></i> Level 5, Block D, Bashundhara City, Dhaka</p>
+          <p><i class="fas fa-phone-alt"></i> <a href="tel:+8801723419695">+880 1723 419695</a></p>
+          <p><i class="fas fa-envelope"></i> <a href="mailto:theglowfashions@gmail.com">theglowfashions@gmail.com</a></p>
+          <p><i class="fab fa-whatsapp"></i> <a href="https://wa.me/+8801724674681">+880 1724 674681</a></p>
+        </div>
+      </div>
+      
+      <div class="footer-bottom">
+        <p>&copy; 2025 Custom Cap BD. All Rights Reserved. Developed by <a href="https://headlookbd.com/shahin" target="_blank">Sayful I. Shahin</a></p>
       </div>
     </div>
   </footer>
 
-  <!-- Static Footer Bottom -->
-  <div class="footer-bottom">
-    <p>&copy; 2025 Custom Cap BD. All Rights Reserved. Developed by <a style="color:gray;" href="https://headlookbd.com/shahin" target="_blink">Sayful I. Shahin</a> &nbsp </p> <p><a href="https://headlookbd.com/product-upload" target="_blink">pUp</a></p>
+  <!-- Chat System -->
+  <div class="chat-button" id="chatButton">
+    <i class="fas fa-comment-dots"></i>
+  </div>
+  
+  <div class="chat-box" id="chatBox">
+    <div class="chat-header">
+      <span>Need Help? Chat with us</span>
+      <span class="chat-close" id="chatClose"><i class="fas fa-times"></i></span>
+    </div>
+    <div class="chat-body">
+      <textarea class="chat-message" placeholder="আপনার মেসেজ লিখুন..."></textarea>
+      <div class="chat-actions">
+        <button class="chat-btn whatsapp" id="whatsappBtn">
+          <i class="fab fa-whatsapp"></i> WhatsApp
+        </button>
+        <button class="chat-btn messenger" id="messengerBtn">
+          <i class="fab fa-facebook-messenger"></i> Messenger
+        </button>
+      </div>
+    </div>
   </div>
 
-  <!-- Dynamic JavaScript -->
+  <!-- JavaScript -->
   <script>
+    // Mobile Navigation Toggle
+    const hamburger = document.querySelector('.hamburger');
+    const navLinks = document.querySelector('.nav-links');
+    
+    hamburger.addEventListener('click', () => {
+      navLinks.classList.toggle('active');
+      hamburger.innerHTML = navLinks.classList.contains('active') ? 
+        '<i class="fas fa-times"></i>' : '<i class="fas fa-bars"></i>';
+    });
+    
+    // Close mobile menu when clicking on a link
+    document.querySelectorAll('.nav-links a').forEach(link => {
+      link.addEventListener('click', () => {
+        navLinks.classList.remove('active');
+        hamburger.innerHTML = '<i class="fas fa-bars"></i>';
+      });
+    });
+    
+    // Chat System
+    const chatButton = document.getElementById('chatButton');
+    const chatBox = document.getElementById('chatBox');
+    const chatClose = document.getElementById('chatClose');
+    const whatsappBtn = document.getElementById('whatsappBtn');
+    const messengerBtn = document.getElementById('messengerBtn');
+    const chatMessage = document.querySelector('.chat-message');
+    
+    chatButton.addEventListener('click', () => {
+      chatBox.classList.toggle('active');
+    });
+    
+    chatClose.addEventListener('click', () => {
+      chatBox.classList.remove('active');
+    });
+    
+    // Update chat links when message changes
+    function updateChatLinks() {
+      const message = encodeURIComponent(chatMessage.value);
+      whatsappBtn.onclick = () => {
+        window.open(`https://wa.me/+8801723419695?text=${message}`, '_blank');
+      };
+      messengerBtn.onclick = () => {
+        window.open(`https://m.me/CustomCapBD?ref=${message}`, '_blank');
+      };
+    }
+    
+    chatMessage.addEventListener('input', updateChatLinks);
+    
+    // Initialize chat links
+    updateChatLinks();
+    
+    // Add to cart functionality
+    const addToCartButtons = document.querySelectorAll('.add-to-cart');
+    const cartCount = document.querySelector('.cart-count');
+    let count = 0;
+    
+    addToCartButtons.forEach(button => {
+      button.addEventListener('click', () => {
+        count++;
+        cartCount.textContent = count;
+        
+        // Add animation
+        button.textContent = 'Added!';
+        button.style.backgroundColor = '#4CAF50';
+        
+        setTimeout(() => {
+          button.textContent = 'Add to Cart';
+          button.style.backgroundColor = '';
+        }, 1000);
+      });
+    });
+    
+    // Wishlist functionality
+    const wishlistButtons = document.querySelectorAll('.wishlist');
+    
+    wishlistButtons.forEach(button => {
+      button.addEventListener('click', () => {
+        const icon = button.querySelector('i');
+        
+        if (icon.classList.contains('far')) {
+          icon.classList.remove('far');
+          icon.classList.add('fas');
+          icon.style.color = '#f44336';
+        } else {
+          icon.classList.remove('fas');
+          icon.classList.add('far');
+          icon.style.color = '';
+        }
+      });
+    });
+    
+    // Smooth scrolling for anchor links
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function(e) {
+        e.preventDefault();
+        
+        const targetId = this.getAttribute('href');
+        if (targetId === '#') return;
+        
+        const targetElement = document.querySelector(targetId);
+        if (targetElement) {
+          window.scrollTo({
+            top: targetElement.offsetTop - 70,
+            behavior: 'smooth'
+          });
+        }
+      });
+    });
+    
+    // Testimonial slider (simple version)
+    const testimonials = document.querySelectorAll('.testimonial');
+    let currentTestimonial = 0;
+    
+    function showTestimonial(index) {
+      testimonials.forEach((testimonial, i) => {
+        testimonial.style.display = i === index ? 'block' : 'none';
+      });
+    }
+    
+    function nextTestimonial() {
+      currentTestimonial = (currentTestimonial + 1) % testimonials.length;
+      showTestimonial(currentTestimonial);
+    }
+    
+    // Initialize
+    showTestimonial(0);
+    setInterval(nextTestimonial, 5000);
+  </script>
+  
+    <!-- Static Audio Elements -->
+  <audio id="clickSound" src="Mouse-Click.mp3" preload="auto"></audio>
+  <audio id="myAudio" autoplay onended="stopAudio()">
+    <source src="welcome.mp3" type="audio/mp3">
+    Your browser does not support the audio element.
+  </audio>
+  
+    <script>
     // Image Modal Functionality
     const modal = document.getElementById("imgModal");
     const modalImg = document.getElementById("modalImg");
