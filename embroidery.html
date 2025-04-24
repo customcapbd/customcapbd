@@ -245,10 +245,10 @@
         "https://i.postimg.cc/D0mFyG5K/Free-Palastine-Cap-Em-3.jpg",
         "https://i.postimg.cc/Y0V74SyL/Free-Palastine-Cap-Em-4.jpg",
         "https://i.postimg.cc/RCb4pPVC/Free-Palastine-Cap-Em-5.jpg",
-        "VIDEO_LINK_HERE" // Replace with your actual video link
+        "VIDEO_LINK_HERE" // আপনার ভিডিও লিঙ্ক দিয়ে প্রতিস্থাপন করুন
       ]
     },
-    // ... other products ...
+    // ... অন্যান্য প্রোডাক্টস ...
   ];
 
   //----------------shuffle-------------------------
@@ -267,57 +267,31 @@
     const card = document.createElement("div");
     card.className = "image-card";
     
-    // Store original image element for later use
-    const originalImg = document.createElement("img");
-    originalImg.className = "main-image";
-    originalImg.src = product.images[0];
-    originalImg.alt = product.name;
-    
     card.innerHTML = `
       <div class="image-container">
-        ${originalImg.outerHTML}
+        <img class="main-image" src="${product.images[0]}" alt="${product.name}" />
         <div class="heading">${product.name}</div>
         <div class="zoom-lens"></div>
       </div>
       <div class="thumbnails">
         ${product.images.map((thumb, idx) => {
           if (thumb.startsWith('http') && !thumb.match(/\.(mp4|webm|ogg)$/i)) {
-            // Regular image thumbnail
+            // রেগুলার ইমেজ থাম্বনেইল
             return `<img src="${thumb}" onclick="
               const card = this.closest('.image-card');
-              const container = card.querySelector('.image-container');
-              const mainImg = container.querySelector('.main-image') || container.querySelector('video');
-              
-              if (mainImg.tagName === 'VIDEO') {
-                mainImg.remove();
-                container.insertBefore(card.querySelector('.original-img').cloneNode(true), container.firstChild);
-              }
-              container.querySelector('.main-image').src = '${thumb}';
-              container.querySelector('.zoom-lens').style.backgroundImage = 'url(${thumb})';
-              container.querySelector('.zoom-lens').style.display = 'block';
+              const mainImg = card.querySelector('.main-image');
+              mainImg.src = '${thumb}';
+              card.querySelector('.zoom-lens').style.backgroundImage = 'url(${thumb})';
             ">`;
           } else if (thumb.match(/\.(mp4|webm|ogg)$/i) || thumb.startsWith('VIDEO_LINK_HERE')) {
-            // Video thumbnail
+            // ভিডিও থাম্বনেইল
             const videoLink = thumb === 'VIDEO_LINK_HERE' ? 'YOUR_ACTUAL_VIDEO_LINK' : thumb;
             return `<img src="https://i.postimg.cc/9FqXQz8J/video-thumbnail-icon.png" style="position:relative" onclick="
               const card = this.closest('.image-card');
               const container = card.querySelector('.image-container');
-              const mainImg = container.querySelector('.main-image') || container.querySelector('video');
+              const mainImg = card.querySelector('.main-image');
               
-              // Store original image if not already stored
-              if (!card.querySelector('.original-img') && mainImg.tagName === 'IMG') {
-                const original = mainImg.cloneNode(true);
-                original.classList.add('original-img');
-                original.style.display = 'none';
-                card.appendChild(original);
-              }
-              
-              if (mainImg.tagName === 'IMG') {
-                mainImg.style.display = 'none';
-              } else if (mainImg.tagName === 'VIDEO') {
-                mainImg.remove();
-              }
-              
+              // ভিডিও এলিমেন্ট তৈরি
               const video = document.createElement('video');
               video.src = '${videoLink}';
               video.autoplay = true;
@@ -326,8 +300,19 @@
               video.style.height = 'auto';
               video.style.maxHeight = '400px';
               video.style.objectFit = 'contain';
-              container.insertBefore(video, container.firstChild);
-              container.querySelector('.zoom-lens').style.display = 'none';
+              
+              // মূল ইমেজ লুকানো
+              mainImg.style.display = 'none';
+              
+              // ভিডিও যোগ করা
+              if (!card.querySelector('video')) {
+                container.insertBefore(video, mainImg.nextSibling);
+              } else {
+                card.querySelector('video').src = '${videoLink}';
+              }
+              
+              // জুম লেন্স লুকানো
+              card.querySelector('.zoom-lens').style.display = 'none';
             "><span style="position:absolute; bottom:5px; right:5px; background:rgba(0,0,0,0.7); color:white; padding:2px 5px; border-radius:3px; font-size:10px;">VIDEO</span>`;
           }
         }).join('')}
@@ -340,20 +325,33 @@
     gallery.appendChild(card);
   });
 
+  // জুম ফাংশনালিটি
   document.querySelectorAll('.image-container').forEach(container => {
+    const img = container.querySelector('.main-image');
     const zoomLens = container.querySelector('.zoom-lens');
+    
+    // মোবাইলে ফুলস্ক্রিন ফাংশনালিটি
+    img.addEventListener('click', function() {
+      if (window.innerWidth <= 768) { // শুধু মোবাইল ডিভাইসে
+        if (this.requestFullscreen) {
+          this.requestFullscreen();
+        } else if (this.webkitRequestFullscreen) { /* Safari */
+          this.webkitRequestFullscreen();
+        } else if (this.msRequestFullscreen) { /* IE11 */
+          this.msRequestFullscreen();
+        }
+      }
+    });
 
     container.addEventListener('mouseenter', () => {
-      const img = container.querySelector('.main-image');
-      if (img && img.tagName === 'IMG') {
+      if (img.tagName === 'IMG' && img.style.display !== 'none') {
         zoomLens.style.display = 'block';
         zoomLens.style.backgroundImage = `url(${img.src})`;
       }
     });
 
     container.addEventListener('mousemove', e => {
-      const img = container.querySelector('.main-image');
-      if (img && img.tagName === 'IMG') {
+      if (img.tagName === 'IMG' && img.style.display !== 'none') {
         const rect = container.getBoundingClientRect();
         const x = e.clientX - rect.left;
         const y = e.clientY - rect.top;
@@ -366,6 +364,21 @@
     container.addEventListener('mouseleave', () => {
       zoomLens.style.display = 'none';
     });
+  });
+
+  // ইমেজ থাম্বনেইলে ক্লিক করলে ভিডিও থাকলে রিমুভ করা
+  document.addEventListener('click', function(e) {
+    if (e.target.closest('.thumbnails img') && !e.target.src.includes('video-thumbnail-icon')) {
+      const card = e.target.closest('.image-card');
+      const video = card.querySelector('video');
+      const mainImg = card.querySelector('.main-image');
+      
+      if (video) {
+        video.remove();
+        mainImg.style.display = 'block';
+        card.querySelector('.zoom-lens').style.display = 'none';
+      }
+    }
   });
 </script>
 	
