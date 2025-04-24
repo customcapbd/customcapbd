@@ -233,10 +233,11 @@
 </section>
 
 <div class="gallery-container" id="gallery"></div>
-// ---------------------------
+	
 <script>
   const products = [
-    {
+	  // এর নিচে প্রডাক্ট এর কোড ও ইমেজ লিঙ্ক পেস্ট করতে হবে।
+	  {
   "name": "Support For Palestine Cap-Em",
   "price": 450,
   "images": [
@@ -265,8 +266,7 @@
     "https://i.postimg.cc/vH0Cb5J5/Customized-Cap-Own-Logo-Em-1.jpg",
     "https://i.postimg.cc/x177bnTC/Customized-Cap-Own-Logo-Em-2.jpg",
     "https://i.postimg.cc/XYXmJpWm/Customized-Cap-Own-Logo-Em-3.jpg",
-    "https://i.postimg.cc/zfgQC6Vk/Customized-Cap-Own-Logo-Em-4.jpg",
-    "https://www.w3schools.com/html/mov_bbb.mp4"  // ← Example Video
+    "https://i.postimg.cc/zfgQC6Vk/Customized-Cap-Own-Logo-Em-4.jpg"
   ]
 },
 	  {
@@ -282,91 +282,48 @@
 },
   ];
 
-  function shuffle(array) {
+//----------------shuffle-------------------------
+	  function shuffle(array) {
     for (let i = array.length - 1; i > 0; i--) {
       const j = Math.floor(Math.random() * (i + 1));
       [array[i], array[j]] = [array[j], array[i]];
     }
   }
   shuffle(products);
+//-----------------------------------------
 
   const gallery = document.getElementById("gallery");
 
   products.forEach(product => {
     const card = document.createElement("div");
     card.className = "image-card";
-
-    const firstMedia = product.media[0];
-    const isVideo = firstMedia.endsWith(".mp4");
-
     card.innerHTML = `
       <div class="image-container">
-        ${isVideo
-          ? `<video class="main-image" src="${firstMedia}" autoplay muted loop playsinline></video>`
-          : `<img class="main-image" src="${firstMedia}" alt="${product.name}" />`
-        }
+        <img class="main-image" src="${product.images[0]}" alt="${product.name}" />
         <div class="heading">${product.name}</div>
         <div class="zoom-lens"></div>
       </div>
       <div class="thumbnails">
-        ${product.media.map(media => {
-          const isVideoThumb = media.endsWith(".mp4");
-          return `<img src="${!isVideoThumb ? media : 'https://img.icons8.com/ios-filled/50/000000/video.png'}" onclick="handleThumbnailClick(this, '${media}')">`;
-        }).join('')}
+        ${product.images.map((thumb, idx) => `<img src="${thumb}" onclick="this.closest('.image-card').querySelector('.main-image').src='${thumb}'; this.closest('.image-card').querySelector('.zoom-lens').style.backgroundImage='url(${thumb})'">`).join('')}
       </div>
       <div style="overflow: hidden; padding: 10px;">
         <span class="price-tag">Price: ${product.price}/-Tk</span>
         <a href="https://headlookbd.com/embroidery-product-cart" class="buy-now" onclick='localStorage.setItem("selectedProduct", \`${JSON.stringify(product)}\`)'>BUY NOW</a>
       </div>
     `;
-
     gallery.appendChild(card);
   });
 
-  function handleThumbnailClick(imgElement, mediaURL) {
-    const container = imgElement.closest('.image-card');
-    const mainContainer = container.querySelector('.image-container');
-    const lens = container.querySelector('.zoom-lens');
-
-    if (mediaURL.endsWith(".mp4")) {
-      mainContainer.querySelector('.main-image')?.remove();
-      const video = document.createElement("video");
-      video.src = mediaURL;
-      video.autoplay = true;
-      video.muted = true;
-      video.loop = true;
-      video.playsInline = true;
-      video.className = "main-image";
-      mainContainer.insertBefore(video, lens);
-    } else {
-      const img = container.querySelector('.main-image');
-      if (img.tagName.toLowerCase() === "video") {
-        img.remove();
-        const newImg = document.createElement("img");
-        newImg.src = mediaURL;
-        newImg.className = "main-image";
-        mainContainer.insertBefore(newImg, lens);
-      } else {
-        img.src = mediaURL;
-      }
-      lens.style.backgroundImage = `url(${mediaURL})`;
-    }
-  }
-
-  // Optional: Zoom effect still only applies for image, not video
   document.querySelectorAll('.image-container').forEach(container => {
+    const img = container.querySelector('.main-image');
     const zoomLens = container.querySelector('.zoom-lens');
 
     container.addEventListener('mouseenter', () => {
-      const img = container.querySelector('img.main-image');
-      if (!img) return;
       zoomLens.style.display = 'block';
       zoomLens.style.backgroundImage = `url(${img.src})`;
     });
 
     container.addEventListener('mousemove', e => {
-      const img = container.querySelector('img.main-image');
-      if (!img) return;
       const rect = container.getBoundingClientRect();
       const x = e.clientX - rect.left;
       const y = e.clientY - rect.top;
@@ -380,7 +337,7 @@
     });
   });
 </script>
-// --------------------
+	
  <!-- Home Button -->
   <button id="homeBtn" class="scroll-btn hide-btn">
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
