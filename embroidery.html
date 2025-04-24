@@ -217,6 +217,115 @@
         padding: 10px 0px;
       }
     }
+	  /* নতুন কোড */
+	  <style>
+  .premium-tag {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    background: linear-gradient(135deg, #ff9a9e 0%, #fad0c4 100%);
+    color: white;
+    padding: 4px 10px;
+    border-radius: 3px;
+    font-size: 12px;
+    font-weight: bold;
+    text-transform: uppercase;
+    z-index: 2;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+  }
+  
+  .product-description {
+    padding: 8px 12px;
+    font-size: 14px;
+    color: #555;
+    line-height: 1.4;
+    margin-bottom: 10px;
+  }
+  
+  .product-footer {
+    overflow: hidden;
+    padding: 8px 12px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: #f9f9f9;
+    border-radius: 0 0 8px 8px;
+  }
+  
+  .price-container {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  
+  .original-price {
+    color: #999;
+    text-decoration: line-through;
+    font-size: 14px;
+  }
+  
+  .offer-price {
+    color: #e53935;
+    font-weight: bold;
+    font-size: 18px;
+  }
+  
+  .normal-price {
+    color: #333;
+    font-weight: bold;
+    font-size: 18px;
+  }
+  
+  .buy-now {
+    background: #FF5722;
+    color: white;
+    padding: 8px 16px;
+    border-radius: 4px;
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: bold;
+    transition: all 0.3s;
+    box-shadow: 0 2px 5px rgba(255,87,34,0.3);
+  }
+  
+  .buy-now:hover {
+    background: #E64A19;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(255,87,34,0.3);
+  }
+  
+  .video-thumb-container {
+    position: relative;
+    display: inline-block;
+    cursor: pointer;
+  }
+  
+  .video-icon {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: rgba(0,0,0,0.7);
+    color: white;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 12px;
+  }
+  
+  .thumbnails img, .video-thumb-container img {
+    width: 50px;
+    height: 50px;
+    object-fit: cover;
+    margin-right: 5px;
+    margin-bottom: 5px;
+    cursor: pointer;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+  }
   </style>
 </head>
 <body>
@@ -242,28 +351,33 @@
       "price": 450,
       "description": "This stylish cap shows your support for Palestine with elegant embroidery. Made from premium quality materials for comfort and durability.",
       "images": [
-        "https://i.postimg.cc/MT6qNNQH/Free-Palastine-Cap-Em-1.png",
-        "https://i.postimg.cc/pTsRHCfZ/Free-Palastine-Cap-Em-2.jpg",
-        "https://i.postimg.cc/D0mFyG5K/Free-Palastine-Cap-Em-3.jpg",
-        "https://i.postimg.cc/Y0V74SyL/Free-Palastine-Cap-Em-4.jpg",
-        "https://i.postimg.cc/RCb4pPVC/Free-Palastine-Cap-Em-5.jpg",
-        "VIDEO_LINK_HERE" // Replace with your actual video link
+        {
+          "url": "https://i.postimg.cc/MT6qNNQH/Free-Palastine-Cap-Em-1.png",
+          "offerPrice": 399 // প্রথম ইমেজের জন্য অফার প্রাইজ
+        },
+        {
+          "url": "https://i.postimg.cc/pTsRHCfZ/Free-Palastine-Cap-Em-2.jpg",
+          "offerPrice": null // দ্বিতীয় ইমেজের জন্য কোনো অফার নেই
+        },
+        {
+          "url": "https://i.postimg.cc/D0mFyG5K/Free-Palastine-Cap-Em-3.jpg",
+          "offerPrice": 350 // তৃতীয় ইমেজের জন্য অফার প্রাইজ
+        },
+        {
+          "url": "https://i.postimg.cc/Y0V74SyL/Free-Palastine-Cap-Em-4.jpg",
+          "offerPrice": null
+        },
+        {
+          "url": "https://i.postimg.cc/RCb4pPVC/Free-Palastine-Cap-Em-5.jpg",
+          "offerPrice": 375
+        },
+        {
+          "url": "VIDEO_LINK_HERE",
+          "offerPrice": null // ভিডিওর জন্য কোনো অফার প্রাইজ নেই
+        }
       ]
     },
-    {
-      "name": "Sporty NY Premium Cap-Em",
-      "price": 550,
-      "description": "Premium quality NY cap with sporty design. Perfect for casual outings with its comfortable fit and stylish look.",
-      "images": [
-        "https://i.postimg.cc/VsjfFZ34/Sporty-Cap-NY-Em-Black-1.jpg",
-        "https://i.postimg.cc/VLgzxrsC/Sporty-Cap-NY-Em-Black-2.jpg",
-        "https://i.postimg.cc/wjB9gq3b/Sporty-Cap-NY-Em-Black-3.jpg",
-        "https://i.postimg.cc/HkPdLqyW/Sporty-Cap-NY-Em-Black-4.jpg",
-        "https://i.postimg.cc/fTDwqjss/Sporty-Cap-NY-Em-Black-5.jpg",
-        "VIDEO_LINK_HERE" // Replace with your actual video link
-      ]
-    },
-    // ... other products with descriptions ...
+    // ... অন্যান্য প্রোডাক্টস একই ফরম্যাটে ...
   ];
 
   //----------------shuffle-------------------------
@@ -282,9 +396,13 @@
     const card = document.createElement("div");
     card.className = "image-card";
     
+    // প্রথম ইমেজের ডেটা
+    const firstImage = product.images[0];
+    
     card.innerHTML = `
       <div class="image-container">
-        <img class="main-image" src="${product.images[0]}" alt="${product.name}" />
+        <div class="premium-tag">Premium Quality</div>
+        <img class="main-image" src="${firstImage.url}" alt="${product.name}" />
         <div class="heading">${product.name}</div>
         <div class="zoom-lens"></div>
       </div>
@@ -292,23 +410,43 @@
       <div class="product-description">${product.description}</div>
       
       <div class="thumbnails">
-        ${product.images.map((thumb, idx) => {
-          if (thumb.startsWith('http') && !thumb.match(/\.(mp4|webm|ogg)$/i)) {
-            return `<img src="${thumb}" onclick="
+        ${product.images.map((image, idx) => {
+          if (image.url.startsWith('http') && !image.url.match(/\.(mp4|webm|ogg)$/i)) {
+            return `<img src="${image.url}" data-offer="${image.offerPrice || ''}" onclick="
               const card = this.closest('.image-card');
               const mainImg = card.querySelector('.main-image');
-              mainImg.src = '${thumb}';
-              card.querySelector('.zoom-lens').style.backgroundImage = 'url(${thumb})';
+              mainImg.src = '${image.url}';
+              card.querySelector('.zoom-lens').style.backgroundImage = 'url(${image.url})';
               
-              // Remove video if exists
+              // প্রাইজ আপডেট করুন
+              const priceContainer = card.querySelector('.price-container');
+              if (${image.offerPrice !== null ? true : false}) {
+                priceContainer.innerHTML = \`
+                  <span class="original-price">৳${product.price}</span>
+                  <span class="offer-price">৳${image.offerPrice}</span>
+                \`;
+              } else {
+                priceContainer.innerHTML = \`
+                  <span class="normal-price">৳${product.price}</span>
+                \`;
+              }
+              
+              // প্রিমিয়াম ট্যাগ শো/হাইড করুন
+              if (${idx} === 0) {
+                card.querySelector('.premium-tag').style.display = 'block';
+              } else {
+                card.querySelector('.premium-tag').style.display = 'none';
+              }
+              
+              // ভিডিও থাকলে রিমুভ করুন
               const video = card.querySelector('video');
               if (video) video.remove();
               mainImg.style.display = 'block';
             ">`;
-          } else if (thumb.match(/\.(mp4|webm|ogg)$/i) || thumb.startsWith('VIDEO_LINK_HERE')) {
-            const videoLink = thumb === 'VIDEO_LINK_HERE' ? 'YOUR_ACTUAL_VIDEO_LINK' : thumb;
+          } else if (image.url.match(/\.(mp4|webm|ogg)$/i) || image.url.startsWith('VIDEO_LINK_HERE')) {
+            const videoLink = image.url === 'VIDEO_LINK_HERE' ? 'YOUR_ACTUAL_VIDEO_LINK' : image.url;
             return `<div class="video-thumb-container">
-              <img src="${product.images[0]}" onclick="
+              <img src="${product.images[0].url}" data-offer="${image.offerPrice || ''}" onclick="
                 const card = this.closest('.image-card');
                 const container = card.querySelector('.image-container');
                 const mainImg = card.querySelector('.main-image');
@@ -325,6 +463,13 @@
                 mainImg.style.display = 'none';
                 container.insertBefore(video, mainImg.nextSibling);
                 card.querySelector('.zoom-lens').style.display = 'none';
+                card.querySelector('.premium-tag').style.display = 'none';
+                
+                // ভিডিওর জন্য প্রাইজ আপডেট করুন
+                const priceContainer = card.querySelector('.price-container');
+                priceContainer.innerHTML = \`
+                  <span class="normal-price">৳${product.price}</span>
+                \`;
               ">
               <div class="video-icon">▶</div>
             </div>`;
@@ -333,19 +478,26 @@
       </div>
       
       <div class="product-footer">
-        <span class="price-tag">৳${product.price}</span>
+        <div class="price-container">
+          ${firstImage.offerPrice ? `
+            <span class="original-price">৳${product.price}</span>
+            <span class="offer-price">৳${firstImage.offerPrice}</span>
+          ` : `
+            <span class="normal-price">৳${product.price}</span>
+          `}
+        </div>
         <a href="https://headlookbd.com/embroidery-product-cart" class="buy-now" onclick='localStorage.setItem("selectedProduct", \`${JSON.stringify(product)}\`)'>Buy Now</a>
       </div>
     `;
     gallery.appendChild(card);
   });
 
-  // Zoom functionality
+  // জুম ফাংশনালিটি
   document.querySelectorAll('.image-container').forEach(container => {
     const img = container.querySelector('.main-image');
     const zoomLens = container.querySelector('.zoom-lens');
     
-    // Mobile fullscreen
+    // মোবাইলে ফুলস্ক্রিন
     img.addEventListener('click', function() {
       if (window.innerWidth <= 768) {
         if (this.requestFullscreen) {
@@ -380,80 +532,7 @@
       zoomLens.style.display = 'none';
     });
   });
-</script>
-
-<style>
-  .product-description {
-    padding: 8px 12px;
-    font-size: 14px;
-    color: #555;
-    line-height: 1.4;
-    margin-bottom: 10px;
-  }
-  
-  .product-footer {
-    overflow: hidden;
-    padding: 8px 12px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-  }
-  
-  .price-tag {
-    background: #f5f5f5;
-    padding: 6px 12px;
-    border-radius: 4px;
-    font-weight: bold;
-    color: #333;
-    font-size: 14px;
-  }
-  
-  .buy-now {
-    background: #4CAF50;
-    color: white;
-    padding: 6px 12px;
-    border-radius: 4px;
-    text-decoration: none;
-    font-size: 14px;
-    transition: background 0.3s;
-  }
-  
-  .buy-now:hover {
-    background: #45a049;
-  }
-  
-  .video-thumb-container {
-    position: relative;
-    display: inline-block;
-    cursor: pointer;
-  }
-  
-  .video-icon {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    background: rgba(0,0,0,0.7);
-    color: white;
-    width: 30px;
-    height: 30px;
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 12px;
-  }
-  
-  .thumbnails img, .video-thumb-container img {
-    width: 50px;
-    height: 50px;
-    object-fit: cover;
-    margin-right: 5px;
-    margin-bottom: 5px;
-    cursor: pointer;
-    border: 1px solid #ddd;
-  }
-</style>
+</script
  <!-- প্রডাক্ট গ্যালারি শেষ -->
 	
  <!-- Home Button -->
