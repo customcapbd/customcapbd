@@ -248,41 +248,7 @@
         "VIDEO_LINK_HERE" // Replace with your actual video link
       ]
     },
-    {
-      "name": "Sporty NY Premium Cap-Em",
-      "price": 550,
-      "images": [
-        "https://i.postimg.cc/VsjfFZ34/Sporty-Cap-NY-Em-Black-1.jpg",
-        "https://i.postimg.cc/VLgzxrsC/Sporty-Cap-NY-Em-Black-2.jpg",
-        "https://i.postimg.cc/wjB9gq3b/Sporty-Cap-NY-Em-Black-3.jpg",
-        "https://i.postimg.cc/HkPdLqyW/Sporty-Cap-NY-Em-Black-4.jpg",
-        "https://i.postimg.cc/fTDwqjss/Sporty-Cap-NY-Em-Black-5.jpg",
-        "VIDEO_LINK_HERE" // Replace with your actual video link
-      ]
-    },
-    {
-      "name": "Customized Cap Own Logo-Em",
-      "price": 350,
-      "images": [
-        "https://i.postimg.cc/vH0Cb5J5/Customized-Cap-Own-Logo-Em-1.jpg",
-        "https://i.postimg.cc/x177bnTC/Customized-Cap-Own-Logo-Em-2.jpg",
-        "https://i.postimg.cc/XYXmJpWm/Customized-Cap-Own-Logo-Em-3.jpg",
-        "https://i.postimg.cc/zfgQC6Vk/Customized-Cap-Own-Logo-Em-4.jpg",
-        "VIDEO_LINK_HERE" // Replace with your actual video link
-      ]
-    },
-    {
-      "name": "Sporty LA Premium Cap-Em",
-      "price": 550,
-      "images": [
-        "https://i.postimg.cc/MH7mVYkR/Sporty-Cap-LA-Design-Black-Em-1.jpg",
-        "https://i.postimg.cc/MKYYGtmJ/Sporty-Cap-LA-Design-Black-Em-2.png",
-        "https://i.postimg.cc/CMkN3wZ1/Sporty-Cap-LA-Design-Black-Em-3.png",
-        "https://i.postimg.cc/SN4rqH8G/Sporty-Cap-LA-Design-Black-Em-4.png",
-        "https://i.postimg.cc/XYHcfJP2/Sporty-Cap-LA-Design-Black-Em-5.png",
-        "VIDEO_LINK_HERE" // Replace with your actual video link
-      ]
-    },
+    // ... other products ...
   ];
 
   //----------------shuffle-------------------------
@@ -300,9 +266,16 @@
   products.forEach(product => {
     const card = document.createElement("div");
     card.className = "image-card";
+    
+    // Store original image element for later use
+    const originalImg = document.createElement("img");
+    originalImg.className = "main-image";
+    originalImg.src = product.images[0];
+    originalImg.alt = product.name;
+    
     card.innerHTML = `
       <div class="image-container">
-        <img class="main-image" src="${product.images[0]}" alt="${product.name}" />
+        ${originalImg.outerHTML}
         <div class="heading">${product.name}</div>
         <div class="zoom-lens"></div>
       </div>
@@ -310,20 +283,51 @@
         ${product.images.map((thumb, idx) => {
           if (thumb.startsWith('http') && !thumb.match(/\.(mp4|webm|ogg)$/i)) {
             // Regular image thumbnail
-            return `<img src="${thumb}" onclick="this.closest('.image-card').querySelector('.main-image').src='${thumb}'; this.closest('.image-card').querySelector('.zoom-lens').style.backgroundImage='url(${thumb})'">`;
+            return `<img src="${thumb}" onclick="
+              const card = this.closest('.image-card');
+              const container = card.querySelector('.image-container');
+              const mainImg = container.querySelector('.main-image') || container.querySelector('video');
+              
+              if (mainImg.tagName === 'VIDEO') {
+                mainImg.remove();
+                container.insertBefore(card.querySelector('.original-img').cloneNode(true), container.firstChild);
+              }
+              container.querySelector('.main-image').src = '${thumb}';
+              container.querySelector('.zoom-lens').style.backgroundImage = 'url(${thumb})';
+              container.querySelector('.zoom-lens').style.display = 'block';
+            ">`;
           } else if (thumb.match(/\.(mp4|webm|ogg)$/i) || thumb.startsWith('VIDEO_LINK_HERE')) {
-            // Video thumbnail (replace VIDEO_LINK_HERE with actual video link)
+            // Video thumbnail
             const videoLink = thumb === 'VIDEO_LINK_HERE' ? 'YOUR_ACTUAL_VIDEO_LINK' : thumb;
             return `<img src="https://i.postimg.cc/9FqXQz8J/video-thumbnail-icon.png" style="position:relative" onclick="
               const card = this.closest('.image-card');
-              const mainImg = card.querySelector('.main-image');
-              mainImg.replaceWith(Object.assign(document.createElement('video'), {
-                src: '${videoLink}',
-                autoplay: true,
-                controls: true,
-                style: 'width:100%; height:auto; max-height:400px; object-fit:contain;'
-              }));
-              card.querySelector('.zoom-lens').style.display = 'none';
+              const container = card.querySelector('.image-container');
+              const mainImg = container.querySelector('.main-image') || container.querySelector('video');
+              
+              // Store original image if not already stored
+              if (!card.querySelector('.original-img') && mainImg.tagName === 'IMG') {
+                const original = mainImg.cloneNode(true);
+                original.classList.add('original-img');
+                original.style.display = 'none';
+                card.appendChild(original);
+              }
+              
+              if (mainImg.tagName === 'IMG') {
+                mainImg.style.display = 'none';
+              } else if (mainImg.tagName === 'VIDEO') {
+                mainImg.remove();
+              }
+              
+              const video = document.createElement('video');
+              video.src = '${videoLink}';
+              video.autoplay = true;
+              video.controls = true;
+              video.style.width = '100%';
+              video.style.height = 'auto';
+              video.style.maxHeight = '400px';
+              video.style.objectFit = 'contain';
+              container.insertBefore(video, container.firstChild);
+              container.querySelector('.zoom-lens').style.display = 'none';
             "><span style="position:absolute; bottom:5px; right:5px; background:rgba(0,0,0,0.7); color:white; padding:2px 5px; border-radius:3px; font-size:10px;">VIDEO</span>`;
           }
         }).join('')}
@@ -337,18 +341,19 @@
   });
 
   document.querySelectorAll('.image-container').forEach(container => {
-    const img = container.querySelector('.main-image');
     const zoomLens = container.querySelector('.zoom-lens');
 
     container.addEventListener('mouseenter', () => {
-      if (img.tagName === 'IMG') { // Only show zoom lens for images, not videos
+      const img = container.querySelector('.main-image');
+      if (img && img.tagName === 'IMG') {
         zoomLens.style.display = 'block';
         zoomLens.style.backgroundImage = `url(${img.src})`;
       }
     });
 
     container.addEventListener('mousemove', e => {
-      if (img.tagName === 'IMG') { // Only zoom for images, not videos
+      const img = container.querySelector('.main-image');
+      if (img && img.tagName === 'IMG') {
         const rect = container.getBoundingClientRect();
         const x = e.clientX - rect.left;
         const y = e.clientY - rect.top;
