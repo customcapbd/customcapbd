@@ -233,64 +233,67 @@
 </section>
 
 <div class="gallery-container" id="gallery"></div>
-	
+	//
 <script>
   const products = [
-	  // এর নিচে প্রডাক্ট এর কোড ও ইমেজ লিঙ্ক পেস্ট করতে হবে।
-	  {
-  "name": "Support For Palestine Cap-Em",
-  "price": 450,
-  "images": [
-    "https://i.postimg.cc/MT6qNNQH/Free-Palastine-Cap-Em-1.png",
-    "https://i.postimg.cc/pTsRHCfZ/Free-Palastine-Cap-Em-2.jpg",
-    "https://i.postimg.cc/D0mFyG5K/Free-Palastine-Cap-Em-3.jpg",
-    "https://i.postimg.cc/Y0V74SyL/Free-Palastine-Cap-Em-4.jpg",
-    "https://i.postimg.cc/RCb4pPVC/Free-Palastine-Cap-Em-5.jpg"
-  ]
-},
-	  {
-  "name": "Sporty NY Premium Cap-Em",
-  "price": 550,
-  "images": [
-    "https://i.postimg.cc/VsjfFZ34/Sporty-Cap-NY-Em-Black-1.jpg",
-    "https://i.postimg.cc/VLgzxrsC/Sporty-Cap-NY-Em-Black-2.jpg",
-    "https://i.postimg.cc/wjB9gq3b/Sporty-Cap-NY-Em-Black-3.jpg",
-    "https://i.postimg.cc/HkPdLqyW/Sporty-Cap-NY-Em-Black-4.jpg",
-    "https://i.postimg.cc/fTDwqjss/Sporty-Cap-NY-Em-Black-5.jpg"
-  ]
-},
-	  {
-  "name": "Customized Cap Own Logo-Em",
-  "price": 350,
-  "images": [
-    "https://i.postimg.cc/vH0Cb5J5/Customized-Cap-Own-Logo-Em-1.jpg",
-    "https://i.postimg.cc/x177bnTC/Customized-Cap-Own-Logo-Em-2.jpg",
-    "https://i.postimg.cc/XYXmJpWm/Customized-Cap-Own-Logo-Em-3.jpg",
-    "https://i.postimg.cc/zfgQC6Vk/Customized-Cap-Own-Logo-Em-4.jpg"
-  ]
-},
-	  {
-  "name": "Sporty LA Premium Cap-Em",
-  "price": 550,
-  "images": [
-    "https://i.postimg.cc/MH7mVYkR/Sporty-Cap-LA-Design-Black-Em-1.jpg",
-    "https://i.postimg.cc/MKYYGtmJ/Sporty-Cap-LA-Design-Black-Em-2.png",
-    "https://i.postimg.cc/CMkN3wZ1/Sporty-Cap-LA-Design-Black-Em-3.png",
-    "https://i.postimg.cc/SN4rqH8G/Sporty-Cap-LA-Design-Black-Em-4.png",
-    "https://i.postimg.cc/XYHcfJP2/Sporty-Cap-LA-Design-Black-Em-5.png",
-  ]
-},
+    {
+      "name": "Support For Palestine Cap-Em",
+      "price": 450,
+      "images": [
+        "https://i.postimg.cc/MT6qNNQH/Free-Palastine-Cap-Em-1.png",
+        "https://i.postimg.cc/pTsRHCfZ/Free-Palastine-Cap-Em-2.jpg",
+        "https://i.postimg.cc/D0mFyG5K/Free-Palastine-Cap-Em-3.jpg",
+        "https://i.postimg.cc/Y0V74SyL/Free-Palastine-Cap-Em-4.jpg",
+        "https://i.postimg.cc/RCb4pPVC/Free-Palastine-Cap-Em-5.jpg",
+        "VIDEO_LINK_HERE" // Replace with your actual video link
+      ]
+    },
+    {
+      "name": "Sporty NY Premium Cap-Em",
+      "price": 550,
+      "images": [
+        "https://i.postimg.cc/VsjfFZ34/Sporty-Cap-NY-Em-Black-1.jpg",
+        "https://i.postimg.cc/VLgzxrsC/Sporty-Cap-NY-Em-Black-2.jpg",
+        "https://i.postimg.cc/wjB9gq3b/Sporty-Cap-NY-Em-Black-3.jpg",
+        "https://i.postimg.cc/HkPdLqyW/Sporty-Cap-NY-Em-Black-4.jpg",
+        "https://i.postimg.cc/fTDwqjss/Sporty-Cap-NY-Em-Black-5.jpg",
+        "VIDEO_LINK_HERE" // Replace with your actual video link
+      ]
+    },
+    {
+      "name": "Customized Cap Own Logo-Em",
+      "price": 350,
+      "images": [
+        "https://i.postimg.cc/vH0Cb5J5/Customized-Cap-Own-Logo-Em-1.jpg",
+        "https://i.postimg.cc/x177bnTC/Customized-Cap-Own-Logo-Em-2.jpg",
+        "https://i.postimg.cc/XYXmJpWm/Customized-Cap-Own-Logo-Em-3.jpg",
+        "https://i.postimg.cc/zfgQC6Vk/Customized-Cap-Own-Logo-Em-4.jpg",
+        "VIDEO_LINK_HERE" // Replace with your actual video link
+      ]
+    },
+    {
+      "name": "Sporty LA Premium Cap-Em",
+      "price": 550,
+      "images": [
+        "https://i.postimg.cc/MH7mVYkR/Sporty-Cap-LA-Design-Black-Em-1.jpg",
+        "https://i.postimg.cc/MKYYGtmJ/Sporty-Cap-LA-Design-Black-Em-2.png",
+        "https://i.postimg.cc/CMkN3wZ1/Sporty-Cap-LA-Design-Black-Em-3.png",
+        "https://i.postimg.cc/SN4rqH8G/Sporty-Cap-LA-Design-Black-Em-4.png",
+        "https://i.postimg.cc/XYHcfJP2/Sporty-Cap-LA-Design-Black-Em-5.png",
+        "VIDEO_LINK_HERE" // Replace with your actual video link
+      ]
+    },
   ];
 
-//----------------shuffle-------------------------
-	  function shuffle(array) {
+  //----------------shuffle-------------------------
+  function shuffle(array) {
     for (let i = array.length - 1; i > 0; i--) {
       const j = Math.floor(Math.random() * (i + 1));
       [array[i], array[j]] = [array[j], array[i]];
     }
   }
   shuffle(products);
-//-----------------------------------------
+  //-----------------------------------------
 
   const gallery = document.getElementById("gallery");
 
@@ -304,7 +307,26 @@
         <div class="zoom-lens"></div>
       </div>
       <div class="thumbnails">
-        ${product.images.map((thumb, idx) => `<img src="${thumb}" onclick="this.closest('.image-card').querySelector('.main-image').src='${thumb}'; this.closest('.image-card').querySelector('.zoom-lens').style.backgroundImage='url(${thumb})'">`).join('')}
+        ${product.images.map((thumb, idx) => {
+          if (thumb.startsWith('http') && !thumb.match(/\.(mp4|webm|ogg)$/i)) {
+            // Regular image thumbnail
+            return `<img src="${thumb}" onclick="this.closest('.image-card').querySelector('.main-image').src='${thumb}'; this.closest('.image-card').querySelector('.zoom-lens').style.backgroundImage='url(${thumb})'">`;
+          } else if (thumb.match(/\.(mp4|webm|ogg)$/i) || thumb.startsWith('VIDEO_LINK_HERE')) {
+            // Video thumbnail (replace VIDEO_LINK_HERE with actual video link)
+            const videoLink = thumb === 'VIDEO_LINK_HERE' ? 'YOUR_ACTUAL_VIDEO_LINK' : thumb;
+            return `<img src="https://i.postimg.cc/9FqXQz8J/video-thumbnail-icon.png" style="position:relative" onclick="
+              const card = this.closest('.image-card');
+              const mainImg = card.querySelector('.main-image');
+              mainImg.replaceWith(Object.assign(document.createElement('video'), {
+                src: '${videoLink}',
+                autoplay: true,
+                controls: true,
+                style: 'width:100%; height:auto; max-height:400px; object-fit:contain;'
+              }));
+              card.querySelector('.zoom-lens').style.display = 'none';
+            "><span style="position:absolute; bottom:5px; right:5px; background:rgba(0,0,0,0.7); color:white; padding:2px 5px; border-radius:3px; font-size:10px;">VIDEO</span>`;
+          }
+        }).join('')}
       </div>
       <div style="overflow: hidden; padding: 10px;">
         <span class="price-tag">Price: ${product.price}/-Tk</span>
@@ -319,17 +341,21 @@
     const zoomLens = container.querySelector('.zoom-lens');
 
     container.addEventListener('mouseenter', () => {
-      zoomLens.style.display = 'block';
-      zoomLens.style.backgroundImage = `url(${img.src})`;
+      if (img.tagName === 'IMG') { // Only show zoom lens for images, not videos
+        zoomLens.style.display = 'block';
+        zoomLens.style.backgroundImage = `url(${img.src})`;
+      }
     });
 
     container.addEventListener('mousemove', e => {
-      const rect = container.getBoundingClientRect();
-      const x = e.clientX - rect.left;
-      const y = e.clientY - rect.top;
-      const percentX = x / rect.width * 100;
-      const percentY = y / rect.height * 100;
-      zoomLens.style.backgroundPosition = `${percentX}% ${percentY}%`;
+      if (img.tagName === 'IMG') { // Only zoom for images, not videos
+        const rect = container.getBoundingClientRect();
+        const x = e.clientX - rect.left;
+        const y = e.clientY - rect.top;
+        const percentX = x / rect.width * 100;
+        const percentY = y / rect.height * 100;
+        zoomLens.style.backgroundPosition = `${percentX}% ${percentY}%`;
+      }
     });
 
     container.addEventListener('mouseleave', () => {
