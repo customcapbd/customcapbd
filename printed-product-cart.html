@@ -353,10 +353,12 @@
         <div><strong>Total:</strong> <span id="summaryTotal"></span></div>
       </div>
 
-      <input type="hidden" name="productName" id="hiddenProductName">
-      <input type="hidden" name="productPrice" id="hiddenProductPrice">
-      <input type="hidden" name="productImage" id="hiddenProductImage">
-      <input type="hidden" name="totalPrice" id="hiddenTotalPrice">
+<input type="hidden" name="productName" id="hiddenProductName">
+<input type="hidden" name="productPrice" id="hiddenProductPrice">
+<input type="hidden" name="productImage" id="hiddenProductImage">
+<input type="hidden" name="ImageURL" id="hiddenImageURL">
+<input type="hidden" name="totalPrice" id="hiddenTotalPrice">
+
 
       <button type="submit">Submit Order</button>
     </form>
@@ -383,11 +385,11 @@ if (product) {
       <a href="https://wa.me/+8801723419695?text=Hi%2C%20I%20want%20to%20order%20${encodeURIComponent(product.name)}%20for%20${product.price}Tk" target="_blank" class="btn">📱 WhatsApp Order</a>
     </div>
   `;
-  document.getElementById('summaryProductName').innerText = product.name;
-  document.getElementById('summaryProductPrice').innerText = product.price + ' Tk';
-  document.getElementById('hiddenProductName').value = product.name;
-  document.getElementById('hiddenProductPrice').value = product.price;
-  document.getElementById('hiddenProductImage').value = product.images[0];
+document.getElementById('hiddenProductName').value = product.name;
+document.getElementById('hiddenProductPrice').value = product.price;
+document.getElementById('hiddenProductImage').value = product.images[0];
+document.getElementById('hiddenImageURL').value = product.images[0];
+
 }
 
 function updateTotalPrice() {
@@ -583,7 +585,7 @@ function downloadInvoice() {
 // ✅ এখানে বসাও timestamp যুক্ত করার লাইন
   const now = new Date();
   formData.append('timestamp', now.toLocaleString('en-BD', { timeZone: 'Asia/Dhaka' }));
-  fetch('https://script.google.com/macros/s/AKfycbyhXY7N6BLJcmc2JJybKkIZitxSHbXZ3dGsYaubmrUauScKJoj74ICGmDYc8uLpi09D/exec', {
+  fetch('https://script.google.com/macros/s/AKfycbzFdTAN2mIjnMCN3SmhPH2R4p_3vBzsOkl_IOPFc4eplEPiS3bNH1buW4SgjI4tIy4i1Q/exec', {
     method: 'POST',
     body: new URLSearchParams(formData)
   })
