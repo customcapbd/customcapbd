@@ -253,6 +253,7 @@
 }
     #confirmation h2 { color: lightgreen; }
     #confirmation p { color: #ccc; }
+
        /* Visible by default */
     .scroll-btn {
       position: fixed;
@@ -306,6 +307,7 @@
     }
   </style>
 </head>
+<body>
 
 <section style="padding: 20px;" class="header">
   <div style="display: flex; flex-direction: column; align-items: center; text-align: center;">
@@ -317,9 +319,8 @@
       Premium Quality Stylish Caps for You!
     </h2>
   </div>
-</section
+</section>
  
-<body>
   <div class="product-container" id="productCard"></div>
 
   <div class="order-form">
@@ -352,10 +353,12 @@
         <div><strong>Total:</strong> <span id="summaryTotal"></span></div>
       </div>
 
-      <input type="hidden" name="productName" id="hiddenProductName">
-      <input type="hidden" name="productPrice" id="hiddenProductPrice">
-      <input type="hidden" name="productImage" id="hiddenProductImage">
-      <input type="hidden" name="totalPrice" id="hiddenTotalPrice">
+<input type="hidden" name="productName" id="hiddenProductName">
+<input type="hidden" name="productPrice" id="hiddenProductPrice">
+<input type="hidden" name="productImage" id="hiddenProductImage">
+<input type="hidden" name="ImageURL" id="hiddenImageURL">
+<input type="hidden" name="totalPrice" id="hiddenTotalPrice">
+
 
       <button type="submit">Submit Order</button>
     </form>
@@ -382,11 +385,11 @@ if (product) {
       <a href="https://wa.me/+8801723419695?text=Hi%2C%20I%20want%20to%20order%20${encodeURIComponent(product.name)}%20for%20${product.price}Tk" target="_blank" class="btn">📱 WhatsApp Order</a>
     </div>
   `;
-  document.getElementById('summaryProductName').innerText = product.name;
-  document.getElementById('summaryProductPrice').innerText = product.price + ' Tk';
-  document.getElementById('hiddenProductName').value = product.name;
-  document.getElementById('hiddenProductPrice').value = product.price;
-  document.getElementById('hiddenProductImage').value = product.images[0];
+document.getElementById('hiddenProductName').value = product.name;
+document.getElementById('hiddenProductPrice').value = product.price;
+document.getElementById('hiddenProductImage').value = product.images[0];
+document.getElementById('hiddenImageURL').value = product.images[0];
+
 }
 
 function updateTotalPrice() {
@@ -411,7 +414,6 @@ function submitOrder(event) {
     method: 'POST',
     body: new URLSearchParams(formData)
   })
-   
   .then(res => res.json())
   .then(data => {
     if (data.result === 'success') {
@@ -437,7 +439,7 @@ function downloadInvoice() {
   const image = product.images[0];
 
   const win = window.open('', '_blank');
-win.document.write(
+  win.document.write(
   `<html>
     <head>
       <title>Invoice</title>
@@ -516,13 +518,11 @@ win.document.write(
     </body>
   </html>`
 );
-
-
   win.document.close();
   win.print();
 }
 </script>
-   <!-- Home Button -->
+ <!-- Home Button -->
   <button id="homeBtn" class="scroll-btn hide-btn">
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
       <path d="M12 3L2 12h3v7h6v-5h6v5h6v-7h3L12 3z"/>
@@ -570,11 +570,8 @@ win.document.write(
       playClickSound();
       window.scrollTo({ top: 0, behavior: 'smooth' });
     });
-
   </script>
-
-
-  <!-- তোমার অন্যান্য কনটেন্ট -->
+ <!-- তোমার অন্যান্য কনটেন্ট -->
 
   <!-- অডিও ফাইল (display: none থাকে নিজে থেকেই) -->
   <audio id="confirmationSound" src="order.mp3" preload="auto"></audio>
@@ -588,7 +585,7 @@ win.document.write(
 // ✅ এখানে বসাও timestamp যুক্ত করার লাইন
   const now = new Date();
   formData.append('timestamp', now.toLocaleString('en-BD', { timeZone: 'Asia/Dhaka' }));
-  fetch('https://script.google.com/macros/s/AKfycbyhXY7N6BLJcmc2JJybKkIZitxSHbXZ3dGsYaubmrUauScKJoj74ICGmDYc8uLpi09D/exec', {
+  fetch('https://script.google.com/macros/s/AKfycbzFdTAN2mIjnMCN3SmhPH2R4p_3vBzsOkl_IOPFc4eplEPiS3bNH1buW4SgjI4tIy4i1Q/exec', {
     method: 'POST',
     body: new URLSearchParams(formData)
   })
@@ -609,9 +606,5 @@ win.document.write(
 }
 
   </script>
- <!-- html2canvas লাইব্রেরি -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
-
-
 </body>
 </html>
