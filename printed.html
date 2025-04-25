@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Individual Product Gallery</title>
+  <title>Gaming E-Commerce - Custom Cap BD</title>
   <style>
     * { margin: 0; padding: 0; box-sizing: border-box; }
     body {
@@ -16,7 +16,7 @@
       flex-wrap: wrap;
       justify-content: center;
       gap: 30px;
-      padding: 40px;
+      padding: 20px;
     }
     .image-card {
       width: 400px;
@@ -46,20 +46,45 @@
       top: 0;
       left: 0;
       background-repeat: no-repeat;
-      background-size: 400% 400%;
+      background-size: 300% 300%;
       display: none;
       cursor: zoom-in;
     }
     .heading {
+	  position: absolute;
+	  bottom: 0px;
+	  left: 0;
+	  width: 100%;
+	  padding: 10px;
+	  background: rgba(1, 1, 2, 0.7);
+	  color: white;
+	  font-weight: bold;
+	  text-align: center;
+	  font-size: 15px;
+	  text-transform: uppercase;
+	  letter-spacing: 1px;
+    }
+    
+    .premium-badge {
       position: absolute;
-      bottom: 50px;
-      left: 0;
-      width: 100%;
-      padding: 10px;
-      background: rgba(0, 0, 0, 0.5);
+      top: 10px;
+      left: 10px;
+      background: linear-gradient(45deg, #ff0000, #ff7300, #fffb00, #48ff00, #00ffd5, #002bff, #7a00ff, #ff00c8, #ff0000);
+      background-size: 400% 400%;
       color: white;
+      padding: 8px 15px;
+      border-radius: 5px;
       font-weight: bold;
-      text-align: center;
+      font-size: 16px;
+      animation: gradientBG 3s ease infinite;
+      z-index: 2;
+      box-shadow: 0 0 10px rgba(255,255,255,0.5);
+    }
+    
+    @keyframes gradientBG {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
     }
 
     @keyframes blink-bg {
@@ -67,50 +92,58 @@
       50% { background-color: #ff5555; }
     }
 
-    .price-tag {
-      float: left;
-      font-family: 'Impact', 'Arial Black', sans-serif;
-      font-size: 1.5rem;
-      color: white;
-      border: 2px solid yellow;
-      padding: 5px 10px;
-      border-radius: 5px;
-      animation: blink-bg 2s infinite;
-      box-shadow: 0 0 10px yellow;
-      text-shadow: 1px 1px 2px black;
-    }
-
     .buy-now {
       display: inline-block;
-      padding: 10px;
+      padding: 12px 25px;
       font-weight: bold;
-      font-size: 20px;
-      color: Black;
+      font-size: 18px;
+      color: white;
       text-decoration: none;
-      background: #111;
-      animation: rainbowBorder 4s infinite linear;
-      transition: background 0.3s, transform 0.3s;
-      text-shadow: 0 0 5px cyan, 0 0 10px magenta;
+      background: linear-gradient(45deg, #00ff00, #00ff88);
+      transition: all 0.3s;
+      text-shadow: 0 0 5px rgba(0,0,0,0.5);
       font-family: 'Orbitron', monospace;
       margin: 0px;
-      border-radius: 10px;
+      border-radius: 8px;
       float: right;
-      animation: blink-bg 1s infinite;
+      border: none;
+      box-shadow: 0 0 20px rgba(0, 255, 136, 0.7);
+      letter-spacing: 1px;
     }
-    .buy-now:hover { background: #222; transform: scale(1.05); }
+    .buy-now:hover { 
+      background: linear-gradient(45deg, #00ff88, #00ff00);
+      transform: scale(1.05); 
+      box-shadow: 0 0 25px rgba(0, 255, 136, 0.9);
+    }
     .thumbnails {
       display: flex;
       justify-content: center;
       gap: 5px;
       padding: 10px;
+      background: rgba(0,0,0,0.7);
     }
-    .thumbnails img {
-      width: 60px;
-      height: 60px;
-      object-fit: cover;
-      cursor: pointer;
-      border: 2px solid #fff;
-      border-radius: 5px;
+	
+.thumbnails img {
+  width: 70px;
+  height: 65px;
+  object-fit: cover;
+  cursor: pointer;
+  border: 2px solid #fff;
+  border-radius: 5px;
+  transition: transform 0.3s;
+}
+
+/* মোবাইল রেসপনসিভ */
+@media (max-width: 600px) {
+  .thumbnails img {
+    width: 50px;
+    height: 45px;
+    border-radius: 4px;
+  }
+}
+	
+    .thumbnails img:hover {
+      transform: scale(1.1);
     }
 
     @keyframes rainbowBorder {
@@ -123,14 +156,14 @@
       100% { border-color: violet; }
     }
 	
-    /* Visible by default */
+    /* Scroll buttons */
     .scroll-btn {
       position: fixed;
       bottom: 20px;
       background-color: #007bff;
       border: none;
       border-radius: 50%;
-      padding: 10px;
+      padding: 12px;
       cursor: pointer;
       transition: background-color 0.3s ease, opacity 0.5s ease, visibility 0.5s ease;
       opacity: 1;
@@ -139,6 +172,7 @@
       display: flex;
       align-items: center;
       justify-content: center;
+      box-shadow: 0 0 15px rgba(0,123,255,0.7);
     }
 
     /* Initially hidden */
@@ -149,7 +183,31 @@
 
     /* Positions */
     #homeBtn { left: 20px; }
-    #topBtn  { right: 20px; }
+	
+	
+	#homeBtn {
+  left: 60px;
+}
+
+/* মোবাইল রেসপনসিভ */
+@media (max-width: 600px) {
+  #homeBtn {
+	left: 0;
+    margin-left: 0;
+  }
+}
+
+#topBtn {
+  right: 200px;
+}
+
+/* মোবাইল রেসপনসিভ */
+@media (max-width: 600px) {
+  #topBtn {
+    right: 0;
+    margin-left: 0;
+  }
+}
 
     /* Icon */
     .scroll-btn svg {
@@ -162,43 +220,47 @@
     /* Hover */
     .scroll-btn:hover {
       background-color: #0056b3;
+      transform: scale(1.1);
     }
 
     /* Mobile responsive */
     @media (max-width: 600px) {
       .scroll-btn {
-        padding: 8px;
+        padding: 10px;
       }
       .scroll-btn svg {
         width: 20px;
         height: 20px;
       }
     }
-.gaming-button {
-    background: rgba(255, 255, 255, 0.05);
-    color: #fff;
-    border: 2px solid #00ffc3;
-    padding: 10px 0px;
-    font-size: 16px;
-    text-transform: uppercase;
-    border-radius: 12px;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    box-shadow: 0 0 10px #00ffc3;
-    backdrop-filter: blur(8px);
-    justify-content: center;
-    margin: 0 auto;
-    margin-bottom: 20px;
+    
+    .gaming-button {
+      background: rgba(255, 255, 255, 0.05);
+      color: #fff;
+      border: 2px solid #00ffc3;
+      padding: 15px 30px;
+      font-size: 18px;
+      text-transform: uppercase;
+      border-radius: 12px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      display: flex;
+      align-items: center;
+      gap: 15px;
+      box-shadow: 0 0 15px #00ffc3;
+      backdrop-filter: blur(8px);
+      justify-content: center;
+      margin: 0 auto;
+      margin-bottom: 30px;
+      font-weight: bold;
+      letter-spacing: 1px;
     }
 
     .gaming-button:hover {
       background: #00ffc3;
       color: #000;
       transform: scale(1.05);
-      box-shadow: 0 0 20px #00ffc3, 0 0 40px #00ffc3;
+      box-shadow: 0 0 25px #00ffc3, 0 0 50px #00ffc3;
     }
 
     .gaming-button:active {
@@ -214,7 +276,7 @@
     @media (max-width: 600px) {
       .gaming-button {
         font-size: 16px;
-        padding: 10px 0px;
+        padding: 12px 25px;
       }
     }
   </style>
@@ -233,105 +295,145 @@
 </section>
 
 <div class="gallery-container" id="gallery"></div>
-
+	
 <script>
   const products = [
-    {
-      name: "Classic Cap Red",
-      price: 550,
-      images: [
-        "https://cdn.mockupnest.com/wp-content/uploads/edd/2024/10/19-Free-Baseball-Cap-Mockup.jpg",
-        "https://mockups-design.com/wp-content/uploads/2021/08/Free_Baseball_Cap_Mockup_3.jpg",
-        "https://unblast.com/wp-content/uploads/2018/09/Cap-Mockup-3.jpg",
-        "https://www.free-mockup.com/wp-content/uploads/edd/2024/12/Baseball-Cap-Free-Mockup-02.jpg",
-        "https://goodmockups.com/wp-content/uploads/2024/10/Free-Baseball-Cap-Mockup-PSD.jpg"
-      ]
-    },
-	
-    {
-      name: "Sporty Cap Blue",
-      price: 480,
-      images: [
-        "https://mockups-design.com/wp-content/uploads/2021/08/Free_Baseball_Cap_Mockup_3.jpg",
-        "https://cdn.mockupnest.com/wp-content/uploads/edd/2024/10/19-Free-Baseball-Cap-Mockup.jpg",
-        "https://unblast.com/wp-content/uploads/2018/09/Cap-Mockup-3.jpg",
-        "https://www.free-mockup.com/wp-content/uploads/edd/2024/12/Baseball-Cap-Free-Mockup-02.jpg",
-        "https://goodmockups.com/wp-content/uploads/2024/10/Free-Baseball-Cap-Mockup-PSD.jpg"
-      ]
-    },
-	
-    {
-      name: "Sporty Cap Blue",
-      price: 480,
-      images: [
-        "https://goodmockups.com/wp-content/uploads/2024/10/Free-Baseball-Cap-Mockup-PSD.jpg",
-        "https://cdn.mockupnest.com/wp-content/uploads/edd/2024/10/19-Free-Baseball-Cap-Mockup.jpg",
-        "https://unblast.com/wp-content/uploads/2018/09/Cap-Mockup-3.jpg",
-        "https://www.free-mockup.com/wp-content/uploads/edd/2024/12/Baseball-Cap-Free-Mockup-02.jpg",
-        "https://goodmockups.com/wp-content/uploads/2024/10/Free-Baseball-Cap-Mockup-PSD.jpg"
-      ]
-    },
-	
-	    {
-      name: "Sporty Cap Blue",
-      price: 480,
-      images: [
-        "https://www.free-mockup.com/wp-content/uploads/edd/2024/12/Baseball-Cap-Free-Mockup-02.jpg",
-        "https://cdn.mockupnest.com/wp-content/uploads/edd/2024/10/19-Free-Baseball-Cap-Mockup.jpg",
-        "https://unblast.com/wp-content/uploads/2018/09/Cap-Mockup-3.jpg",
-        "https://www.free-mockup.com/wp-content/uploads/edd/2024/12/Baseball-Cap-Free-Mockup-02.jpg",
-        "https://goodmockups.com/wp-content/uploads/2024/10/Free-Baseball-Cap-Mockup-PSD.jpg"
-      ]
-    }
+	  {
+	  "name": "Sporty NY Premium Cap W-Em",
+	  "price": 550,
+	  "description": "ব্র্যান্ডের সিগনেচার বক্স লোগো সহ এই ক্যাপটি পড়ে ফেলুন ক্লাসিক লুকের জন্য। নিয়মিত ব্যবহারেও এর আকৃতি ও রং অটুট থাকবে, আপনি এই ক্যাপটি প্রিন্টেড এবং এমব্রয়ডারি করা উভয় ধরণের ভেরিয়েন্টেই নিতে পারেন, অনুগ্রহ করে স্ক্রিনশট সহ আমাদের সাথে যোগাযোগ করুন।",
+	  "images": [
+	    "https://i.postimg.cc/QtWDX5MN/Premium-NY-Cap-Em-1.jpg",
+	    "https://i.postimg.cc/D0M119TP/Premium-NY-Cap-Em-5.jpg",
+	    "https://i.postimg.cc/YSKfnBmX/Premium-NY-Cap-Em-2.jpg",
+	     "https://i.postimg.cc/vHKvnV8w/Premium-NY-Cap-Em-4.jpg",
+	    "https://i.postimg.cc/sDxc1crJ/Premium-NY-Cap-Em-3.jpg"
+	  ]
+	},
   ];
 
+  //----------------shuffle-------------------------
   function shuffle(array) {
     for (let i = array.length - 1; i > 0; i--) {
       const j = Math.floor(Math.random() * (i + 1));
       [array[i], array[j]] = [array[j], array[i]];
     }
   }
-
   shuffle(products);
+  //-----------------------------------------
 
   const gallery = document.getElementById("gallery");
+  const clickSound = new Audio('Mouse-Click.mp3');
 
   products.forEach(product => {
     const card = document.createElement("div");
     card.className = "image-card";
+    
     card.innerHTML = `
       <div class="image-container">
         <img class="main-image" src="${product.images[0]}" alt="${product.name}" />
+        <div class="premium-badge">Premium Quality</div>
         <div class="heading">${product.name}</div>
         <div class="zoom-lens"></div>
       </div>
+      
+      <div class="product-description">${product.description}</div>
+      
       <div class="thumbnails">
-        ${product.images.map((thumb, idx) => `<img src="${thumb}" onclick="this.closest('.image-card').querySelector('.main-image').src='${thumb}'; this.closest('.image-card').querySelector('.zoom-lens').style.backgroundImage='url(${thumb})'">`).join('')}
+        ${product.images.map((thumb, idx) => {
+          if (thumb.startsWith('http') && !thumb.match(/\.(mp4|webm|ogg)$/i)) {
+            return `<img src="${thumb}" onclick="
+              const card = this.closest('.image-card');
+              const mainImg = card.querySelector('.main-image');
+              mainImg.src = '${thumb}';
+              card.querySelector('.zoom-lens').style.backgroundImage = 'url(${thumb})';
+              
+              // Remove video if exists
+              const video = card.querySelector('video');
+              if (video) video.remove();
+              mainImg.style.display = 'block';
+            ">`;
+          } else if (thumb.match(/\.(mp4|webm|ogg)$/i) || thumb.startsWith('VIDEO_LINK_HERE')) {
+            const videoLink = thumb === 'VIDEO_LINK_HERE' ? 'YOUR_ACTUAL_VIDEO_LINK' : thumb;
+            return `<div class="video-thumb-container">
+              <img src="${product.images[0]}" onclick="
+                const card = this.closest('.image-card');
+                const container = card.querySelector('.image-container');
+                const mainImg = card.querySelector('.main-image');
+                
+                // Remove existing video if any
+                const existingVideo = card.querySelector('video');
+                if (existingVideo) existingVideo.remove();
+                
+                const video = document.createElement('video');
+                video.src = '${videoLink}';
+                video.autoplay = true;
+                video.controls = true;
+                video.loop = true;
+                video.muted = false;
+                video.style.width = '100%';
+                video.style.height = '100%';
+                video.style.objectFit = 'cover';
+                
+                mainImg.style.display = 'none';
+                container.insertBefore(video, mainImg.nextSibling);
+                card.querySelector('.zoom-lens').style.display = 'none';
+              ">
+              <div class="video-icon">▶</div>
+            </div>`;
+          }
+        }).join('')}
       </div>
-      <div style="overflow: hidden; padding: 10px;">
-        <span class="price-tag">Price: ${product.price}/-Tk</span>
-        <a href="https://headlookbd.com/printed-product-cart" class="buy-now" onclick='localStorage.setItem("selectedProduct", \`${JSON.stringify(product)}\`)'>BUY NOW</a>
+      
+      <div class="product-footer">
+        <span class="price-tag">Price: ৳${product.price}</span>
+        <a href="https://headlookbd.com/embroidery-product-cart" class="buy-now" onclick='
+          event.preventDefault();
+          clickSound.play();
+          localStorage.setItem("selectedProduct", JSON.stringify(${JSON.stringify(product)}));
+          setTimeout(() => {
+            window.location.href = "https://headlookbd.com/embroidery-product-cart";
+          }, 200);
+        '>BUY NOW</a>
       </div>
     `;
     gallery.appendChild(card);
   });
 
+  // Zoom functionality
   document.querySelectorAll('.image-container').forEach(container => {
     const img = container.querySelector('.main-image');
     const zoomLens = container.querySelector('.zoom-lens');
+    
+    // Mobile fullscreen
+    img.addEventListener('click', function() {
+      if (window.innerWidth <= 768) {
+        if (this.requestFullscreen) {
+          this.requestFullscreen();
+        } else if (this.webkitRequestFullscreen) {
+          this.webkitRequestFullscreen();
+        } else if (this.msRequestFullscreen) {
+          this.msRequestFullscreen();
+        }
+      }
+    });
 
     container.addEventListener('mouseenter', () => {
-      zoomLens.style.display = 'block';
-      zoomLens.style.backgroundImage = `url(${img.src})`;
+      if (img.tagName === 'IMG' && img.style.display !== 'none') {
+        zoomLens.style.display = 'block';
+        zoomLens.style.backgroundImage = `url(${img.src})`;
+      }
     });
 
     container.addEventListener('mousemove', e => {
-      const rect = container.getBoundingClientRect();
-      const x = e.clientX - rect.left;
-      const y = e.clientY - rect.top;
-      const percentX = x / rect.width * 100;
-      const percentY = y / rect.height * 100;
-      zoomLens.style.backgroundPosition = `${percentX}% ${percentY}%`;
+      if (img.tagName === 'IMG' && img.style.display !== 'none') {
+        const rect = container.getBoundingClientRect();
+        const x = e.clientX - rect.left;
+        const y = e.clientY - rect.top;
+        const percentX = x / rect.width * 100;
+        const percentY = y / rect.height * 100;
+        zoomLens.style.backgroundPosition = `${percentX}% ${percentY}%`;
+      }
     });
 
     container.addEventListener('mouseleave', () => {
@@ -340,69 +442,175 @@
   });
 </script>
 
-  <!-- Home Button -->
-  <button id="homeBtn" class="scroll-btn hide-btn">
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-      <path d="M12 3L2 12h3v7h6v-5h6v5h6v-7h3L12 3z"/>
-    </svg>
-  </button>
+<style>
+  .product-description {
+	padding: 5px;
+    font-size: 14px;
+    color: white;
+    line-height: 1.3;
+    height: auto;
+    background: rgba(0, 0, 0, 0.7);
+  }
+  
+  .product-footer {
+    overflow: hidden;
+    padding: 15px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: rgba(0,0,0,0.8);
+  }
+  
+.price-tag {
+  background: linear-gradient(45deg, #1a1a1a, #2e2e2e);
+  padding: 7px;
+  border-radius: 10px;
+  font-weight: 500;
+  color: #fff;
+  font-size: 22px;
+  border: 2px solid #00ffc3;
+  box-shadow: 0 0 15px rgba(0, 255, 195, 0.5);
+  display: inline-block;
+  text-align: center;
+}
 
-  <!-- Top Button -->
-  <button id="topBtn" class="scroll-btn hide-btn">
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-      <path d="M18 15l-6-6-6 6"/>
-    </svg>
-  </button>
+/* Mobile Responsive Styles */
+@media (max-width: 600px) {
+  .price-tag {
+    font-size: 16px;
+    padding: 5px;
+    border-radius: 8px;
+  }
+}
+  
+.buy-now {
+  background: linear-gradient(45deg, #00c853, #00e676);
+  color: white;
+  padding: 12px 25px;
+  border-radius: 10px;
+  text-decoration: none;
+  font-size: 18px;
+  transition: all 0.3s;
+  font-weight: bold;
+  border: none;
+  box-shadow: 0 0 20px rgba(0, 230, 118, 0.7);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  display: inline-block;
+  text-align: center;
+}
 
-  <!-- Click Sound -->
-  <audio id="clickSound" src="Mouse-Click.mp3" preload="auto"></audio>
+/* Mobile Responsive Styles */
+@media (max-width: 600px) {
+  .buy-now {
+    font-size: 16px;
+    padding: 10px 20px;
+    border-radius: 8px;
+    letter-spacing: 0.5px;
+  }
+}
 
-  <script>
-    const homeBtn = document.getElementById('homeBtn');
+  
+  .buy-now:hover {
+    background: linear-gradient(45deg, #00e676, #00c853);
+    transform: scale(1.05);
+    box-shadow: 0 0 25px rgba(0, 230, 118, 0.9);
+  }
+  
+  .video-thumb-container {
+    position: relative;
+    display: inline-block;
+    cursor: pointer;
+  }
+  
+  .video-icon {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: rgba(0,0,0,0.7);
+    color: white;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 12px;
+  }
+  
+.thumbnails img, .video-thumb-container img {
+  width: 70;
+  height: 65px;
+  object-fit: cover;
+  margin-right: 2px;
+  margin-bottom: 2px;
+  cursor: pointer;
+  border: 2px solid #00ffc3;
+  transition: all 0.3s;
+}
+
+/* Responsive styles for mobile */
+@media (max-width: 600px) {
+  thumbnails img, .video-thumb-container img {
+    width: 50px;
+    height: 45px;
+    margin-right: 3px;
+    margin-bottom: 3px;
+  }
+}
+  
+  .thumbnails img:hover, .video-thumb-container img:hover {
+    transform: scale(1.1);
+    box-shadow: 0 0 10px #00ffc3;
+  }
+</style>
+	
+ <!-- Home & Top Scroll Buttons -->
+<button id="homeBtn" class="scroll-btn" onclick="goHome()" title="Home">
+  <svg viewBox="0 0 24 24"><path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"/></svg>
+</button>
+
+<button id="topBtn" class="scroll-btn hide-btn" onclick="scrollToTop()" title="Top">
+  <svg viewBox="0 0 24 24"><path d="M4 12l1.41 1.41L11 7.83V20h2V7.83l5.59 5.58L20 12l-8-8-8 8z"/></svg>
+</button>
+
+
+<script>
+  // Scroll to top
+  function scrollToTop() {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+
+  // Home navigation (You can replace '#' with your actual homepage link)
+  function goHome() {
+    window.location.href = '/'; // অথবা আপনার হোমপেজ URL দিন
+  }
+
+  // Show/hide top button on scroll
+  window.addEventListener('scroll', function () {
     const topBtn = document.getElementById('topBtn');
-    const clickSound = document.getElementById('clickSound');
-    let scrollTimer;
-
-    function playClickSound() {
-      clickSound.currentTime = 0;
-      clickSound.play().catch(e=>console.warn(e));
-      if (navigator.vibrate) navigator.vibrate(30);
-    }
-
-    window.addEventListener('scroll', () => {
-      clearTimeout(scrollTimer);
-      homeBtn.classList.add('hide-btn');
+    if (window.scrollY > 300) {
+      topBtn.classList.remove('hide-btn');
+    } else {
       topBtn.classList.add('hide-btn');
-      scrollTimer = setTimeout(() => {
-        homeBtn.classList.remove('hide-btn');
-        topBtn.classList.remove('hide-btn');
-      }, 300);
-    });
+    }
+  });
+</script>
 
-    homeBtn.addEventListener('click', () => {
-      playClickSound();
-      window.location.href = '/';
-    });
-
-    topBtn.addEventListener('click', () => {
-      playClickSound();
-      window.scrollTo({ top: 0, behavior: 'smooth' });
-    });
-  </script>
-
-	  <button class="gaming-button" onclick="goToBuyPage()">
+  
+  <button class="gaming-button" onclick="goToBuyPage()">
     <svg viewBox="0 0 24 24"><path d="M10 17l5-5-5-5v10z"/></svg>
-    Buy Embroidery Caps 🧢
-    <audio id="btnSound" src="https://www.fesliyanstudios.com/play-mp3/387"></audio>
+    Buy Printed Caps 🧢
   </button>
 
   <script>
     function goToBuyPage() {
-      const sound = document.getElementById("btnSound");
+      const sound = new Audio("Mouse-Click.mp3");
       sound.play();
       setTimeout(() => {
-        window.location.href = "https://headlookbd.com/embroidery"; // Change this
-      }, 100); // Delay to let the sound play
+        window.location.href = "https://headlookbd.com/embroidery";
+      }, 200);
     }
   </script>
 </body>
