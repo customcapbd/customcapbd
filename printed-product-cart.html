@@ -585,7 +585,7 @@ function downloadInvoice() {
 // ✅ এখানে বসাও timestamp যুক্ত করার লাইন
   const now = new Date();
   formData.append('timestamp', now.toLocaleString('en-BD', { timeZone: 'Asia/Dhaka' }));
-  fetch('hhttps://script.google.com/macros/s/AKfycbw6TTyffWTppxjroMfCZUFCUoY5F-6pJDr14lexoWYb4ACOQFMC3t7cXKbYMkwAR-VTow/exec', {
+  fetch('https://script.google.com/macros/s/AKfycbw6TTyffWTppxjroMfCZUFCUoY5F-6pJDr14lexoWYb4ACOQFMC3t7cXKbYMkwAR-VTow/exec', {
     method: 'POST',
     body: new URLSearchParams(formData)
   })
