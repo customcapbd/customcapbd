@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -387,12 +388,12 @@
       
       <div class="product-footer">
         <span class="price-tag">Price: ৳${product.price}</span>
-        <a href="https://headlookbd.com/printed-product-cart" class="buy-now" onclick='
+        <a href="printed-product-cart.html" class="buy-now" onclick='
           event.preventDefault();
           clickSound.play();
           localStorage.setItem("selectedProduct", JSON.stringify(${JSON.stringify(product)}));
           setTimeout(() => {
-            window.location.href = "https://headlookbd.com/printed-product-cart";
+            window.location.href = "printed-product-cart.html";
           }, 200);
         '>BUY NOW</a>
       </div>
