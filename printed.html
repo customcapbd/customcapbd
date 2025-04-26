@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -280,6 +279,15 @@
         padding: 12px 25px;
       }
     }
+    /* New styles for buttons container */
+    .contact-buttons-container {
+      display: flex;
+      justify-content: center;
+      gap: 10px;
+      padding: 10px;
+      background: rgba(0, 0, 0, 0.8);
+      flex-wrap: wrap;
+    }
   </style>
 </head>
 <body>
@@ -409,6 +417,12 @@
             window.location.href = "https://headlookbd.com/printed-product-cart";
           }, 200);
         '>BUY NOW</a>
+      </div>
+            <div class="contact-buttons-container">
+	  <p style="color:white;font-size: 1.1rem; text-align: center;">এই ক্যাপটি প্রিন্টেড এবং এমব্রয়ডারি ভেরিয়েন্টেই নিতে পারেন, অনুগ্রহ করে স্ক্রিনশট সহ আমাদের সাথে যোগাযোগ করুনঃ</p>
+        <a href="tel:+8801723419695" class="contact-button call-button">Call Now</a>
+        <a href="https://wa.me/+8801724674681" class="contact-button whatsapp-button">WhatsApp</a>
+        <a href="https://m.me/CustomCapBD" class="contact-button messenger-button">Messenger</a>
       </div>
     `;
     gallery.appendChild(card);
