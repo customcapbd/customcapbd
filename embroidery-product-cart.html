@@ -577,14 +577,25 @@ function downloadInvoice() {
   <audio id="confirmationSound" src="order.mp3" preload="auto"></audio>
 
   <!-- তোমার স্ক্রিপ্টগুলো -->
-  <script>
-   function submitOrder(event) {
+ <script>
+ function submitOrder(event) {
   event.preventDefault();
+  
+  // Get form data
   const form = document.getElementById('orderForm');
   const formData = new FormData(form);
-// ✅ এখানে বসাও timestamp যুক্ত করার লাইন
+  
+  // Add timestamp
   const now = new Date();
   formData.append('timestamp', now.toLocaleString('en-BD', { timeZone: 'Asia/Dhaka' }));
+  
+  // Show loading state
+  const submitBtn = form.querySelector('button[type="submit"]');
+  const originalBtnText = submitBtn.textContent;
+  submitBtn.disabled = true;
+  submitBtn.textContent = 'Processing Order...';
+  
+  // Submit to Google Apps Script
   fetch('https://script.google.com/macros/s/AKfycbzcXWXiE4KZqewAtoFtOlypIq1x3TCJxoTomRR5clh_EEAx7jK-UKG050dFIKSUuu51/exec', {
     method: 'POST',
     body: new URLSearchParams(formData)
@@ -592,16 +603,40 @@ function downloadInvoice() {
   .then(res => res.json())
   .then(data => {
     if (data.result === 'success') {
+      // Success - show confirmation
       document.querySelector('.order-form').style.display = 'none';
       document.getElementById('productCard').style.display = 'none';
       document.getElementById('confirmation').style.display = 'block';
-
-      // ✅ অডিও বাজানো
+      
+      // Play confirmation sound
       const sound = document.getElementById('confirmationSound');
-      if (sound) {
-        sound.play();
-      }
+      if (sound) sound.play().catch(e => console.warn(e));
+      
+      // Update confirmation message with order number
+      const confirmationMsg = document.querySelector('#confirmation p');
+      confirmationMsg.innerHTML = `
+        Thank you for your order!<br>
+        <strong>Your Order Number: #${data.orderNumber}</strong><br><br>
+        We've sent the invoice to your email.
+      `;
+      
+      // Update download button
+      const downloadBtn = document.querySelector('#confirmation button');
+      downloadBtn.onclick = function() {
+        window.open(data.invoiceUrl, '_blank');
+      };
+      
+    } else {
+      // Error handling
+      alert('Error: ' + (data.error || 'Failed to submit order'));
+      submitBtn.disabled = false;
+      submitBtn.textContent = originalBtnText;
     }
+  })
+  .catch(err => {
+    alert('Network error. Please check your connection and try again.');
+    submitBtn.disabled = false;
+    submitBtn.textContent = originalBtnText;
   });
 }
 
