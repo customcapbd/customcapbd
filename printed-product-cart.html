@@ -634,7 +634,7 @@ function downloadInvoice() {
   const submitBtn = form.querySelector('button[type="submit"]');
   const originalBtnText = submitBtn.textContent;
   submitBtn.disabled = true;
-  submitBtn.textContent = 'আপনার অর্ডারটি প্রসেস করা হচ্ছে.....';
+  submitBtn.textContent = 'আপনার অর্ডারটি প্রসেস করা হচ্ছে....';
   
   // Submit to Google Apps Script
   fetch('https://script.google.com/macros/s/AKfycbzcXWXiE4KZqewAtoFtOlypIq1x3TCJxoTomRR5clh_EEAx7jK-UKG050dFIKSUuu51/exec', {
